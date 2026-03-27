@@ -1,0 +1,132 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package cmd
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/Increase/increase-cli/internal/apiquery"
+	"github.com/Increase/increase-cli/internal/requestflag"
+	"github.com/Increase/increase-go"
+	"github.com/Increase/increase-go/option"
+	"github.com/tidwall/gjson"
+	"github.com/urfave/cli/v3"
+)
+
+var inboundWireDrawdownRequestsRetrieve = cli.Command{
+	Name:    "retrieve",
+	Usage:   "Retrieve an Inbound Wire Drawdown Request",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:     "inbound-wire-drawdown-request-id",
+			Usage:    "The identifier of the Inbound Wire Drawdown Request to retrieve.",
+			Required: true,
+		},
+	},
+	Action:          handleInboundWireDrawdownRequestsRetrieve,
+	HideHelpCommand: true,
+}
+
+var inboundWireDrawdownRequestsList = cli.Command{
+	Name:    "list",
+	Usage:   "List Inbound Wire Drawdown Requests",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:      "cursor",
+			Usage:     "Return the page of entries after this one.",
+			QueryPath: "cursor",
+		},
+		&requestflag.Flag[int64]{
+			Name:      "limit",
+			Usage:     "Limit the size of the list that is returned. The default (and maximum) is 100 objects.",
+			QueryPath: "limit",
+		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
+	},
+	Action:          handleInboundWireDrawdownRequestsList,
+	HideHelpCommand: true,
+}
+
+func handleInboundWireDrawdownRequestsRetrieve(ctx context.Context, cmd *cli.Command) error {
+	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("inbound-wire-drawdown-request-id") && len(unusedArgs) > 0 {
+		cmd.Set("inbound-wire-drawdown-request-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatDots,
+		apiquery.ArrayQueryFormatComma,
+		EmptyBody,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	var res []byte
+	options = append(options, option.WithResponseBodyInto(&res))
+	_, err = client.InboundWireDrawdownRequests.Get(ctx, cmd.Value("inbound-wire-drawdown-request-id").(string), options...)
+	if err != nil {
+		return err
+	}
+
+	obj := gjson.ParseBytes(res)
+	format := cmd.Root().String("format")
+	transform := cmd.Root().String("transform")
+	return ShowJSON(os.Stdout, "inbound-wire-drawdown-requests retrieve", obj, format, transform)
+}
+
+func handleInboundWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command) error {
+	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	params := increase.InboundWireDrawdownRequestListParams{}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatDots,
+		apiquery.ArrayQueryFormatComma,
+		EmptyBody,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	format := cmd.Root().String("format")
+	transform := cmd.Root().String("transform")
+	if format == "raw" {
+		var res []byte
+		options = append(options, option.WithResponseBodyInto(&res))
+		_, err = client.InboundWireDrawdownRequests.List(ctx, params, options...)
+		if err != nil {
+			return err
+		}
+		obj := gjson.ParseBytes(res)
+		return ShowJSON(os.Stdout, "inbound-wire-drawdown-requests list", obj, format, transform)
+	} else {
+		iter := client.InboundWireDrawdownRequests.ListAutoPaging(ctx, params, options...)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "inbound-wire-drawdown-requests list", iter, format, transform, maxItems)
+	}
+}

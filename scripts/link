@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+# Mark the necessary Go modules as private to avoid Go's proxy
+export GOPRIVATE="${GOPRIVATE:+$GOPRIVATE,}github.com/Increase/increase-go,github.com/stainless-sdks/increase-go"
+
+REPLACEMENT="${1:-"../increase-go"}"
+echo "==> Replacing Go SDK with $REPLACEMENT"
+go mod edit -replace github.com/Increase/increase-go="$REPLACEMENT"
+go mod tidy -e
