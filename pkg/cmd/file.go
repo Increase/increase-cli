@@ -21,10 +21,11 @@ var filesCreate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "file",
-			Usage:    "The file contents. This should follow the specifications of [RFC 7578](https://datatracker.ietf.org/doc/html/rfc7578) which defines file transfers for the multipart/form-data protocol.",
-			Required: true,
-			BodyPath: "file",
+			Name:      "file",
+			Usage:     "The file contents. This should follow the specifications of [RFC 7578](https://datatracker.ietf.org/doc/html/rfc7578) which defines file transfers for the multipart/form-data protocol.",
+			Required:  true,
+			BodyPath:  "file",
+			FileInput: true,
 		},
 		&requestflag.Flag[string]{
 			Name:     "purpose",
