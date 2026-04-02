@@ -3,6 +3,7 @@
 package cmd
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/Increase/increase-cli/internal/mocktest"
@@ -15,18 +16,21 @@ func TestFilesCreate(t *testing.T) {
 			t,
 			"--api-key", "string",
 			"files", "create",
-			"--file", "Example data",
+			"--file", mocktest.TestFile(t, "Example data"),
 			"--purpose", "check_image_front",
 			"--description", "x",
 		)
 	})
 
 	t.Run("piping data", func(t *testing.T) {
+		testFile := mocktest.TestFile(t, "Example data")
 		// Test piping YAML data over stdin
-		pipeData := []byte("" +
+		pipeDataStr := "" +
 			"file: Example data\n" +
 			"purpose: check_image_front\n" +
-			"description: x\n")
+			"description: x\n"
+		pipeDataStr = strings.ReplaceAll(pipeDataStr, "Example data", testFile)
+		pipeData := []byte(pipeDataStr)
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",
