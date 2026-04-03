@@ -27,6 +27,11 @@ var cardsCreate = requestflag.WithInnerFlags(cli.Command{
 			BodyPath: "account_id",
 		},
 		&requestflag.Flag[map[string]any]{
+			Name:     "authorization-controls",
+			Usage:    "Controls that restrict how this card can be used.",
+			BodyPath: "authorization_controls",
+		},
+		&requestflag.Flag[map[string]any]{
 			Name:     "billing-address",
 			Usage:    "The card's billing address.",
 			BodyPath: "billing_address",
@@ -50,6 +55,33 @@ var cardsCreate = requestflag.WithInnerFlags(cli.Command{
 	Action:          handleCardsCreate,
 	HideHelpCommand: true,
 }, map[string][]requestflag.HasOuterFlag{
+	"authorization-controls": {
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.maximum-authorization-count",
+			Usage:      "Limits the number of authorizations that can be approved on this card.",
+			InnerField: "maximum_authorization_count",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.merchant-acceptor-identifier",
+			Usage:      "Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations on this card.",
+			InnerField: "merchant_acceptor_identifier",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.merchant-category-code",
+			Usage:      "Restricts which Merchant Category Codes are allowed or blocked for authorizations on this card.",
+			InnerField: "merchant_category_code",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.merchant-country",
+			Usage:      "Restricts which merchant countries are allowed or blocked for authorizations on this card.",
+			InnerField: "merchant_country",
+		},
+		&requestflag.InnerFlag[[]map[string]any]{
+			Name:       "authorization-controls.spending-limits",
+			Usage:      "Spending limits for this card. The most restrictive limit is applied if multiple limits match.",
+			InnerField: "spending_limits",
+		},
+	},
 	"billing-address": {
 		&requestflag.InnerFlag[string]{
 			Name:       "billing-address.city",
@@ -122,6 +154,11 @@ var cardsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Required: true,
 		},
 		&requestflag.Flag[map[string]any]{
+			Name:     "authorization-controls",
+			Usage:    "Controls that restrict how this card can be used.",
+			BodyPath: "authorization_controls",
+		},
+		&requestflag.Flag[map[string]any]{
 			Name:     "billing-address",
 			Usage:    "The card's updated billing address.",
 			BodyPath: "billing_address",
@@ -150,6 +187,33 @@ var cardsUpdate = requestflag.WithInnerFlags(cli.Command{
 	Action:          handleCardsUpdate,
 	HideHelpCommand: true,
 }, map[string][]requestflag.HasOuterFlag{
+	"authorization-controls": {
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.maximum-authorization-count",
+			Usage:      "Limits the number of authorizations that can be approved on this card.",
+			InnerField: "maximum_authorization_count",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.merchant-acceptor-identifier",
+			Usage:      "Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations on this card.",
+			InnerField: "merchant_acceptor_identifier",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.merchant-category-code",
+			Usage:      "Restricts which Merchant Category Codes are allowed or blocked for authorizations on this card.",
+			InnerField: "merchant_category_code",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.merchant-country",
+			Usage:      "Restricts which merchant countries are allowed or blocked for authorizations on this card.",
+			InnerField: "merchant_country",
+		},
+		&requestflag.InnerFlag[[]map[string]any]{
+			Name:       "authorization-controls.spending-limits",
+			Usage:      "Spending limits for this card. The most restrictive limit is applied if multiple limits match.",
+			InnerField: "spending_limits",
+		},
+	},
 	"billing-address": {
 		&requestflag.InnerFlag[string]{
 			Name:       "billing-address.city",

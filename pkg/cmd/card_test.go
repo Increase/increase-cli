@@ -16,6 +16,7 @@ func TestCardsCreate(t *testing.T) {
 			"--api-key", "string",
 			"cards", "create",
 			"--account-id", "account_in71c4amph0vgo2qllky",
+			"--authorization-controls", "{maximum_authorization_count: {all_time: 0}, merchant_acceptor_identifier: {allowed: [{identifier: x}], blocked: [{identifier: x}]}, merchant_category_code: {allowed: [{code: xxxx}], blocked: [{code: xxxx}]}, merchant_country: {allowed: [{country: xx}], blocked: [{country: xx}]}, spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}",
 			"--billing-address", "{city: x, line1: x, postal_code: x, state: x, line2: x}",
 			"--description", "Card for Ian Crease",
 			"--digital-wallet", "{digital_card_profile_id: digital_card_profile_id, email: dev@stainless.com, phone: x}",
@@ -33,6 +34,11 @@ func TestCardsCreate(t *testing.T) {
 			"--api-key", "string",
 			"cards", "create",
 			"--account-id", "account_in71c4amph0vgo2qllky",
+			"--authorization-controls.maximum-authorization-count", "{all_time: 0}",
+			"--authorization-controls.merchant-acceptor-identifier", "{allowed: [{identifier: x}], blocked: [{identifier: x}]}",
+			"--authorization-controls.merchant-category-code", "{allowed: [{code: xxxx}], blocked: [{code: xxxx}]}",
+			"--authorization-controls.merchant-country", "{allowed: [{country: xx}], blocked: [{country: xx}]}",
+			"--authorization-controls.spending-limits", "[{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]",
 			"--billing-address.city", "x",
 			"--billing-address.line1", "x",
 			"--billing-address.postal-code", "x",
@@ -50,6 +56,29 @@ func TestCardsCreate(t *testing.T) {
 		// Test piping YAML data over stdin
 		pipeData := []byte("" +
 			"account_id: account_in71c4amph0vgo2qllky\n" +
+			"authorization_controls:\n" +
+			"  maximum_authorization_count:\n" +
+			"    all_time: 0\n" +
+			"  merchant_acceptor_identifier:\n" +
+			"    allowed:\n" +
+			"      - identifier: x\n" +
+			"    blocked:\n" +
+			"      - identifier: x\n" +
+			"  merchant_category_code:\n" +
+			"    allowed:\n" +
+			"      - code: xxxx\n" +
+			"    blocked:\n" +
+			"      - code: xxxx\n" +
+			"  merchant_country:\n" +
+			"    allowed:\n" +
+			"      - country: xx\n" +
+			"    blocked:\n" +
+			"      - country: xx\n" +
+			"  spending_limits:\n" +
+			"    - interval: all_time\n" +
+			"      settlement_amount: 0\n" +
+			"      merchant_category_codes:\n" +
+			"        - code: x\n" +
 			"billing_address:\n" +
 			"  city: x\n" +
 			"  line1: x\n" +
@@ -88,6 +117,7 @@ func TestCardsUpdate(t *testing.T) {
 			"--api-key", "string",
 			"cards", "update",
 			"--card-id", "card_oubs0hwk5rn6knuecxg2",
+			"--authorization-controls", "{maximum_authorization_count: {all_time: 0}, merchant_acceptor_identifier: {allowed: [{identifier: x}], blocked: [{identifier: x}]}, merchant_category_code: {allowed: [{code: xxxx}], blocked: [{code: xxxx}]}, merchant_country: {allowed: [{country: xx}], blocked: [{country: xx}]}, spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}",
 			"--billing-address", "{city: x, line1: x, postal_code: x, state: x, line2: x}",
 			"--description", "New description",
 			"--digital-wallet", "{digital_card_profile_id: digital_card_profile_id, email: dev@stainless.com, phone: x}",
@@ -106,6 +136,11 @@ func TestCardsUpdate(t *testing.T) {
 			"--api-key", "string",
 			"cards", "update",
 			"--card-id", "card_oubs0hwk5rn6knuecxg2",
+			"--authorization-controls.maximum-authorization-count", "{all_time: 0}",
+			"--authorization-controls.merchant-acceptor-identifier", "{allowed: [{identifier: x}], blocked: [{identifier: x}]}",
+			"--authorization-controls.merchant-category-code", "{allowed: [{code: xxxx}], blocked: [{code: xxxx}]}",
+			"--authorization-controls.merchant-country", "{allowed: [{country: xx}], blocked: [{country: xx}]}",
+			"--authorization-controls.spending-limits", "[{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]",
 			"--billing-address.city", "x",
 			"--billing-address.line1", "x",
 			"--billing-address.postal-code", "x",
@@ -123,6 +158,29 @@ func TestCardsUpdate(t *testing.T) {
 	t.Run("piping data", func(t *testing.T) {
 		// Test piping YAML data over stdin
 		pipeData := []byte("" +
+			"authorization_controls:\n" +
+			"  maximum_authorization_count:\n" +
+			"    all_time: 0\n" +
+			"  merchant_acceptor_identifier:\n" +
+			"    allowed:\n" +
+			"      - identifier: x\n" +
+			"    blocked:\n" +
+			"      - identifier: x\n" +
+			"  merchant_category_code:\n" +
+			"    allowed:\n" +
+			"      - code: xxxx\n" +
+			"    blocked:\n" +
+			"      - code: xxxx\n" +
+			"  merchant_country:\n" +
+			"    allowed:\n" +
+			"      - country: xx\n" +
+			"    blocked:\n" +
+			"      - country: xx\n" +
+			"  spending_limits:\n" +
+			"    - interval: all_time\n" +
+			"      settlement_amount: 0\n" +
+			"      merchant_category_codes:\n" +
+			"        - code: x\n" +
 			"billing_address:\n" +
 			"  city: x\n" +
 			"  line1: x\n" +
