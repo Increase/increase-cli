@@ -78,7 +78,7 @@ var cardsCreate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[[]map[string]any]{
 			Name:       "authorization-controls.spending-limits",
-			Usage:      "Spending limits for this card. The most restrictive limit is applied if multiple limits match.",
+			Usage:      "Spending limits for this card. The most restrictive limit applies if multiple limits match.",
 			InnerField: "spending_limits",
 		},
 	},
@@ -210,7 +210,7 @@ var cardsUpdate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[[]map[string]any]{
 			Name:       "authorization-controls.spending-limits",
-			Usage:      "Spending limits for this card. The most restrictive limit is applied if multiple limits match.",
+			Usage:      "Spending limits for this card. The most restrictive limit applies if multiple limits match.",
 			InnerField: "spending_limits",
 		},
 	},
