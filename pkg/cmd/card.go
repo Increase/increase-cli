@@ -57,11 +57,6 @@ var cardsCreate = requestflag.WithInnerFlags(cli.Command{
 }, map[string][]requestflag.HasOuterFlag{
 	"authorization-controls": {
 		&requestflag.InnerFlag[map[string]any]{
-			Name:       "authorization-controls.maximum-authorization-count",
-			Usage:      "Limits the number of authorizations that can be approved on this card.",
-			InnerField: "maximum_authorization_count",
-		},
-		&requestflag.InnerFlag[map[string]any]{
 			Name:       "authorization-controls.merchant-acceptor-identifier",
 			Usage:      "Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations on this card.",
 			InnerField: "merchant_acceptor_identifier",
@@ -76,10 +71,10 @@ var cardsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:      "Restricts which merchant countries are allowed or blocked for authorizations on this card.",
 			InnerField: "merchant_country",
 		},
-		&requestflag.InnerFlag[[]map[string]any]{
-			Name:       "authorization-controls.spending-limits",
-			Usage:      "Spending limits for this card. The most restrictive limit applies if multiple limits match.",
-			InnerField: "spending_limits",
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.usage",
+			Usage:      "Controls how many times this card can be used.",
+			InnerField: "usage",
 		},
 	},
 	"billing-address": {
@@ -189,11 +184,6 @@ var cardsUpdate = requestflag.WithInnerFlags(cli.Command{
 }, map[string][]requestflag.HasOuterFlag{
 	"authorization-controls": {
 		&requestflag.InnerFlag[map[string]any]{
-			Name:       "authorization-controls.maximum-authorization-count",
-			Usage:      "Limits the number of authorizations that can be approved on this card.",
-			InnerField: "maximum_authorization_count",
-		},
-		&requestflag.InnerFlag[map[string]any]{
 			Name:       "authorization-controls.merchant-acceptor-identifier",
 			Usage:      "Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations on this card.",
 			InnerField: "merchant_acceptor_identifier",
@@ -208,10 +198,10 @@ var cardsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Usage:      "Restricts which merchant countries are allowed or blocked for authorizations on this card.",
 			InnerField: "merchant_country",
 		},
-		&requestflag.InnerFlag[[]map[string]any]{
-			Name:       "authorization-controls.spending-limits",
-			Usage:      "Spending limits for this card. The most restrictive limit applies if multiple limits match.",
-			InnerField: "spending_limits",
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "authorization-controls.usage",
+			Usage:      "Controls how many times this card can be used.",
+			InnerField: "usage",
 		},
 	},
 	"billing-address": {
