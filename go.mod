@@ -3,7 +3,7 @@ module github.com/Increase/increase-cli
 go 1.25
 
 require (
-	github.com/Increase/increase-go v0.533.0
+	github.com/Increase/increase-go v0.534.0
 	github.com/charmbracelet/bubbles v0.21.0
 	github.com/charmbracelet/bubbletea v1.3.6
 	github.com/charmbracelet/lipgloss v1.1.0
