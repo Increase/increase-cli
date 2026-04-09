@@ -477,6 +477,17 @@ func init() {
 				},
 			},
 			{
+				Name:     "entity-onboarding-sessions",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&entityOnboardingSessionsCreate,
+					&entityOnboardingSessionsRetrieve,
+					&entityOnboardingSessionsList,
+					&entityOnboardingSessionsExpire,
+				},
+			},
+			{
 				Name:     "programs",
 				Category: "API RESOURCE",
 				Suggest:  true,
@@ -912,6 +923,14 @@ func init() {
 				Suggest:  true,
 				Commands: []*cli.Command{
 					&simulationsInboundMailItemsCreate,
+				},
+			},
+			{
+				Name:     "simulations:entity-onboarding-sessions",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&simulationsEntityOnboardingSessionsSubmit,
 				},
 			},
 			{
