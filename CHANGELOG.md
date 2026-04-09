@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 (2026-04-09)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/Increase/increase-cli/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([e55d837](https://github.com/Increase/increase-cli/commit/e55d837426c069f721b20c31bbcea4a530ea4f9f))
+
+
+### Bug Fixes
+
+* fix for failing to drop invalid module replace in link script ([b4f3265](https://github.com/Increase/increase-cli/commit/b4f32652a2ea1e735fc9ec080bb7d4bfd0bd3287))
+
 ## 0.1.0 (2026-04-09)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/Increase/increase-cli/compare/v0.0.1...v0.1.0)
