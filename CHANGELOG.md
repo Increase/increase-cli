@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2026-04-09)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/Increase/increase-cli/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([c941f66](https://github.com/Increase/increase-cli/commit/c941f6601d9f746528cfb25eb23bcc96b1c44f9d))
+
 ## 0.3.0 (2026-04-09)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/Increase/increase-cli/compare/v0.2.0...v0.3.0)
