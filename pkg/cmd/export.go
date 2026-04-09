@@ -52,6 +52,11 @@ var exportsCreate = requestflag.WithInnerFlags(cli.Command{
 			BodyPath: "bookkeeping_account_balance_csv",
 		},
 		&requestflag.Flag[map[string]any]{
+			Name:     "daily-account-balance-csv",
+			Usage:    "Options for the created export. Required if `category` is equal to `daily_account_balance_csv`.",
+			BodyPath: "daily_account_balance_csv",
+		},
+		&requestflag.Flag[map[string]any]{
 			Name:     "entity-csv",
 			Usage:    "Options for the created export. Required if `category` is equal to `entity_csv`.",
 			BodyPath: "entity_csv",
@@ -143,6 +148,23 @@ var exportsCreate = requestflag.WithInnerFlags(cli.Command{
 			Name:       "bookkeeping-account-balance-csv.created-at",
 			Usage:      "Filter results by time range on the `created_at` attribute.",
 			InnerField: "created_at",
+		},
+	},
+	"daily-account-balance-csv": {
+		&requestflag.InnerFlag[string]{
+			Name:       "daily-account-balance-csv.account-id",
+			Usage:      "Filter exported Balances to the specified Account.",
+			InnerField: "account_id",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "daily-account-balance-csv.on-or-after-date",
+			Usage:      "Filter exported Balances to those on or after this date.",
+			InnerField: "on_or_after_date",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "daily-account-balance-csv.on-or-before-date",
+			Usage:      "Filter exported Balances to those on or before this date.",
+			InnerField: "on_or_before_date",
 		},
 	},
 	"funding-instructions": {
