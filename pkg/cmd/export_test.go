@@ -21,6 +21,7 @@ func TestExportsCreate(t *testing.T) {
 			"--account-verification-letter", "{account_number_id: account_number_id, balance_date: '2019-12-27'}",
 			"--balance-csv", "{account_id: account_id, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
 			"--bookkeeping-account-balance-csv", "{bookkeeping_account_id: bookkeeping_account_id, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
+			"--daily-account-balance-csv", "{account_id: account_id, on_or_after_date: '2019-12-27', on_or_before_date: '2019-12-27'}",
 			"--entity-csv", "{}",
 			"--funding-instructions", "{account_number_id: account_number_id}",
 			"--transaction-csv", "{account_id: account_in71c4amph0vgo2qllky, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
@@ -50,6 +51,9 @@ func TestExportsCreate(t *testing.T) {
 			"--balance-csv.created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
 			"--bookkeeping-account-balance-csv.bookkeeping-account-id", "bookkeeping_account_id",
 			"--bookkeeping-account-balance-csv.created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
+			"--daily-account-balance-csv.account-id", "account_id",
+			"--daily-account-balance-csv.on-or-after-date", "2019-12-27",
+			"--daily-account-balance-csv.on-or-before-date", "2019-12-27",
 			"--funding-instructions.account-number-id", "account_number_id",
 			"--transaction-csv.account-id", "account_in71c4amph0vgo2qllky",
 			"--transaction-csv.created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
@@ -90,6 +94,10 @@ func TestExportsCreate(t *testing.T) {
 			"    before: '2019-12-27T18:11:19.117Z'\n" +
 			"    on_or_after: '2019-12-27T18:11:19.117Z'\n" +
 			"    on_or_before: '2019-12-27T18:11:19.117Z'\n" +
+			"daily_account_balance_csv:\n" +
+			"  account_id: account_id\n" +
+			"  on_or_after_date: '2019-12-27'\n" +
+			"  on_or_before_date: '2019-12-27'\n" +
 			"entity_csv: {}\n" +
 			"funding_instructions:\n" +
 			"  account_number_id: account_number_id\n" +
