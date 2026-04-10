@@ -144,10 +144,15 @@ var exportsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:      "Filter exported Bookkeeping Account Balances to the specified Bookkeeping Account.",
 			InnerField: "bookkeeping_account_id",
 		},
-		&requestflag.InnerFlag[map[string]any]{
-			Name:       "bookkeeping-account-balance-csv.created-at",
-			Usage:      "Filter results by time range on the `created_at` attribute.",
-			InnerField: "created_at",
+		&requestflag.InnerFlag[any]{
+			Name:       "bookkeeping-account-balance-csv.on-or-after-date",
+			Usage:      "Filter exported Balances to those on or after this date.",
+			InnerField: "on_or_after_date",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "bookkeeping-account-balance-csv.on-or-before-date",
+			Usage:      "Filter exported Balances to those on or before this date.",
+			InnerField: "on_or_before_date",
 		},
 	},
 	"daily-account-balance-csv": {
