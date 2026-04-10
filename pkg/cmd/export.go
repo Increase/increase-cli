@@ -110,7 +110,7 @@ var exportsCreate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[map[string]any]{
 			Name:       "account-statement-ofx.created-at",
-			Usage:      "Filter results by time range on the `created_at` attribute.",
+			Usage:      "Filter transactions by their created date.",
 			InnerField: "created_at",
 		},
 	},

@@ -17,7 +17,7 @@ func TestExportsCreate(t *testing.T) {
 			"exports", "create",
 			"--category", "transaction_csv",
 			"--account-statement-bai2", "{account_id: account_id, effective_date: '2019-12-27', program_id: program_id}",
-			"--account-statement-ofx", "{account_id: account_id, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
+			"--account-statement-ofx", "{account_id: account_id, created_at: {before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z'}}",
 			"--account-verification-letter", "{account_number_id: account_number_id, balance_date: '2019-12-27'}",
 			"--balance-csv", "{account_id: account_id, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
 			"--bookkeeping-account-balance-csv", "{bookkeeping_account_id: bookkeeping_account_id, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
@@ -44,7 +44,7 @@ func TestExportsCreate(t *testing.T) {
 			"--account-statement-bai2.effective-date", "2019-12-27",
 			"--account-statement-bai2.program-id", "program_id",
 			"--account-statement-ofx.account-id", "account_id",
-			"--account-statement-ofx.created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
+			"--account-statement-ofx.created-at", "{before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z'}",
 			"--account-verification-letter.account-number-id", "account_number_id",
 			"--account-verification-letter.balance-date", "2019-12-27",
 			"--balance-csv.account-id", "account_id",
@@ -73,10 +73,8 @@ func TestExportsCreate(t *testing.T) {
 			"account_statement_ofx:\n" +
 			"  account_id: account_id\n" +
 			"  created_at:\n" +
-			"    after: '2019-12-27T18:11:19.117Z'\n" +
 			"    before: '2019-12-27T18:11:19.117Z'\n" +
 			"    on_or_after: '2019-12-27T18:11:19.117Z'\n" +
-			"    on_or_before: '2019-12-27T18:11:19.117Z'\n" +
 			"account_verification_letter:\n" +
 			"  account_number_id: account_number_id\n" +
 			"  balance_date: '2019-12-27'\n" +
