@@ -42,11 +42,6 @@ var exportsCreate = requestflag.WithInnerFlags(cli.Command{
 			BodyPath: "account_verification_letter",
 		},
 		&requestflag.Flag[map[string]any]{
-			Name:     "balance-csv",
-			Usage:    "Options for the created export. Required if `category` is equal to `balance_csv`.",
-			BodyPath: "balance_csv",
-		},
-		&requestflag.Flag[map[string]any]{
 			Name:     "bookkeeping-account-balance-csv",
 			Usage:    "Options for the created export. Required if `category` is equal to `bookkeeping_account_balance_csv`.",
 			BodyPath: "bookkeeping_account_balance_csv",
@@ -124,18 +119,6 @@ var exportsCreate = requestflag.WithInnerFlags(cli.Command{
 			Name:       "account-verification-letter.balance-date",
 			Usage:      "The date of the balance to include in the letter. Defaults to the current date.",
 			InnerField: "balance_date",
-		},
-	},
-	"balance-csv": {
-		&requestflag.InnerFlag[string]{
-			Name:       "balance-csv.account-id",
-			Usage:      "Filter exported Balances to the specified Account.",
-			InnerField: "account_id",
-		},
-		&requestflag.InnerFlag[map[string]any]{
-			Name:       "balance-csv.created-at",
-			Usage:      "Filter results by time range on the `created_at` attribute.",
-			InnerField: "created_at",
 		},
 	},
 	"bookkeeping-account-balance-csv": {
