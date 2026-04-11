@@ -19,7 +19,6 @@ func TestExportsCreate(t *testing.T) {
 			"--account-statement-bai2", "{account_id: account_id, effective_date: '2019-12-27', program_id: program_id}",
 			"--account-statement-ofx", "{account_id: account_id, created_at: {before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z'}}",
 			"--account-verification-letter", "{account_number_id: account_number_id, balance_date: '2019-12-27'}",
-			"--balance-csv", "{account_id: account_id, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
 			"--bookkeeping-account-balance-csv", "{bookkeeping_account_id: bookkeeping_account_id, on_or_after_date: '2019-12-27', on_or_before_date: '2019-12-27'}",
 			"--daily-account-balance-csv", "{account_id: account_id, on_or_after_date: '2019-12-27', on_or_before_date: '2019-12-27'}",
 			"--entity-csv", "{}",
@@ -47,8 +46,6 @@ func TestExportsCreate(t *testing.T) {
 			"--account-statement-ofx.created-at", "{before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z'}",
 			"--account-verification-letter.account-number-id", "account_number_id",
 			"--account-verification-letter.balance-date", "2019-12-27",
-			"--balance-csv.account-id", "account_id",
-			"--balance-csv.created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
 			"--bookkeeping-account-balance-csv.bookkeeping-account-id", "bookkeeping_account_id",
 			"--bookkeeping-account-balance-csv.on-or-after-date", "2019-12-27",
 			"--bookkeeping-account-balance-csv.on-or-before-date", "2019-12-27",
@@ -79,13 +76,6 @@ func TestExportsCreate(t *testing.T) {
 			"account_verification_letter:\n" +
 			"  account_number_id: account_number_id\n" +
 			"  balance_date: '2019-12-27'\n" +
-			"balance_csv:\n" +
-			"  account_id: account_id\n" +
-			"  created_at:\n" +
-			"    after: '2019-12-27T18:11:19.117Z'\n" +
-			"    before: '2019-12-27T18:11:19.117Z'\n" +
-			"    on_or_after: '2019-12-27T18:11:19.117Z'\n" +
-			"    on_or_before: '2019-12-27T18:11:19.117Z'\n" +
 			"bookkeeping_account_balance_csv:\n" +
 			"  bookkeeping_account_id: bookkeeping_account_id\n" +
 			"  on_or_after_date: '2019-12-27'\n" +
