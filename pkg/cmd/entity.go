@@ -399,6 +399,16 @@ var entitiesUpdate = requestflag.WithInnerFlags(cli.Command{
 			Usage:      "The entity's physical address. Mail receiving locations like PO Boxes and PMB's are disallowed.",
 			InnerField: "address",
 		},
+		&requestflag.InnerFlag[bool]{
+			Name:       "natural-person.confirmed-no-us-tax-id",
+			Usage:      "The identification method for an individual can only be a passport, driver's license, or other document if you've confirmed the individual does not have a US tax id (either a Social Security Number or Individual Taxpayer Identification Number).",
+			InnerField: "confirmed_no_us_tax_id",
+		},
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "natural-person.identification",
+			Usage:      "A means of verifying the person's identity.",
+			InnerField: "identification",
+		},
 		&requestflag.InnerFlag[string]{
 			Name:       "natural-person.name",
 			Usage:      "The legal name of the natural person.",
