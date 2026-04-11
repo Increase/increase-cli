@@ -320,7 +320,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--corporation", "{address: {city: New York, country: US, line1: 33 Liberty Street, line2: Unit 2, state: NY, zip: '10045'}, email: dev@stainless.com, incorporation_state: x, industry_code: x, legal_identifier: {value: x, category: us_employer_identification_number}, name: x}",
 			"--details-confirmed-at", "'2019-12-27T18:11:19.117Z'",
 			"--government-authority", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
-			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, name: x}",
+			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, confirmed_no_us_tax_id: true, identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x}",
 			"--risk-rating", "{rated_at: '2020-01-31T23:59:59Z', rating: low}",
 			"--third-party-verification", "{reference: x, vendor: alloy}",
 			"--trust", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
@@ -347,6 +347,8 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--government-authority.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
 			"--government-authority.name", "x",
 			"--natural-person.address", "{city: x, country: x, line1: x, line2: x, state: x, zip: x}",
+			"--natural-person.confirmed-no-us-tax-id=true",
+			"--natural-person.identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
 			"--natural-person.name", "x",
 			"--risk-rating.rated-at", "2020-01-31T23:59:59Z",
 			"--risk-rating.rating", "low",
@@ -392,6 +394,25 @@ func TestEntitiesUpdate(t *testing.T) {
 			"    line2: x\n" +
 			"    state: x\n" +
 			"    zip: x\n" +
+			"  confirmed_no_us_tax_id: true\n" +
+			"  identification:\n" +
+			"    method: social_security_number\n" +
+			"    number: xxxx\n" +
+			"    drivers_license:\n" +
+			"      expiration_date: '2019-12-27'\n" +
+			"      file_id: file_id\n" +
+			"      state: x\n" +
+			"      back_file_id: back_file_id\n" +
+			"    other:\n" +
+			"      country: x\n" +
+			"      description: x\n" +
+			"      file_id: file_id\n" +
+			"      back_file_id: back_file_id\n" +
+			"      expiration_date: '2019-12-27'\n" +
+			"    passport:\n" +
+			"      country: x\n" +
+			"      expiration_date: '2019-12-27'\n" +
+			"      file_id: file_id\n" +
 			"  name: x\n" +
 			"risk_rating:\n" +
 			"  rated_at: '2020-01-31T23:59:59Z'\n" +
