@@ -697,14 +697,6 @@ func init() {
 				},
 			},
 			{
-				Name:     "simulations:account-transfers",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&simulationsAccountTransfersComplete,
-				},
-			},
-			{
 				Name:     "simulations:card-authorizations",
 				Category: "API RESOURCE",
 				Suggest:  true,
