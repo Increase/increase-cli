@@ -771,6 +771,14 @@ func init() {
 				},
 			},
 			{
+				Name:     "simulations:card-purchase-supplements",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&simulationsCardPurchaseSupplementsCreate,
+				},
+			},
+			{
 				Name:     "simulations:card-disputes",
 				Category: "API RESOURCE",
 				Suggest:  true,
