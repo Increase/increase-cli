@@ -117,8 +117,9 @@ func handleCardPurchaseSupplementsRetrieve(ctx context.Context, cmd *cli.Command
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-purchase-supplements retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-purchase-supplements retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) error {
@@ -143,6 +144,7 @@ func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) er
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -152,13 +154,13 @@ func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) er
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "card-purchase-supplements list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "card-purchase-supplements list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.CardPurchaseSupplements.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "card-purchase-supplements list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "card-purchase-supplements list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

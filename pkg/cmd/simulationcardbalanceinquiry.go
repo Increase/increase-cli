@@ -138,6 +138,7 @@ func handleSimulationsCardBalanceInquiriesCreate(ctx context.Context, cmd *cli.C
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-balance-inquiries create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-balance-inquiries create", obj, format, explicitFormat, transform)
 }

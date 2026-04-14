@@ -327,8 +327,9 @@ func handleExportsCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "exports create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "exports create", obj, format, explicitFormat, transform)
 }
 
 func handleExportsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -362,8 +363,9 @@ func handleExportsRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "exports retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "exports retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleExportsList(ctx context.Context, cmd *cli.Command) error {
@@ -388,6 +390,7 @@ func handleExportsList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -397,13 +400,13 @@ func handleExportsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "exports list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "exports list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Exports.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "exports list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "exports list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

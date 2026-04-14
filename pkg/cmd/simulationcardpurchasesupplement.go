@@ -176,6 +176,7 @@ func handleSimulationsCardPurchaseSupplementsCreate(ctx context.Context, cmd *cl
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-purchase-supplements create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-purchase-supplements create", obj, format, explicitFormat, transform)
 }

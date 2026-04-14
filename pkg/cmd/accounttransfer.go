@@ -190,8 +190,9 @@ func handleAccountTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-transfers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-transfers create", obj, format, explicitFormat, transform)
 }
 
 func handleAccountTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -225,8 +226,9 @@ func handleAccountTransfersRetrieve(ctx context.Context, cmd *cli.Command) error
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -251,6 +253,7 @@ func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -260,14 +263,14 @@ func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "account-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "account-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.AccountTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "account-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "account-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -302,8 +305,9 @@ func handleAccountTransfersApprove(ctx context.Context, cmd *cli.Command) error 
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-transfers approve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-transfers approve", obj, format, explicitFormat, transform)
 }
 
 func handleAccountTransfersCancel(ctx context.Context, cmd *cli.Command) error {
@@ -337,6 +341,7 @@ func handleAccountTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-transfers cancel", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-transfers cancel", obj, format, explicitFormat, transform)
 }

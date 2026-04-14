@@ -194,8 +194,9 @@ func handleACHPrenotificationsCreate(ctx context.Context, cmd *cli.Command) erro
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "ach-prenotifications create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "ach-prenotifications create", obj, format, explicitFormat, transform)
 }
 
 func handleACHPrenotificationsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -229,8 +230,9 @@ func handleACHPrenotificationsRetrieve(ctx context.Context, cmd *cli.Command) er
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "ach-prenotifications retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "ach-prenotifications retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error {
@@ -255,6 +257,7 @@ func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error 
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -264,13 +267,13 @@ func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "ach-prenotifications list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "ach-prenotifications list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.ACHPrenotifications.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "ach-prenotifications list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "ach-prenotifications list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

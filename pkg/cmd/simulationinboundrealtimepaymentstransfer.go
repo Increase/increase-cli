@@ -92,6 +92,7 @@ func handleSimulationsInboundRealTimePaymentsTransfersCreate(ctx context.Context
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:inbound-real-time-payments-transfers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:inbound-real-time-payments-transfers create", obj, format, explicitFormat, transform)
 }

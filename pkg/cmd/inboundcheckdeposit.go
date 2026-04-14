@@ -158,8 +158,9 @@ func handleInboundCheckDepositsRetrieve(ctx context.Context, cmd *cli.Command) e
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "inbound-check-deposits retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "inbound-check-deposits retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error {
@@ -184,6 +185,7 @@ func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -193,14 +195,14 @@ func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "inbound-check-deposits list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "inbound-check-deposits list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.InboundCheckDeposits.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "inbound-check-deposits list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "inbound-check-deposits list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -235,8 +237,9 @@ func handleInboundCheckDepositsDecline(ctx context.Context, cmd *cli.Command) er
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "inbound-check-deposits decline", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "inbound-check-deposits decline", obj, format, explicitFormat, transform)
 }
 
 func handleInboundCheckDepositsReturn(ctx context.Context, cmd *cli.Command) error {
@@ -277,6 +280,7 @@ func handleInboundCheckDepositsReturn(ctx context.Context, cmd *cli.Command) err
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "inbound-check-deposits return", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "inbound-check-deposits return", obj, format, explicitFormat, transform)
 }

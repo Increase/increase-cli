@@ -179,8 +179,9 @@ func handleExternalAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "external-accounts create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "external-accounts create", obj, format, explicitFormat, transform)
 }
 
 func handleExternalAccountsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -214,8 +215,9 @@ func handleExternalAccountsRetrieve(ctx context.Context, cmd *cli.Command) error
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "external-accounts retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "external-accounts retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleExternalAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -256,8 +258,9 @@ func handleExternalAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "external-accounts update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "external-accounts update", obj, format, explicitFormat, transform)
 }
 
 func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
@@ -282,6 +285,7 @@ func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -291,13 +295,13 @@ func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "external-accounts list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "external-accounts list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.ExternalAccounts.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "external-accounts list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "external-accounts list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

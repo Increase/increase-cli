@@ -127,8 +127,9 @@ func handleCardTokensRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-tokens retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-tokens retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
@@ -153,6 +154,7 @@ func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -162,14 +164,14 @@ func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "card-tokens list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "card-tokens list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.CardTokens.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "card-tokens list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "card-tokens list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -204,6 +206,7 @@ func handleCardTokensCapabilities(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-tokens capabilities", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-tokens capabilities", obj, format, explicitFormat, transform)
 }

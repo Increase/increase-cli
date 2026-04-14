@@ -122,8 +122,9 @@ func handleInboundRealTimePaymentsTransfersRetrieve(ctx context.Context, cmd *cl
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "inbound-real-time-payments-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "inbound-real-time-payments-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -148,6 +149,7 @@ func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Co
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -157,13 +159,13 @@ func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Co
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "inbound-real-time-payments-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "inbound-real-time-payments-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.InboundRealTimePaymentsTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "inbound-real-time-payments-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "inbound-real-time-payments-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
