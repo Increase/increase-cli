@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.18.0 (2026-04-14)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/Increase/increase-cli/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* **cli:** alias parameters in data with `x-stainless-cli-data-alias` ([a35e7b0](https://github.com/Increase/increase-cli/commit/a35e7b004f6ccda3f1990f458d65ee339769ff0e))
+
+
+### Chores
+
+* **cli:** fall back to JSON when using default "explore" with non-TTY ([bce6848](https://github.com/Increase/increase-cli/commit/bce6848bd5ca6a9776281b54f26072594f53158d))
+
 ## 0.17.0 (2026-04-13)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/Increase/increase-cli/compare/v0.16.0...v0.17.0)
