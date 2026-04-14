@@ -115,6 +115,7 @@ func handleSimulationsCardTokensCreate(ctx context.Context, cmd *cli.Command) er
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-tokens create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-tokens create", obj, format, explicitFormat, transform)
 }

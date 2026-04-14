@@ -76,8 +76,9 @@ func handleSimulationsWireDrawdownRequestsRefuse(ctx context.Context, cmd *cli.C
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:wire-drawdown-requests refuse", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:wire-drawdown-requests refuse", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsWireDrawdownRequestsSubmit(ctx context.Context, cmd *cli.Command) error {
@@ -111,6 +112,7 @@ func handleSimulationsWireDrawdownRequestsSubmit(ctx context.Context, cmd *cli.C
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:wire-drawdown-requests submit", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:wire-drawdown-requests submit", obj, format, explicitFormat, transform)
 }

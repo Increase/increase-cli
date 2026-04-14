@@ -179,8 +179,9 @@ func handleRealTimeDecisionsRetrieve(ctx context.Context, cmd *cli.Command) erro
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "real-time-decisions retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "real-time-decisions retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleRealTimeDecisionsAction(ctx context.Context, cmd *cli.Command) error {
@@ -221,6 +222,7 @@ func handleRealTimeDecisionsAction(ctx context.Context, cmd *cli.Command) error 
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "real-time-decisions action", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "real-time-decisions action", obj, format, explicitFormat, transform)
 }

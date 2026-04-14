@@ -160,8 +160,9 @@ func handleCheckDepositsCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-deposits create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-deposits create", obj, format, explicitFormat, transform)
 }
 
 func handleCheckDepositsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -195,8 +196,9 @@ func handleCheckDepositsRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-deposits retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-deposits retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCheckDepositsList(ctx context.Context, cmd *cli.Command) error {
@@ -221,6 +223,7 @@ func handleCheckDepositsList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -230,13 +233,13 @@ func handleCheckDepositsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "check-deposits list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "check-deposits list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.CheckDeposits.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "check-deposits list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "check-deposits list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

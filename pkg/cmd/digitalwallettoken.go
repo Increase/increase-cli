@@ -117,8 +117,9 @@ func handleDigitalWalletTokensRetrieve(ctx context.Context, cmd *cli.Command) er
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "digital-wallet-tokens retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "digital-wallet-tokens retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleDigitalWalletTokensList(ctx context.Context, cmd *cli.Command) error {
@@ -143,6 +144,7 @@ func handleDigitalWalletTokensList(ctx context.Context, cmd *cli.Command) error 
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -152,13 +154,13 @@ func handleDigitalWalletTokensList(ctx context.Context, cmd *cli.Command) error 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "digital-wallet-tokens list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "digital-wallet-tokens list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.DigitalWalletTokens.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "digital-wallet-tokens list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "digital-wallet-tokens list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

@@ -76,8 +76,9 @@ func handleSimulationsWireTransfersReverse(ctx context.Context, cmd *cli.Command
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:wire-transfers reverse", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:wire-transfers reverse", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsWireTransfersSubmit(ctx context.Context, cmd *cli.Command) error {
@@ -111,6 +112,7 @@ func handleSimulationsWireTransfersSubmit(ctx context.Context, cmd *cli.Command)
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:wire-transfers submit", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:wire-transfers submit", obj, format, explicitFormat, transform)
 }

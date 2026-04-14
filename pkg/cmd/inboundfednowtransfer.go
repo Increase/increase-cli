@@ -122,8 +122,9 @@ func handleInboundFednowTransfersRetrieve(ctx context.Context, cmd *cli.Command)
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "inbound-fednow-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "inbound-fednow-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -148,6 +149,7 @@ func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) err
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -157,13 +159,13 @@ func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) err
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "inbound-fednow-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "inbound-fednow-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.InboundFednowTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "inbound-fednow-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "inbound-fednow-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

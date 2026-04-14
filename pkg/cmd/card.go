@@ -408,8 +408,9 @@ func handleCardsCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "cards create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "cards create", obj, format, explicitFormat, transform)
 }
 
 func handleCardsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -443,8 +444,9 @@ func handleCardsRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "cards retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "cards retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCardsUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -485,8 +487,9 @@ func handleCardsUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "cards update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "cards update", obj, format, explicitFormat, transform)
 }
 
 func handleCardsList(ctx context.Context, cmd *cli.Command) error {
@@ -511,6 +514,7 @@ func handleCardsList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -520,14 +524,14 @@ func handleCardsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "cards list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "cards list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Cards.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "cards list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "cards list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -569,8 +573,9 @@ func handleCardsCreateDetailsIframe(ctx context.Context, cmd *cli.Command) error
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "cards create-details-iframe", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "cards create-details-iframe", obj, format, explicitFormat, transform)
 }
 
 func handleCardsDetails(ctx context.Context, cmd *cli.Command) error {
@@ -604,8 +609,9 @@ func handleCardsDetails(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "cards details", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "cards details", obj, format, explicitFormat, transform)
 }
 
 func handleCardsUpdatePin(ctx context.Context, cmd *cli.Command) error {
@@ -646,6 +652,7 @@ func handleCardsUpdatePin(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "cards update-pin", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "cards update-pin", obj, format, explicitFormat, transform)
 }

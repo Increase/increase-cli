@@ -143,8 +143,9 @@ func handleIntrafiAccountEnrollmentsCreate(ctx context.Context, cmd *cli.Command
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "intrafi-account-enrollments create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "intrafi-account-enrollments create", obj, format, explicitFormat, transform)
 }
 
 func handleIntrafiAccountEnrollmentsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -178,8 +179,9 @@ func handleIntrafiAccountEnrollmentsRetrieve(ctx context.Context, cmd *cli.Comma
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "intrafi-account-enrollments retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "intrafi-account-enrollments retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) error {
@@ -204,6 +206,7 @@ func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) 
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -213,14 +216,14 @@ func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "intrafi-account-enrollments list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "intrafi-account-enrollments list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.IntrafiAccountEnrollments.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "intrafi-account-enrollments list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "intrafi-account-enrollments list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -255,6 +258,7 @@ func handleIntrafiAccountEnrollmentsUnenroll(ctx context.Context, cmd *cli.Comma
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "intrafi-account-enrollments unenroll", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "intrafi-account-enrollments unenroll", obj, format, explicitFormat, transform)
 }

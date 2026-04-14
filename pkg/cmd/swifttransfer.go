@@ -313,8 +313,9 @@ func handleSwiftTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "swift-transfers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "swift-transfers create", obj, format, explicitFormat, transform)
 }
 
 func handleSwiftTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -348,8 +349,9 @@ func handleSwiftTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "swift-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "swift-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -374,6 +376,7 @@ func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -383,14 +386,14 @@ func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "swift-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "swift-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.SwiftTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "swift-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "swift-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -425,8 +428,9 @@ func handleSwiftTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "swift-transfers approve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "swift-transfers approve", obj, format, explicitFormat, transform)
 }
 
 func handleSwiftTransfersCancel(ctx context.Context, cmd *cli.Command) error {
@@ -460,6 +464,7 @@ func handleSwiftTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "swift-transfers cancel", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "swift-transfers cancel", obj, format, explicitFormat, transform)
 }

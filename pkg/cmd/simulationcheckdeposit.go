@@ -146,8 +146,9 @@ func handleSimulationsCheckDepositsAdjustment(ctx context.Context, cmd *cli.Comm
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:check-deposits adjustment", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits adjustment", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsCheckDepositsReject(ctx context.Context, cmd *cli.Command) error {
@@ -181,8 +182,9 @@ func handleSimulationsCheckDepositsReject(ctx context.Context, cmd *cli.Command)
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:check-deposits reject", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits reject", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsCheckDepositsReturn(ctx context.Context, cmd *cli.Command) error {
@@ -216,8 +218,9 @@ func handleSimulationsCheckDepositsReturn(ctx context.Context, cmd *cli.Command)
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:check-deposits return", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits return", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command) error {
@@ -258,6 +261,7 @@ func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command)
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:check-deposits submit", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits submit", obj, format, explicitFormat, transform)
 }

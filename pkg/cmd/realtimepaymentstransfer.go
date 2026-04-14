@@ -236,8 +236,9 @@ func handleRealTimePaymentsTransfersCreate(ctx context.Context, cmd *cli.Command
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "real-time-payments-transfers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "real-time-payments-transfers create", obj, format, explicitFormat, transform)
 }
 
 func handleRealTimePaymentsTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -271,8 +272,9 @@ func handleRealTimePaymentsTransfersRetrieve(ctx context.Context, cmd *cli.Comma
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "real-time-payments-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "real-time-payments-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -297,6 +299,7 @@ func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) 
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -306,14 +309,14 @@ func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "real-time-payments-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "real-time-payments-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.RealTimePaymentsTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "real-time-payments-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "real-time-payments-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -348,8 +351,9 @@ func handleRealTimePaymentsTransfersApprove(ctx context.Context, cmd *cli.Comman
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "real-time-payments-transfers approve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "real-time-payments-transfers approve", obj, format, explicitFormat, transform)
 }
 
 func handleRealTimePaymentsTransfersCancel(ctx context.Context, cmd *cli.Command) error {
@@ -383,6 +387,7 @@ func handleRealTimePaymentsTransfersCancel(ctx context.Context, cmd *cli.Command
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "real-time-payments-transfers cancel", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "real-time-payments-transfers cancel", obj, format, explicitFormat, transform)
 }
