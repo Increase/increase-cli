@@ -279,8 +279,9 @@ func handleAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "accounts create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "accounts create", obj, format, explicitFormat, transform)
 }
 
 func handleAccountsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -314,8 +315,9 @@ func handleAccountsRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "accounts retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "accounts retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -356,8 +358,9 @@ func handleAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "accounts update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "accounts update", obj, format, explicitFormat, transform)
 }
 
 func handleAccountsList(ctx context.Context, cmd *cli.Command) error {
@@ -382,6 +385,7 @@ func handleAccountsList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -391,14 +395,14 @@ func handleAccountsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "accounts list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "accounts list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Accounts.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "accounts list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "accounts list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -440,8 +444,9 @@ func handleAccountsBalance(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "accounts balance", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "accounts balance", obj, format, explicitFormat, transform)
 }
 
 func handleAccountsClose(ctx context.Context, cmd *cli.Command) error {
@@ -475,6 +480,7 @@ func handleAccountsClose(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "accounts close", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "accounts close", obj, format, explicitFormat, transform)
 }

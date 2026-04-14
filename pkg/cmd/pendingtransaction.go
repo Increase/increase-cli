@@ -185,8 +185,9 @@ func handlePendingTransactionsCreate(ctx context.Context, cmd *cli.Command) erro
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "pending-transactions create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "pending-transactions create", obj, format, explicitFormat, transform)
 }
 
 func handlePendingTransactionsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -220,8 +221,9 @@ func handlePendingTransactionsRetrieve(ctx context.Context, cmd *cli.Command) er
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "pending-transactions retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "pending-transactions retrieve", obj, format, explicitFormat, transform)
 }
 
 func handlePendingTransactionsList(ctx context.Context, cmd *cli.Command) error {
@@ -246,6 +248,7 @@ func handlePendingTransactionsList(ctx context.Context, cmd *cli.Command) error 
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -255,14 +258,14 @@ func handlePendingTransactionsList(ctx context.Context, cmd *cli.Command) error 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "pending-transactions list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "pending-transactions list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.PendingTransactions.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "pending-transactions list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "pending-transactions list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -297,6 +300,7 @@ func handlePendingTransactionsRelease(ctx context.Context, cmd *cli.Command) err
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "pending-transactions release", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "pending-transactions release", obj, format, explicitFormat, transform)
 }

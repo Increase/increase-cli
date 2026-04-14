@@ -370,8 +370,9 @@ func handleCardDisputesCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-disputes create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-disputes create", obj, format, explicitFormat, transform)
 }
 
 func handleCardDisputesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -405,8 +406,9 @@ func handleCardDisputesRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-disputes retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-disputes retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
@@ -431,6 +433,7 @@ func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -440,14 +443,14 @@ func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "card-disputes list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "card-disputes list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.CardDisputes.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "card-disputes list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "card-disputes list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -489,8 +492,9 @@ func handleCardDisputesSubmitUserSubmission(ctx context.Context, cmd *cli.Comman
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-disputes submit-user-submission", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-disputes submit-user-submission", obj, format, explicitFormat, transform)
 }
 
 func handleCardDisputesWithdraw(ctx context.Context, cmd *cli.Command) error {
@@ -531,6 +535,7 @@ func handleCardDisputesWithdraw(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "card-disputes withdraw", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "card-disputes withdraw", obj, format, explicitFormat, transform)
 }

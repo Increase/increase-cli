@@ -306,8 +306,9 @@ func handleCheckTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-transfers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-transfers create", obj, format, explicitFormat, transform)
 }
 
 func handleCheckTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -341,8 +342,9 @@ func handleCheckTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -367,6 +369,7 @@ func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -376,14 +379,14 @@ func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "check-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "check-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.CheckTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "check-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "check-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -418,8 +421,9 @@ func handleCheckTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-transfers approve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-transfers approve", obj, format, explicitFormat, transform)
 }
 
 func handleCheckTransfersCancel(ctx context.Context, cmd *cli.Command) error {
@@ -453,8 +457,9 @@ func handleCheckTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-transfers cancel", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-transfers cancel", obj, format, explicitFormat, transform)
 }
 
 func handleCheckTransfersStopPayment(ctx context.Context, cmd *cli.Command) error {
@@ -495,6 +500,7 @@ func handleCheckTransfersStopPayment(ctx context.Context, cmd *cli.Command) erro
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "check-transfers stop-payment", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "check-transfers stop-payment", obj, format, explicitFormat, transform)
 }

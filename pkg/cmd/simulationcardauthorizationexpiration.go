@@ -61,6 +61,7 @@ func handleSimulationsCardAuthorizationExpirationsCreate(ctx context.Context, cm
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-authorization-expirations create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authorization-expirations create", obj, format, explicitFormat, transform)
 }

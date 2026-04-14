@@ -81,6 +81,7 @@ func handleSimulationsRealTimePaymentsTransfersComplete(ctx context.Context, cmd
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:real-time-payments-transfers complete", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:real-time-payments-transfers complete", obj, format, explicitFormat, transform)
 }

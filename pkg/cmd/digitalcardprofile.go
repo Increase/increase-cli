@@ -272,8 +272,9 @@ func handleDigitalCardProfilesCreate(ctx context.Context, cmd *cli.Command) erro
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "digital-card-profiles create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "digital-card-profiles create", obj, format, explicitFormat, transform)
 }
 
 func handleDigitalCardProfilesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -307,8 +308,9 @@ func handleDigitalCardProfilesRetrieve(ctx context.Context, cmd *cli.Command) er
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "digital-card-profiles retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "digital-card-profiles retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error {
@@ -333,6 +335,7 @@ func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error 
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -342,14 +345,14 @@ func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "digital-card-profiles list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "digital-card-profiles list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.DigitalCardProfiles.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "digital-card-profiles list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "digital-card-profiles list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -384,8 +387,9 @@ func handleDigitalCardProfilesArchive(ctx context.Context, cmd *cli.Command) err
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "digital-card-profiles archive", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "digital-card-profiles archive", obj, format, explicitFormat, transform)
 }
 
 func handleDigitalCardProfilesClone(ctx context.Context, cmd *cli.Command) error {
@@ -426,6 +430,7 @@ func handleDigitalCardProfilesClone(ctx context.Context, cmd *cli.Command) error
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "digital-card-profiles clone", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "digital-card-profiles clone", obj, format, explicitFormat, transform)
 }

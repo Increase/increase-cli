@@ -132,8 +132,9 @@ func handleSimulationsCardAuthenticationsCreate(ctx context.Context, cmd *cli.Co
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-authentications create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authentications create", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, cmd *cli.Command) error {
@@ -174,8 +175,9 @@ func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, 
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-authentications challenge-attempts", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authentications challenge-attempts", obj, format, explicitFormat, transform)
 }
 
 func handleSimulationsCardAuthenticationsChallenges(ctx context.Context, cmd *cli.Command) error {
@@ -209,6 +211,7 @@ func handleSimulationsCardAuthenticationsChallenges(ctx context.Context, cmd *cl
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-authentications challenges", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authentications challenges", obj, format, explicitFormat, transform)
 }

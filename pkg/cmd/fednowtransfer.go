@@ -282,8 +282,9 @@ func handleFednowTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "fednow-transfers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "fednow-transfers create", obj, format, explicitFormat, transform)
 }
 
 func handleFednowTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -317,8 +318,9 @@ func handleFednowTransfersRetrieve(ctx context.Context, cmd *cli.Command) error 
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "fednow-transfers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "fednow-transfers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -343,6 +345,7 @@ func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -352,14 +355,14 @@ func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "fednow-transfers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "fednow-transfers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.FednowTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "fednow-transfers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "fednow-transfers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -394,8 +397,9 @@ func handleFednowTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "fednow-transfers approve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "fednow-transfers approve", obj, format, explicitFormat, transform)
 }
 
 func handleFednowTransfersCancel(ctx context.Context, cmd *cli.Command) error {
@@ -429,6 +433,7 @@ func handleFednowTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "fednow-transfers cancel", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "fednow-transfers cancel", obj, format, explicitFormat, transform)
 }

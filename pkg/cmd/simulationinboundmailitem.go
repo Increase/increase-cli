@@ -72,6 +72,7 @@ func handleSimulationsInboundMailItemsCreate(ctx context.Context, cmd *cli.Comma
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:inbound-mail-items create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:inbound-mail-items create", obj, format, explicitFormat, transform)
 }

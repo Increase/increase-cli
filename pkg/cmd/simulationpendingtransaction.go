@@ -61,6 +61,7 @@ func handleSimulationsPendingTransactionsReleaseInboundFundsHold(ctx context.Con
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:pending-transactions release-inbound-funds-hold", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:pending-transactions release-inbound-funds-hold", obj, format, explicitFormat, transform)
 }

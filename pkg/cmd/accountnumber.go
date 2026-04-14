@@ -240,8 +240,9 @@ func handleAccountNumbersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-numbers create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-numbers create", obj, format, explicitFormat, transform)
 }
 
 func handleAccountNumbersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -275,8 +276,9 @@ func handleAccountNumbersRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-numbers retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-numbers retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleAccountNumbersUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -317,8 +319,9 @@ func handleAccountNumbersUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "account-numbers update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "account-numbers update", obj, format, explicitFormat, transform)
 }
 
 func handleAccountNumbersList(ctx context.Context, cmd *cli.Command) error {
@@ -343,6 +346,7 @@ func handleAccountNumbersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -352,13 +356,13 @@ func handleAccountNumbersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "account-numbers list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "account-numbers list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.AccountNumbers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "account-numbers list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "account-numbers list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

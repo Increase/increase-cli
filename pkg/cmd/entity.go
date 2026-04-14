@@ -565,8 +565,9 @@ func handleEntitiesCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "entities create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "entities create", obj, format, explicitFormat, transform)
 }
 
 func handleEntitiesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -600,8 +601,9 @@ func handleEntitiesRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "entities retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "entities retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleEntitiesUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -642,8 +644,9 @@ func handleEntitiesUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "entities update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "entities update", obj, format, explicitFormat, transform)
 }
 
 func handleEntitiesList(ctx context.Context, cmd *cli.Command) error {
@@ -668,6 +671,7 @@ func handleEntitiesList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -677,14 +681,14 @@ func handleEntitiesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "entities list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "entities list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Entities.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "entities list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "entities list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -719,6 +723,7 @@ func handleEntitiesArchive(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "entities archive", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "entities archive", obj, format, explicitFormat, transform)
 }

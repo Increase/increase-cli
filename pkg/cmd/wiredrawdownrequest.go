@@ -243,8 +243,9 @@ func handleWireDrawdownRequestsCreate(ctx context.Context, cmd *cli.Command) err
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "wire-drawdown-requests create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "wire-drawdown-requests create", obj, format, explicitFormat, transform)
 }
 
 func handleWireDrawdownRequestsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -278,8 +279,9 @@ func handleWireDrawdownRequestsRetrieve(ctx context.Context, cmd *cli.Command) e
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "wire-drawdown-requests retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "wire-drawdown-requests retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command) error {
@@ -304,6 +306,7 @@ func handleWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command) error
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -313,13 +316,13 @@ func handleWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command) error
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "wire-drawdown-requests list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "wire-drawdown-requests list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.WireDrawdownRequests.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "wire-drawdown-requests list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "wire-drawdown-requests list", iter, format, explicitFormat, transform, maxItems)
 	}
 }

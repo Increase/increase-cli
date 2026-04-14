@@ -70,6 +70,7 @@ func handleSimulationsCardRefundsCreate(ctx context.Context, cmd *cli.Command) e
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "simulations:card-refunds create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-refunds create", obj, format, explicitFormat, transform)
 }

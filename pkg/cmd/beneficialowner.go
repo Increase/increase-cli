@@ -266,8 +266,9 @@ func handleBeneficialOwnersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "beneficial-owners create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "beneficial-owners create", obj, format, explicitFormat, transform)
 }
 
 func handleBeneficialOwnersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -301,8 +302,9 @@ func handleBeneficialOwnersRetrieve(ctx context.Context, cmd *cli.Command) error
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "beneficial-owners retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "beneficial-owners retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleBeneficialOwnersUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -343,8 +345,9 @@ func handleBeneficialOwnersUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "beneficial-owners update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "beneficial-owners update", obj, format, explicitFormat, transform)
 }
 
 func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
@@ -369,6 +372,7 @@ func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -378,14 +382,14 @@ func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "beneficial-owners list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "beneficial-owners list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.BeneficialOwners.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "beneficial-owners list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "beneficial-owners list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -420,6 +424,7 @@ func handleBeneficialOwnersArchive(ctx context.Context, cmd *cli.Command) error 
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "beneficial-owners archive", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "beneficial-owners archive", obj, format, explicitFormat, transform)
 }
