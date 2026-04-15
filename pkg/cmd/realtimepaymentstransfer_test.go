@@ -20,12 +20,12 @@ func TestRealTimePaymentsTransfersCreate(t *testing.T) {
 			"--source-account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
 			"--unstructured-remittance-information", "Invoice 29582",
 			"--account-number", "987654321",
-			"--debtor-name", "x",
+			"--debtor-name", "debtor_name",
 			"--external-account-id", "external_account_id",
 			"--require-approval=true",
 			"--routing-number", "101050001",
-			"--ultimate-creditor-name", "x",
-			"--ultimate-debtor-name", "x",
+			"--ultimate-creditor-name", "ultimate_creditor_name",
+			"--ultimate-debtor-name", "ultimate_debtor_name",
 		)
 	})
 
@@ -37,12 +37,12 @@ func TestRealTimePaymentsTransfersCreate(t *testing.T) {
 			"source_account_number_id: account_number_v18nkfqm6afpsrvy82b2\n" +
 			"unstructured_remittance_information: Invoice 29582\n" +
 			"account_number: '987654321'\n" +
-			"debtor_name: x\n" +
+			"debtor_name: debtor_name\n" +
 			"external_account_id: external_account_id\n" +
 			"require_approval: true\n" +
 			"routing_number: '101050001'\n" +
-			"ultimate_creditor_name: x\n" +
-			"ultimate_debtor_name: x\n")
+			"ultimate_creditor_name: ultimate_creditor_name\n" +
+			"ultimate_debtor_name: ultimate_debtor_name\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",

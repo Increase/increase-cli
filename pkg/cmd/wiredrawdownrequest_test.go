@@ -26,7 +26,7 @@ func TestWireDrawdownRequestsCreate(t *testing.T) {
 			"--debtor-account-number", "987654321",
 			"--debtor-external-account-id", "debtor_external_account_id",
 			"--debtor-routing-number", "101050001",
-			"--end-to-end-identification", "x",
+			"--end-to-end-identification", "end_to_end_identification",
 		)
 	})
 
@@ -60,7 +60,7 @@ func TestWireDrawdownRequestsCreate(t *testing.T) {
 			"--debtor-account-number", "987654321",
 			"--debtor-external-account-id", "debtor_external_account_id",
 			"--debtor-routing-number", "101050001",
-			"--end-to-end-identification", "x",
+			"--end-to-end-identification", "end_to_end_identification",
 		)
 	})
 
@@ -90,7 +90,7 @@ func TestWireDrawdownRequestsCreate(t *testing.T) {
 			"debtor_account_number: '987654321'\n" +
 			"debtor_external_account_id: debtor_external_account_id\n" +
 			"debtor_routing_number: '101050001'\n" +
-			"end_to_end_identification: x\n")
+			"end_to_end_identification: end_to_end_identification\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",

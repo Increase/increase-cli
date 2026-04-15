@@ -18,9 +18,9 @@ func TestWireTransfersCreate(t *testing.T) {
 			"--account-id", "account_in71c4amph0vgo2qllky",
 			"--amount", "100",
 			"--creditor", "{name: Ian Crease, address: {unstructured: {line1: 33 Liberty Street, line2: New York, line3: NY 10045}}}",
-			"--remittance", "{category: unstructured, tax: {date: '2019-12-27', identification_number: xxxxxxxxx, type_code: xxxxx}, unstructured: {message: New account transfer}}",
+			"--remittance", "{category: unstructured, tax: {date: '2019-12-27', identification_number: '483310694', type_code: 1I5r3}, unstructured: {message: New account transfer}}",
 			"--account-number", "987654321",
-			"--debtor", "{name: x, address: {unstructured: {line1: x, line2: x, line3: x}}}",
+			"--debtor", "{name: name, address: {unstructured: {line1: line1, line2: line2, line3: line3}}}",
 			"--external-account-id", "external_account_id",
 			"--inbound-wire-drawdown-request-id", "inbound_wire_drawdown_request_id",
 			"--require-approval=true",
@@ -43,11 +43,11 @@ func TestWireTransfersCreate(t *testing.T) {
 			"--creditor.name", "Ian Crease",
 			"--creditor.address", "{unstructured: {line1: 33 Liberty Street, line2: New York, line3: NY 10045}}",
 			"--remittance.category", "unstructured",
-			"--remittance.tax", "{date: '2019-12-27', identification_number: xxxxxxxxx, type_code: xxxxx}",
+			"--remittance.tax", "{date: '2019-12-27', identification_number: '483310694', type_code: 1I5r3}",
 			"--remittance.unstructured", "{message: New account transfer}",
 			"--account-number", "987654321",
-			"--debtor.name", "x",
-			"--debtor.address", "{unstructured: {line1: x, line2: x, line3: x}}",
+			"--debtor.name", "name",
+			"--debtor.address", "{unstructured: {line1: line1, line2: line2, line3: line3}}",
 			"--external-account-id", "external_account_id",
 			"--inbound-wire-drawdown-request-id", "inbound_wire_drawdown_request_id",
 			"--require-approval=true",
@@ -72,18 +72,18 @@ func TestWireTransfersCreate(t *testing.T) {
 			"  category: unstructured\n" +
 			"  tax:\n" +
 			"    date: '2019-12-27'\n" +
-			"    identification_number: xxxxxxxxx\n" +
-			"    type_code: xxxxx\n" +
+			"    identification_number: '483310694'\n" +
+			"    type_code: 1I5r3\n" +
 			"  unstructured:\n" +
 			"    message: New account transfer\n" +
 			"account_number: '987654321'\n" +
 			"debtor:\n" +
-			"  name: x\n" +
+			"  name: name\n" +
 			"  address:\n" +
 			"    unstructured:\n" +
-			"      line1: x\n" +
-			"      line2: x\n" +
-			"      line3: x\n" +
+			"      line1: line1\n" +
+			"      line2: line2\n" +
+			"      line3: line3\n" +
 			"external_account_id: external_account_id\n" +
 			"inbound_wire_drawdown_request_id: inbound_wire_drawdown_request_id\n" +
 			"require_approval: true\n" +
