@@ -90,7 +90,7 @@ func TestExternalAccountsList(t *testing.T) {
 			"--cursor", "cursor",
 			"--idempotency-key", "x",
 			"--limit", "1",
-			"--routing-number", "xxxxxxxxx",
+			"--routing-number", "483310694",
 			"--status", "{in: [active]}",
 		)
 	})
@@ -108,7 +108,7 @@ func TestExternalAccountsList(t *testing.T) {
 			"--cursor", "cursor",
 			"--idempotency-key", "x",
 			"--limit", "1",
-			"--routing-number", "xxxxxxxxx",
+			"--routing-number", "483310694",
 			"--status.in", "[active]",
 		)
 	})

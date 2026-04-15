@@ -22,7 +22,7 @@ func TestFednowTransfersCreate(t *testing.T) {
 			"--unstructured-remittance-information", "Invoice 29582",
 			"--account-number", "987654321",
 			"--creditor-address", "{city: New York, postal_code: '10045', state: NY, line1: 33 Liberty Street}",
-			"--debtor-address", "{city: x, postal_code: x, state: x, line1: x}",
+			"--debtor-address", "{city: x, postal_code: 21029-9469, state: x, line1: x}",
 			"--external-account-id", "external_account_id",
 			"--require-approval=true",
 			"--routing-number", "101050001",
@@ -49,7 +49,7 @@ func TestFednowTransfersCreate(t *testing.T) {
 			"--creditor-address.state", "NY",
 			"--creditor-address.line1", "33 Liberty Street",
 			"--debtor-address.city", "x",
-			"--debtor-address.postal-code", "x",
+			"--debtor-address.postal-code", "21029-9469",
 			"--debtor-address.state", "x",
 			"--debtor-address.line1", "x",
 			"--external-account-id", "external_account_id",
@@ -74,7 +74,7 @@ func TestFednowTransfersCreate(t *testing.T) {
 			"  line1: 33 Liberty Street\n" +
 			"debtor_address:\n" +
 			"  city: x\n" +
-			"  postal_code: x\n" +
+			"  postal_code: 21029-9469\n" +
 			"  state: x\n" +
 			"  line1: x\n" +
 			"external_account_id: external_account_id\n" +

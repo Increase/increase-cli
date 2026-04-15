@@ -31,12 +31,12 @@ func TestCardPushTransfersCreate(t *testing.T) {
 			"--sender-address-state", "NY",
 			"--sender-name", "Ian Crease",
 			"--source-account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
-			"--merchant-legal-business-name", "x",
-			"--merchant-street-address", "x",
-			"--recipient-address-city", "x",
-			"--recipient-address-line1", "x",
-			"--recipient-address-postal-code", "x",
-			"--recipient-address-state", "x",
+			"--merchant-legal-business-name", "x6",
+			"--merchant-street-address", "merchant_street_address",
+			"--recipient-address-city", "recipient_address_city",
+			"--recipient-address-line1", "recipient_address_line1",
+			"--recipient-address-postal-code", "x6",
+			"--recipient-address-state", "x6",
 			"--require-approval=true",
 		)
 	})
@@ -67,12 +67,12 @@ func TestCardPushTransfersCreate(t *testing.T) {
 			"--sender-address-state", "NY",
 			"--sender-name", "Ian Crease",
 			"--source-account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
-			"--merchant-legal-business-name", "x",
-			"--merchant-street-address", "x",
-			"--recipient-address-city", "x",
-			"--recipient-address-line1", "x",
-			"--recipient-address-postal-code", "x",
-			"--recipient-address-state", "x",
+			"--merchant-legal-business-name", "x6",
+			"--merchant-street-address", "merchant_street_address",
+			"--recipient-address-city", "recipient_address_city",
+			"--recipient-address-line1", "recipient_address_line1",
+			"--recipient-address-postal-code", "x6",
+			"--recipient-address-state", "x6",
 			"--require-approval=true",
 		)
 	})
@@ -98,12 +98,12 @@ func TestCardPushTransfersCreate(t *testing.T) {
 			"sender_address_state: NY\n" +
 			"sender_name: Ian Crease\n" +
 			"source_account_number_id: account_number_v18nkfqm6afpsrvy82b2\n" +
-			"merchant_legal_business_name: x\n" +
-			"merchant_street_address: x\n" +
-			"recipient_address_city: x\n" +
-			"recipient_address_line1: x\n" +
-			"recipient_address_postal_code: x\n" +
-			"recipient_address_state: x\n" +
+			"merchant_legal_business_name: x6\n" +
+			"merchant_street_address: merchant_street_address\n" +
+			"recipient_address_city: recipient_address_city\n" +
+			"recipient_address_line1: recipient_address_line1\n" +
+			"recipient_address_postal_code: x6\n" +
+			"recipient_address_state: x6\n" +
 			"require_approval: true\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,

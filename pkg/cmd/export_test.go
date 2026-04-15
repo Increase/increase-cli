@@ -25,7 +25,7 @@ func TestExportsCreate(t *testing.T) {
 			"--funding-instructions", "{account_number_id: account_number_id}",
 			"--transaction-csv", "{account_id: account_in71c4amph0vgo2qllky, created_at: {after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}}",
 			"--vendor-csv", "{}",
-			"--voided-check", "{account_number_id: account_number_id, payer: [{line: x}]}",
+			"--voided-check", "{account_number_id: account_number_id, payer: [{line: line}]}",
 		)
 	})
 
@@ -56,7 +56,7 @@ func TestExportsCreate(t *testing.T) {
 			"--transaction-csv.account-id", "account_in71c4amph0vgo2qllky",
 			"--transaction-csv.created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
 			"--voided-check.account-number-id", "account_number_id",
-			"--voided-check.payer", "[{line: x}]",
+			"--voided-check.payer", "[{line: line}]",
 		)
 	})
 
@@ -98,7 +98,7 @@ func TestExportsCreate(t *testing.T) {
 			"voided_check:\n" +
 			"  account_number_id: account_number_id\n" +
 			"  payer:\n" +
-			"    - line: x\n")
+			"    - line: line\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",

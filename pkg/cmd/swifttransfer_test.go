@@ -18,16 +18,16 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"--account-id", "account_in71c4amph0vgo2qllky",
 			"--account-number", "987654321",
 			"--bank-identification-code", "ECBFDEFFTPP",
-			"--creditor-address", "{city: Frankfurt, country: DE, line1: Sonnemannstrasse 20, line2: x, postal_code: '60314', state: x}",
+			"--creditor-address", "{city: Frankfurt, country: DE, line1: Sonnemannstrasse 20, line2: line2, postal_code: '60314', state: x}",
 			"--creditor-name", "Ian Crease",
-			"--debtor-address", "{city: New York, country: US, line1: 33 Liberty Street, line2: x, postal_code: '10045', state: NY}",
+			"--debtor-address", "{city: New York, country: US, line1: 33 Liberty Street, line2: line2, postal_code: '10045', state: NY}",
 			"--debtor-name", "National Phonograph Company",
 			"--instructed-amount", "100",
 			"--instructed-currency", "USD",
 			"--source-account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
 			"--unstructured-remittance-information", "New Swift transfer",
 			"--require-approval=true",
-			"--routing-number", "x",
+			"--routing-number", "sq",
 		)
 	})
 
@@ -46,14 +46,14 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"--creditor-address.city", "Frankfurt",
 			"--creditor-address.country", "DE",
 			"--creditor-address.line1", "Sonnemannstrasse 20",
-			"--creditor-address.line2", "x",
+			"--creditor-address.line2", "line2",
 			"--creditor-address.postal-code", "60314",
 			"--creditor-address.state", "x",
 			"--creditor-name", "Ian Crease",
 			"--debtor-address.city", "New York",
 			"--debtor-address.country", "US",
 			"--debtor-address.line1", "33 Liberty Street",
-			"--debtor-address.line2", "x",
+			"--debtor-address.line2", "line2",
 			"--debtor-address.postal-code", "10045",
 			"--debtor-address.state", "NY",
 			"--debtor-name", "National Phonograph Company",
@@ -62,7 +62,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"--source-account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
 			"--unstructured-remittance-information", "New Swift transfer",
 			"--require-approval=true",
-			"--routing-number", "x",
+			"--routing-number", "sq",
 		)
 	})
 
@@ -76,7 +76,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"  city: Frankfurt\n" +
 			"  country: DE\n" +
 			"  line1: Sonnemannstrasse 20\n" +
-			"  line2: x\n" +
+			"  line2: line2\n" +
 			"  postal_code: '60314'\n" +
 			"  state: x\n" +
 			"creditor_name: Ian Crease\n" +
@@ -84,7 +84,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"  city: New York\n" +
 			"  country: US\n" +
 			"  line1: 33 Liberty Street\n" +
-			"  line2: x\n" +
+			"  line2: line2\n" +
 			"  postal_code: '10045'\n" +
 			"  state: NY\n" +
 			"debtor_name: National Phonograph Company\n" +
@@ -93,7 +93,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"source_account_number_id: account_number_v18nkfqm6afpsrvy82b2\n" +
 			"unstructured_remittance_information: New Swift transfer\n" +
 			"require_approval: true\n" +
-			"routing_number: x\n")
+			"routing_number: sq\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",

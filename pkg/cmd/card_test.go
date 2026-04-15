@@ -16,7 +16,7 @@ func TestCardsCreate(t *testing.T) {
 			"--api-key", "string",
 			"cards", "create",
 			"--account-id", "account_in71c4amph0vgo2qllky",
-			"--authorization-controls", "{merchant_acceptor_identifier: {allowed: [{identifier: x}], blocked: [{identifier: x}]}, merchant_category_code: {allowed: [{code: xxxx}], blocked: [{code: xxxx}]}, merchant_country: {allowed: [{country: xx}], blocked: [{country: xx}]}, usage: {category: single_use, multi_use: {spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}, single_use: {settlement_amount: {comparison: equals, value: 0}}}}",
+			"--authorization-controls", "{merchant_acceptor_identifier: {allowed: [{identifier: x}], blocked: [{identifier: x}]}, merchant_category_code: {allowed: [{code: '0253'}], blocked: [{code: '0253'}]}, merchant_country: {allowed: [{country: xx}], blocked: [{country: xx}]}, usage: {category: single_use, multi_use: {spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}, single_use: {settlement_amount: {comparison: equals, value: 0}}}}",
 			"--billing-address", "{city: x, line1: x, postal_code: x, state: x, line2: x}",
 			"--description", "Card for Ian Crease",
 			"--digital-wallet", "{digital_card_profile_id: digital_card_profile_id, email: dev@stainless.com, phone: x}",
@@ -35,7 +35,7 @@ func TestCardsCreate(t *testing.T) {
 			"cards", "create",
 			"--account-id", "account_in71c4amph0vgo2qllky",
 			"--authorization-controls.merchant-acceptor-identifier", "{allowed: [{identifier: x}], blocked: [{identifier: x}]}",
-			"--authorization-controls.merchant-category-code", "{allowed: [{code: xxxx}], blocked: [{code: xxxx}]}",
+			"--authorization-controls.merchant-category-code", "{allowed: [{code: '0253'}], blocked: [{code: '0253'}]}",
 			"--authorization-controls.merchant-country", "{allowed: [{country: xx}], blocked: [{country: xx}]}",
 			"--authorization-controls.usage", "{category: single_use, multi_use: {spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}, single_use: {settlement_amount: {comparison: equals, value: 0}}}",
 			"--billing-address.city", "x",
@@ -63,9 +63,9 @@ func TestCardsCreate(t *testing.T) {
 			"      - identifier: x\n" +
 			"  merchant_category_code:\n" +
 			"    allowed:\n" +
-			"      - code: xxxx\n" +
+			"      - code: '0253'\n" +
 			"    blocked:\n" +
-			"      - code: xxxx\n" +
+			"      - code: '0253'\n" +
 			"  merchant_country:\n" +
 			"    allowed:\n" +
 			"      - country: xx\n" +
@@ -121,7 +121,7 @@ func TestCardsUpdate(t *testing.T) {
 			"--api-key", "string",
 			"cards", "update",
 			"--card-id", "card_oubs0hwk5rn6knuecxg2",
-			"--authorization-controls", "{merchant_acceptor_identifier: {allowed: [{identifier: x}], blocked: [{identifier: x}]}, merchant_category_code: {allowed: [{code: xxxx}], blocked: [{code: xxxx}]}, merchant_country: {allowed: [{country: xx}], blocked: [{country: xx}]}, usage: {category: single_use, multi_use: {spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}, single_use: {settlement_amount: {comparison: equals, value: 0}}}}",
+			"--authorization-controls", "{merchant_acceptor_identifier: {allowed: [{identifier: x}], blocked: [{identifier: x}]}, merchant_category_code: {allowed: [{code: '0253'}], blocked: [{code: '0253'}]}, merchant_country: {allowed: [{country: xx}], blocked: [{country: xx}]}, usage: {category: single_use, multi_use: {spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}, single_use: {settlement_amount: {comparison: equals, value: 0}}}}",
 			"--billing-address", "{city: x, line1: x, postal_code: x, state: x, line2: x}",
 			"--description", "New description",
 			"--digital-wallet", "{digital_card_profile_id: digital_card_profile_id, email: dev@stainless.com, phone: x}",
@@ -141,7 +141,7 @@ func TestCardsUpdate(t *testing.T) {
 			"cards", "update",
 			"--card-id", "card_oubs0hwk5rn6knuecxg2",
 			"--authorization-controls.merchant-acceptor-identifier", "{allowed: [{identifier: x}], blocked: [{identifier: x}]}",
-			"--authorization-controls.merchant-category-code", "{allowed: [{code: xxxx}], blocked: [{code: xxxx}]}",
+			"--authorization-controls.merchant-category-code", "{allowed: [{code: '0253'}], blocked: [{code: '0253'}]}",
 			"--authorization-controls.merchant-country", "{allowed: [{country: xx}], blocked: [{country: xx}]}",
 			"--authorization-controls.usage", "{category: single_use, multi_use: {spending_limits: [{interval: all_time, settlement_amount: 0, merchant_category_codes: [{code: x}]}]}, single_use: {settlement_amount: {comparison: equals, value: 0}}}",
 			"--billing-address.city", "x",
@@ -169,9 +169,9 @@ func TestCardsUpdate(t *testing.T) {
 			"      - identifier: x\n" +
 			"  merchant_category_code:\n" +
 			"    allowed:\n" +
-			"      - code: xxxx\n" +
+			"      - code: '0253'\n" +
 			"    blocked:\n" +
-			"      - code: xxxx\n" +
+			"      - code: '0253'\n" +
 			"  merchant_country:\n" +
 			"    allowed:\n" +
 			"      - country: xx\n" +

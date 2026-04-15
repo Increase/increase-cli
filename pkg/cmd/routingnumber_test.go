@@ -15,7 +15,7 @@ func TestRoutingNumbersList(t *testing.T) {
 			"--api-key", "string",
 			"routing-numbers", "list",
 			"--max-items", "10",
-			"--routing-number", "xxxxxxxxx",
+			"--routing-number", "483310694",
 			"--cursor", "cursor",
 			"--limit", "1",
 		)
