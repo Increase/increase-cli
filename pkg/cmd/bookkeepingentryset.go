@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -135,7 +134,12 @@ func handleBookkeepingEntrySetsCreate(ctx context.Context, cmd *cli.Command) err
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "bookkeeping-entry-sets create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "bookkeeping-entry-sets create",
+		Transform:      transform,
+	})
 }
 
 func handleBookkeepingEntrySetsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -171,7 +175,12 @@ func handleBookkeepingEntrySetsRetrieve(ctx context.Context, cmd *cli.Command) e
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "bookkeeping-entry-sets retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "bookkeeping-entry-sets retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleBookkeepingEntrySetsList(ctx context.Context, cmd *cli.Command) error {
@@ -206,13 +215,23 @@ func handleBookkeepingEntrySetsList(ctx context.Context, cmd *cli.Command) error
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "bookkeeping-entry-sets list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "bookkeeping-entry-sets list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.BookkeepingEntrySets.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "bookkeeping-entry-sets list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "bookkeeping-entry-sets list",
+			Transform:      transform,
+		})
 	}
 }

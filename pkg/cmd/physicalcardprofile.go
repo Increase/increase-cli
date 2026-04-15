@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -234,7 +233,12 @@ func handlePhysicalCardProfilesCreate(ctx context.Context, cmd *cli.Command) err
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "physical-card-profiles create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "physical-card-profiles create",
+		Transform:      transform,
+	})
 }
 
 func handlePhysicalCardProfilesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -270,7 +274,12 @@ func handlePhysicalCardProfilesRetrieve(ctx context.Context, cmd *cli.Command) e
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "physical-card-profiles retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "physical-card-profiles retrieve",
+		Transform:      transform,
+	})
 }
 
 func handlePhysicalCardProfilesList(ctx context.Context, cmd *cli.Command) error {
@@ -305,14 +314,24 @@ func handlePhysicalCardProfilesList(ctx context.Context, cmd *cli.Command) error
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "physical-card-profiles list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "physical-card-profiles list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.PhysicalCardProfiles.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "physical-card-profiles list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "physical-card-profiles list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -349,7 +368,12 @@ func handlePhysicalCardProfilesArchive(ctx context.Context, cmd *cli.Command) er
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "physical-card-profiles archive", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "physical-card-profiles archive",
+		Transform:      transform,
+	})
 }
 
 func handlePhysicalCardProfilesClone(ctx context.Context, cmd *cli.Command) error {
@@ -392,5 +416,10 @@ func handlePhysicalCardProfilesClone(ctx context.Context, cmd *cli.Command) erro
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "physical-card-profiles clone", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "physical-card-profiles clone",
+		Transform:      transform,
+	})
 }
