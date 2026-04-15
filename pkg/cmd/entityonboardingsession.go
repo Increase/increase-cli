@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -145,7 +144,12 @@ func handleEntityOnboardingSessionsCreate(ctx context.Context, cmd *cli.Command)
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "entity-onboarding-sessions create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "entity-onboarding-sessions create",
+		Transform:      transform,
+	})
 }
 
 func handleEntityOnboardingSessionsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -181,7 +185,12 @@ func handleEntityOnboardingSessionsRetrieve(ctx context.Context, cmd *cli.Comman
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "entity-onboarding-sessions retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "entity-onboarding-sessions retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleEntityOnboardingSessionsList(ctx context.Context, cmd *cli.Command) error {
@@ -216,14 +225,24 @@ func handleEntityOnboardingSessionsList(ctx context.Context, cmd *cli.Command) e
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "entity-onboarding-sessions list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "entity-onboarding-sessions list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.EntityOnboardingSessions.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "entity-onboarding-sessions list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "entity-onboarding-sessions list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -260,5 +279,10 @@ func handleEntityOnboardingSessionsExpire(ctx context.Context, cmd *cli.Command)
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "entity-onboarding-sessions expire", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "entity-onboarding-sessions expire",
+		Transform:      transform,
+	})
 }

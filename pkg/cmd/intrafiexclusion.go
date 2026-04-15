@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -133,7 +132,12 @@ func handleIntrafiExclusionsCreate(ctx context.Context, cmd *cli.Command) error 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "intrafi-exclusions create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "intrafi-exclusions create",
+		Transform:      transform,
+	})
 }
 
 func handleIntrafiExclusionsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -169,7 +173,12 @@ func handleIntrafiExclusionsRetrieve(ctx context.Context, cmd *cli.Command) erro
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "intrafi-exclusions retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "intrafi-exclusions retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleIntrafiExclusionsList(ctx context.Context, cmd *cli.Command) error {
@@ -204,14 +213,24 @@ func handleIntrafiExclusionsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "intrafi-exclusions list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "intrafi-exclusions list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.IntrafiExclusions.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "intrafi-exclusions list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "intrafi-exclusions list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -248,5 +267,10 @@ func handleIntrafiExclusionsArchive(ctx context.Context, cmd *cli.Command) error
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "intrafi-exclusions archive", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "intrafi-exclusions archive",
+		Transform:      transform,
+	})
 }

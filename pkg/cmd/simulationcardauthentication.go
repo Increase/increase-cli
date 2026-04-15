@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -134,7 +133,12 @@ func handleSimulationsCardAuthenticationsCreate(ctx context.Context, cmd *cli.Co
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authentications create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:card-authentications create",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, cmd *cli.Command) error {
@@ -177,7 +181,12 @@ func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authentications challenge-attempts", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:card-authentications challenge-attempts",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsCardAuthenticationsChallenges(ctx context.Context, cmd *cli.Command) error {
@@ -213,5 +222,10 @@ func handleSimulationsCardAuthenticationsChallenges(ctx context.Context, cmd *cl
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:card-authentications challenges", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:card-authentications challenges",
+		Transform:      transform,
+	})
 }

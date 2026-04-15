@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -201,7 +200,12 @@ func handleInboundACHTransfersRetrieve(ctx context.Context, cmd *cli.Command) er
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "inbound-ach-transfers retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "inbound-ach-transfers retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleInboundACHTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -236,14 +240,24 @@ func handleInboundACHTransfersList(ctx context.Context, cmd *cli.Command) error 
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "inbound-ach-transfers list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "inbound-ach-transfers list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.InboundACHTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "inbound-ach-transfers list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "inbound-ach-transfers list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -287,7 +301,12 @@ func handleInboundACHTransfersCreateNotificationOfChange(ctx context.Context, cm
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "inbound-ach-transfers create-notification-of-change", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "inbound-ach-transfers create-notification-of-change",
+		Transform:      transform,
+	})
 }
 
 func handleInboundACHTransfersDecline(ctx context.Context, cmd *cli.Command) error {
@@ -330,7 +349,12 @@ func handleInboundACHTransfersDecline(ctx context.Context, cmd *cli.Command) err
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "inbound-ach-transfers decline", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "inbound-ach-transfers decline",
+		Transform:      transform,
+	})
 }
 
 func handleInboundACHTransfersTransferReturn(ctx context.Context, cmd *cli.Command) error {
@@ -373,5 +397,10 @@ func handleInboundACHTransfersTransferReturn(ctx context.Context, cmd *cli.Comma
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "inbound-ach-transfers transfer-return", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "inbound-ach-transfers transfer-return",
+		Transform:      transform,
+	})
 }

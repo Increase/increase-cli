@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -148,7 +147,12 @@ func handleSimulationsCheckDepositsAdjustment(ctx context.Context, cmd *cli.Comm
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits adjustment", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:check-deposits adjustment",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsCheckDepositsReject(ctx context.Context, cmd *cli.Command) error {
@@ -184,7 +188,12 @@ func handleSimulationsCheckDepositsReject(ctx context.Context, cmd *cli.Command)
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits reject", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:check-deposits reject",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsCheckDepositsReturn(ctx context.Context, cmd *cli.Command) error {
@@ -220,7 +229,12 @@ func handleSimulationsCheckDepositsReturn(ctx context.Context, cmd *cli.Command)
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits return", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:check-deposits return",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command) error {
@@ -263,5 +277,10 @@ func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command)
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:check-deposits submit", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:check-deposits submit",
+		Transform:      transform,
+	})
 }
