@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -318,7 +317,12 @@ func handleCardPushTransfersCreate(ctx context.Context, cmd *cli.Command) error 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "card-push-transfers create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "card-push-transfers create",
+		Transform:      transform,
+	})
 }
 
 func handleCardPushTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -354,7 +358,12 @@ func handleCardPushTransfersRetrieve(ctx context.Context, cmd *cli.Command) erro
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "card-push-transfers retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "card-push-transfers retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleCardPushTransfersList(ctx context.Context, cmd *cli.Command) error {
@@ -389,14 +398,24 @@ func handleCardPushTransfersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "card-push-transfers list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "card-push-transfers list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.CardPushTransfers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "card-push-transfers list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "card-push-transfers list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -433,7 +452,12 @@ func handleCardPushTransfersApprove(ctx context.Context, cmd *cli.Command) error
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "card-push-transfers approve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "card-push-transfers approve",
+		Transform:      transform,
+	})
 }
 
 func handleCardPushTransfersCancel(ctx context.Context, cmd *cli.Command) error {
@@ -469,5 +493,10 @@ func handleCardPushTransfersCancel(ctx context.Context, cmd *cli.Command) error 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "card-push-transfers cancel", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "card-push-transfers cancel",
+		Transform:      transform,
+	})
 }

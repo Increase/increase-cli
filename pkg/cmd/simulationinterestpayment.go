@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -84,5 +83,10 @@ func handleSimulationsInterestPaymentsCreate(ctx context.Context, cmd *cli.Comma
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:interest-payments create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:interest-payments create",
+		Transform:      transform,
+	})
 }

@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -155,7 +154,12 @@ func handleEventSubscriptionsCreate(ctx context.Context, cmd *cli.Command) error
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "event-subscriptions create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "event-subscriptions create",
+		Transform:      transform,
+	})
 }
 
 func handleEventSubscriptionsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -191,7 +195,12 @@ func handleEventSubscriptionsRetrieve(ctx context.Context, cmd *cli.Command) err
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "event-subscriptions retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "event-subscriptions retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleEventSubscriptionsUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -234,7 +243,12 @@ func handleEventSubscriptionsUpdate(ctx context.Context, cmd *cli.Command) error
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "event-subscriptions update", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "event-subscriptions update",
+		Transform:      transform,
+	})
 }
 
 func handleEventSubscriptionsList(ctx context.Context, cmd *cli.Command) error {
@@ -269,13 +283,23 @@ func handleEventSubscriptionsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "event-subscriptions list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "event-subscriptions list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.EventSubscriptions.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "event-subscriptions list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "event-subscriptions list",
+			Transform:      transform,
+		})
 	}
 }

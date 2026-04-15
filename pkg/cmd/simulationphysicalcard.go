@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -117,7 +116,12 @@ func handleSimulationsPhysicalCardsCreate(ctx context.Context, cmd *cli.Command)
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:physical-cards create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:physical-cards create",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsPhysicalCardsAdvanceShipment(ctx context.Context, cmd *cli.Command) error {
@@ -160,5 +164,10 @@ func handleSimulationsPhysicalCardsAdvanceShipment(ctx context.Context, cmd *cli
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:physical-cards advance-shipment", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:physical-cards advance-shipment",
+		Transform:      transform,
+	})
 }

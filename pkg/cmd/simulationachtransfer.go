@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/Increase/increase-cli/internal/apiquery"
 	"github.com/Increase/increase-cli/internal/requestflag"
@@ -145,7 +144,12 @@ func handleSimulationsACHTransfersAcknowledge(ctx context.Context, cmd *cli.Comm
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:ach-transfers acknowledge", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:ach-transfers acknowledge",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsACHTransfersCreateNotificationOfChange(ctx context.Context, cmd *cli.Command) error {
@@ -188,7 +192,12 @@ func handleSimulationsACHTransfersCreateNotificationOfChange(ctx context.Context
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:ach-transfers create-notification-of-change", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:ach-transfers create-notification-of-change",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsACHTransfersReturn(ctx context.Context, cmd *cli.Command) error {
@@ -231,7 +240,12 @@ func handleSimulationsACHTransfersReturn(ctx context.Context, cmd *cli.Command) 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:ach-transfers return", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:ach-transfers return",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsACHTransfersSettle(ctx context.Context, cmd *cli.Command) error {
@@ -274,7 +288,12 @@ func handleSimulationsACHTransfersSettle(ctx context.Context, cmd *cli.Command) 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:ach-transfers settle", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:ach-transfers settle",
+		Transform:      transform,
+	})
 }
 
 func handleSimulationsACHTransfersSubmit(ctx context.Context, cmd *cli.Command) error {
@@ -310,5 +329,10 @@ func handleSimulationsACHTransfersSubmit(ctx context.Context, cmd *cli.Command) 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "simulations:ach-transfers submit", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "simulations:ach-transfers submit",
+		Transform:      transform,
+	})
 }
