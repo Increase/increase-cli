@@ -18,7 +18,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"--account-id", "account_in71c4amph0vgo2qllky",
 			"--account-number", "987654321",
 			"--bank-identification-code", "ECBFDEFFTPP",
-			"--creditor-address", "{city: Frankfurt, country: DE, line1: Sonnemannstrasse 20, line2: line2, postal_code: '60314', state: x}",
+			"--creditor-address", "{city: Frankfurt, country: DE, line1: Sonnemannstrasse 20, line2: line2, postal_code: '60314', state: state}",
 			"--creditor-name", "Ian Crease",
 			"--debtor-address", "{city: New York, country: US, line1: 33 Liberty Street, line2: line2, postal_code: '10045', state: NY}",
 			"--debtor-name", "National Phonograph Company",
@@ -48,7 +48,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"--creditor-address.line1", "Sonnemannstrasse 20",
 			"--creditor-address.line2", "line2",
 			"--creditor-address.postal-code", "60314",
-			"--creditor-address.state", "x",
+			"--creditor-address.state", "state",
 			"--creditor-name", "Ian Crease",
 			"--debtor-address.city", "New York",
 			"--debtor-address.country", "US",
@@ -78,7 +78,7 @@ func TestSwiftTransfersCreate(t *testing.T) {
 			"  line1: Sonnemannstrasse 20\n" +
 			"  line2: line2\n" +
 			"  postal_code: '60314'\n" +
-			"  state: x\n" +
+			"  state: state\n" +
 			"creditor_name: Ian Crease\n" +
 			"debtor_address:\n" +
 			"  city: New York\n" +
