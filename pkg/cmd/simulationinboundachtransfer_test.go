@@ -17,12 +17,12 @@ func TestSimulationsInboundACHTransfersCreate(t *testing.T) {
 			"simulations:inbound-ach-transfers", "create",
 			"--account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
 			"--amount", "1000",
-			"--addenda", "{category: freeform, freeform: {entries: [{payment_related_information: x}]}}",
-			"--company-descriptive-date", "x",
-			"--company-discretionary-data", "x",
-			"--company-entry-description", "x",
-			"--company-id", "x",
-			"--company-name", "x",
+			"--addenda", "{category: freeform, freeform: {entries: [{payment_related_information: payment_related_information}]}}",
+			"--company-descriptive-date", "J!",
+			"--company-discretionary-data", "J!",
+			"--company-entry-description", "J!",
+			"--company-id", "company_id",
+			"--company-name", "company_name",
 			"--receiver-id-number", "x",
 			"--receiver-name", "x",
 			"--resolve-at", "'2019-12-27T18:11:19.117Z'",
@@ -42,12 +42,12 @@ func TestSimulationsInboundACHTransfersCreate(t *testing.T) {
 			"--account-number-id", "account_number_v18nkfqm6afpsrvy82b2",
 			"--amount", "1000",
 			"--addenda.category", "freeform",
-			"--addenda.freeform", "{entries: [{payment_related_information: x}]}",
-			"--company-descriptive-date", "x",
-			"--company-discretionary-data", "x",
-			"--company-entry-description", "x",
-			"--company-id", "x",
-			"--company-name", "x",
+			"--addenda.freeform", "{entries: [{payment_related_information: payment_related_information}]}",
+			"--company-descriptive-date", "J!",
+			"--company-discretionary-data", "J!",
+			"--company-entry-description", "J!",
+			"--company-id", "company_id",
+			"--company-name", "company_name",
 			"--receiver-id-number", "x",
 			"--receiver-name", "x",
 			"--resolve-at", "'2019-12-27T18:11:19.117Z'",
@@ -64,12 +64,12 @@ func TestSimulationsInboundACHTransfersCreate(t *testing.T) {
 			"  category: freeform\n" +
 			"  freeform:\n" +
 			"    entries:\n" +
-			"      - payment_related_information: x\n" +
-			"company_descriptive_date: x\n" +
-			"company_discretionary_data: x\n" +
-			"company_entry_description: x\n" +
-			"company_id: x\n" +
-			"company_name: x\n" +
+			"      - payment_related_information: payment_related_information\n" +
+			"company_descriptive_date: J!\n" +
+			"company_discretionary_data: J!\n" +
+			"company_entry_description: J!\n" +
+			"company_id: company_id\n" +
+			"company_name: company_name\n" +
 			"receiver_id_number: x\n" +
 			"receiver_name: x\n" +
 			"resolve_at: '2019-12-27T18:11:19.117Z'\n" +

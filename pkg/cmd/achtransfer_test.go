@@ -19,16 +19,16 @@ func TestACHTransfersCreate(t *testing.T) {
 			"--amount", "100",
 			"--statement-descriptor", "New ACH transfer",
 			"--account-number", "987654321",
-			"--addenda", "{category: freeform, freeform: {entries: [{payment_related_information: x}]}, payment_order_remittance_advice: {invoices: [{invoice_number: x, paid_amount: 0}]}}",
-			"--company-descriptive-date", "x",
-			"--company-discretionary-data", "x",
-			"--company-entry-description", "x",
-			"--company-name", "x",
+			"--addenda", "{category: freeform, freeform: {entries: [{payment_related_information: payment_related_information}]}, payment_order_remittance_advice: {invoices: [{invoice_number: sq, paid_amount: 0}]}}",
+			"--company-descriptive-date", "J!",
+			"--company-discretionary-data", "J!",
+			"--company-entry-description", "J!",
+			"--company-name", "company_name",
 			"--destination-account-holder", "business",
 			"--external-account-id", "external_account_id",
 			"--funding", "checking",
-			"--individual-id", "x",
-			"--individual-name", "x",
+			"--individual-id", "individual_id",
+			"--individual-name", "individual_name",
 			"--preferred-effective-date", "{date: '2019-12-27', settlement_schedule: same_day}",
 			"--require-approval=true",
 			"--routing-number", "101050001",
@@ -51,17 +51,17 @@ func TestACHTransfersCreate(t *testing.T) {
 			"--statement-descriptor", "New ACH transfer",
 			"--account-number", "987654321",
 			"--addenda.category", "freeform",
-			"--addenda.freeform", "{entries: [{payment_related_information: x}]}",
-			"--addenda.payment-order-remittance-advice", "{invoices: [{invoice_number: x, paid_amount: 0}]}",
-			"--company-descriptive-date", "x",
-			"--company-discretionary-data", "x",
-			"--company-entry-description", "x",
-			"--company-name", "x",
+			"--addenda.freeform", "{entries: [{payment_related_information: payment_related_information}]}",
+			"--addenda.payment-order-remittance-advice", "{invoices: [{invoice_number: sq, paid_amount: 0}]}",
+			"--company-descriptive-date", "J!",
+			"--company-discretionary-data", "J!",
+			"--company-entry-description", "J!",
+			"--company-name", "company_name",
 			"--destination-account-holder", "business",
 			"--external-account-id", "external_account_id",
 			"--funding", "checking",
-			"--individual-id", "x",
-			"--individual-name", "x",
+			"--individual-id", "individual_id",
+			"--individual-name", "individual_name",
 			"--preferred-effective-date.date", "2019-12-27",
 			"--preferred-effective-date.settlement-schedule", "same_day",
 			"--require-approval=true",
@@ -82,20 +82,20 @@ func TestACHTransfersCreate(t *testing.T) {
 			"  category: freeform\n" +
 			"  freeform:\n" +
 			"    entries:\n" +
-			"      - payment_related_information: x\n" +
+			"      - payment_related_information: payment_related_information\n" +
 			"  payment_order_remittance_advice:\n" +
 			"    invoices:\n" +
-			"      - invoice_number: x\n" +
+			"      - invoice_number: sq\n" +
 			"        paid_amount: 0\n" +
-			"company_descriptive_date: x\n" +
-			"company_discretionary_data: x\n" +
-			"company_entry_description: x\n" +
-			"company_name: x\n" +
+			"company_descriptive_date: J!\n" +
+			"company_discretionary_data: J!\n" +
+			"company_entry_description: J!\n" +
+			"company_name: company_name\n" +
 			"destination_account_holder: business\n" +
 			"external_account_id: external_account_id\n" +
 			"funding: checking\n" +
-			"individual_id: x\n" +
-			"individual_name: x\n" +
+			"individual_id: individual_id\n" +
+			"individual_name: individual_name\n" +
 			"preferred_effective_date:\n" +
 			"  date: '2019-12-27'\n" +
 			"  settlement_schedule: same_day\n" +
