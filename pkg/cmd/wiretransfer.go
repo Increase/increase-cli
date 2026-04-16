@@ -282,6 +282,7 @@ func handleWireTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "wire-transfers create",
 		Transform:      transform,
 	})
@@ -323,6 +324,7 @@ func handleWireTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "wire-transfers retrieve",
 		Transform:      transform,
 	})
@@ -363,6 +365,7 @@ func handleWireTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "wire-transfers list",
 			Transform:      transform,
 		})
@@ -375,6 +378,7 @@ func handleWireTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "wire-transfers list",
 			Transform:      transform,
 		})
@@ -417,6 +421,7 @@ func handleWireTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "wire-transfers approve",
 		Transform:      transform,
 	})
@@ -458,6 +463,7 @@ func handleWireTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "wire-transfers cancel",
 		Transform:      transform,
 	})

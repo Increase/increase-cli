@@ -276,6 +276,7 @@ func handleDigitalCardProfilesCreate(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "digital-card-profiles create",
 		Transform:      transform,
 	})
@@ -317,6 +318,7 @@ func handleDigitalCardProfilesRetrieve(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "digital-card-profiles retrieve",
 		Transform:      transform,
 	})
@@ -357,6 +359,7 @@ func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "digital-card-profiles list",
 			Transform:      transform,
 		})
@@ -369,6 +372,7 @@ func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "digital-card-profiles list",
 			Transform:      transform,
 		})
@@ -411,6 +415,7 @@ func handleDigitalCardProfilesArchive(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "digital-card-profiles archive",
 		Transform:      transform,
 	})
@@ -459,6 +464,7 @@ func handleDigitalCardProfilesClone(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "digital-card-profiles clone",
 		Transform:      transform,
 	})

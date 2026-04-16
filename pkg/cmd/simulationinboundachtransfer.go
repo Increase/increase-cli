@@ -134,6 +134,7 @@ func handleSimulationsInboundACHTransfersCreate(ctx context.Context, cmd *cli.Co
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:inbound-ach-transfers create",
 		Transform:      transform,
 	})

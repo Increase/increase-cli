@@ -126,6 +126,7 @@ func handleInboundRealTimePaymentsTransfersRetrieve(ctx context.Context, cmd *cl
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-real-time-payments-transfers retrieve",
 		Transform:      transform,
 	})
@@ -166,6 +167,7 @@ func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Co
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-real-time-payments-transfers list",
 			Transform:      transform,
 		})
@@ -178,6 +180,7 @@ func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Co
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-real-time-payments-transfers list",
 			Transform:      transform,
 		})

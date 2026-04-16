@@ -150,6 +150,7 @@ func handleSimulationsCheckDepositsAdjustment(ctx context.Context, cmd *cli.Comm
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:check-deposits adjustment",
 		Transform:      transform,
 	})
@@ -191,6 +192,7 @@ func handleSimulationsCheckDepositsReject(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:check-deposits reject",
 		Transform:      transform,
 	})
@@ -232,6 +234,7 @@ func handleSimulationsCheckDepositsReturn(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:check-deposits return",
 		Transform:      transform,
 	})
@@ -280,6 +283,7 @@ func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:check-deposits submit",
 		Transform:      transform,
 	})

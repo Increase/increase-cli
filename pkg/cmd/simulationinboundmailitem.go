@@ -76,6 +76,7 @@ func handleSimulationsInboundMailItemsCreate(ctx context.Context, cmd *cli.Comma
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:inbound-mail-items create",
 		Transform:      transform,
 	})

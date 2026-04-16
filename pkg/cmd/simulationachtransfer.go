@@ -147,6 +147,7 @@ func handleSimulationsACHTransfersAcknowledge(ctx context.Context, cmd *cli.Comm
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:ach-transfers acknowledge",
 		Transform:      transform,
 	})
@@ -195,6 +196,7 @@ func handleSimulationsACHTransfersCreateNotificationOfChange(ctx context.Context
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:ach-transfers create-notification-of-change",
 		Transform:      transform,
 	})
@@ -243,6 +245,7 @@ func handleSimulationsACHTransfersReturn(ctx context.Context, cmd *cli.Command) 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:ach-transfers return",
 		Transform:      transform,
 	})
@@ -291,6 +294,7 @@ func handleSimulationsACHTransfersSettle(ctx context.Context, cmd *cli.Command) 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:ach-transfers settle",
 		Transform:      transform,
 	})
@@ -332,6 +336,7 @@ func handleSimulationsACHTransfersSubmit(ctx context.Context, cmd *cli.Command) 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:ach-transfers submit",
 		Transform:      transform,
 	})

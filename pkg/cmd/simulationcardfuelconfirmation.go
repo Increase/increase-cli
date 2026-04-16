@@ -71,6 +71,7 @@ func handleSimulationsCardFuelConfirmationsCreate(ctx context.Context, cmd *cli.
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:card-fuel-confirmations create",
 		Transform:      transform,
 	})

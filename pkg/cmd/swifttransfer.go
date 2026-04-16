@@ -317,6 +317,7 @@ func handleSwiftTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "swift-transfers create",
 		Transform:      transform,
 	})
@@ -358,6 +359,7 @@ func handleSwiftTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "swift-transfers retrieve",
 		Transform:      transform,
 	})
@@ -398,6 +400,7 @@ func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "swift-transfers list",
 			Transform:      transform,
 		})
@@ -410,6 +413,7 @@ func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "swift-transfers list",
 			Transform:      transform,
 		})
@@ -452,6 +456,7 @@ func handleSwiftTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "swift-transfers approve",
 		Transform:      transform,
 	})
@@ -493,6 +498,7 @@ func handleSwiftTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "swift-transfers cancel",
 		Transform:      transform,
 	})

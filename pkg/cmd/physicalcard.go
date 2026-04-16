@@ -209,6 +209,7 @@ func handlePhysicalCardsCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "physical-cards create",
 		Transform:      transform,
 	})
@@ -250,6 +251,7 @@ func handlePhysicalCardsRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "physical-cards retrieve",
 		Transform:      transform,
 	})
@@ -298,6 +300,7 @@ func handlePhysicalCardsUpdate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "physical-cards update",
 		Transform:      transform,
 	})
@@ -338,6 +341,7 @@ func handlePhysicalCardsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "physical-cards list",
 			Transform:      transform,
 		})
@@ -350,6 +354,7 @@ func handlePhysicalCardsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "physical-cards list",
 			Transform:      transform,
 		})

@@ -240,6 +240,7 @@ func handleRealTimePaymentsTransfersCreate(ctx context.Context, cmd *cli.Command
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "real-time-payments-transfers create",
 		Transform:      transform,
 	})
@@ -281,6 +282,7 @@ func handleRealTimePaymentsTransfersRetrieve(ctx context.Context, cmd *cli.Comma
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "real-time-payments-transfers retrieve",
 		Transform:      transform,
 	})
@@ -321,6 +323,7 @@ func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) 
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "real-time-payments-transfers list",
 			Transform:      transform,
 		})
@@ -333,6 +336,7 @@ func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) 
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "real-time-payments-transfers list",
 			Transform:      transform,
 		})
@@ -375,6 +379,7 @@ func handleRealTimePaymentsTransfersApprove(ctx context.Context, cmd *cli.Comman
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "real-time-payments-transfers approve",
 		Transform:      transform,
 	})
@@ -416,6 +421,7 @@ func handleRealTimePaymentsTransfersCancel(ctx context.Context, cmd *cli.Command
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "real-time-payments-transfers cancel",
 		Transform:      transform,
 	})

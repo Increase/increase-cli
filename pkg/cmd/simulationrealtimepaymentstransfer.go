@@ -85,6 +85,7 @@ func handleSimulationsRealTimePaymentsTransfersComplete(ctx context.Context, cmd
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:real-time-payments-transfers complete",
 		Transform:      transform,
 	})

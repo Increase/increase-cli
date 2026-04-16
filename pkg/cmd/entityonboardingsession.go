@@ -147,6 +147,7 @@ func handleEntityOnboardingSessionsCreate(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "entity-onboarding-sessions create",
 		Transform:      transform,
 	})
@@ -188,6 +189,7 @@ func handleEntityOnboardingSessionsRetrieve(ctx context.Context, cmd *cli.Comman
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "entity-onboarding-sessions retrieve",
 		Transform:      transform,
 	})
@@ -228,6 +230,7 @@ func handleEntityOnboardingSessionsList(ctx context.Context, cmd *cli.Command) e
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "entity-onboarding-sessions list",
 			Transform:      transform,
 		})
@@ -240,6 +243,7 @@ func handleEntityOnboardingSessionsList(ctx context.Context, cmd *cli.Command) e
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "entity-onboarding-sessions list",
 			Transform:      transform,
 		})
@@ -282,6 +286,7 @@ func handleEntityOnboardingSessionsExpire(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "entity-onboarding-sessions expire",
 		Transform:      transform,
 	})

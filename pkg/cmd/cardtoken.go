@@ -131,6 +131,7 @@ func handleCardTokensRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-tokens retrieve",
 		Transform:      transform,
 	})
@@ -171,6 +172,7 @@ func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-tokens list",
 			Transform:      transform,
 		})
@@ -183,6 +185,7 @@ func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-tokens list",
 			Transform:      transform,
 		})
@@ -225,6 +228,7 @@ func handleCardTokensCapabilities(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-tokens capabilities",
 		Transform:      transform,
 	})

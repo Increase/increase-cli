@@ -141,6 +141,7 @@ func handleSimulationsInboundWireTransfersCreate(ctx context.Context, cmd *cli.C
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:inbound-wire-transfers create",
 		Transform:      transform,
 	})

@@ -286,6 +286,7 @@ func handleFednowTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "fednow-transfers create",
 		Transform:      transform,
 	})
@@ -327,6 +328,7 @@ func handleFednowTransfersRetrieve(ctx context.Context, cmd *cli.Command) error 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "fednow-transfers retrieve",
 		Transform:      transform,
 	})
@@ -367,6 +369,7 @@ func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "fednow-transfers list",
 			Transform:      transform,
 		})
@@ -379,6 +382,7 @@ func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "fednow-transfers list",
 			Transform:      transform,
 		})
@@ -421,6 +425,7 @@ func handleFednowTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "fednow-transfers approve",
 		Transform:      transform,
 	})
@@ -462,6 +467,7 @@ func handleFednowTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "fednow-transfers cancel",
 		Transform:      transform,
 	})

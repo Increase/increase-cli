@@ -65,6 +65,7 @@ func handleSimulationsPendingTransactionsReleaseInboundFundsHold(ctx context.Con
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:pending-transactions release-inbound-funds-hold",
 		Transform:      transform,
 	})
