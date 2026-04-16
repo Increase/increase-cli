@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.23.0 (2026-04-16)
+
+Full Changelog: [v0.22.0...v0.23.0](https://github.com/Increase/increase-cli/compare/v0.22.0...v0.23.0)
+
+### Features
+
+* **cli:** add `--raw-output`/`-r` option to print raw (non-JSON) strings ([a562c79](https://github.com/Increase/increase-cli/commit/a562c791737766e07ef0492de462609f1d350450))
+
 ## 0.22.0 (2026-04-16)
 
 Full Changelog: [v0.21.0...v0.22.0](https://github.com/Increase/increase-cli/compare/v0.21.0...v0.22.0)
