@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.22.0 (2026-04-16)
+
+Full Changelog: [v0.21.0...v0.22.0](https://github.com/Increase/increase-cli/compare/v0.21.0...v0.22.0)
+
+### Features
+
+* **cli:** send filename and content type when reading input from files ([3212dff](https://github.com/Increase/increase-cli/commit/3212dff24e98aa0dde1a3d5c5e87170881106fd8))
+
+
+### Chores
+
+* **ci:** support manually triggering release workflow ([0db401d](https://github.com/Increase/increase-cli/commit/0db401d66c147a906c539a4712e337fd483a891b))
+* **cli:** switch long lists of positional args over to param structs ([aed75d8](https://github.com/Increase/increase-cli/commit/aed75d81bb2045bf4bbd6dd62620827c4ad209e9))
+
 ## 0.21.0 (2026-04-15)
 
 Full Changelog: [v0.20.0...v0.21.0](https://github.com/Increase/increase-cli/compare/v0.20.0...v0.21.0)
