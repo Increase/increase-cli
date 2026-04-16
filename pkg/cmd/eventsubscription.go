@@ -157,6 +157,7 @@ func handleEventSubscriptionsCreate(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "event-subscriptions create",
 		Transform:      transform,
 	})
@@ -198,6 +199,7 @@ func handleEventSubscriptionsRetrieve(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "event-subscriptions retrieve",
 		Transform:      transform,
 	})
@@ -246,6 +248,7 @@ func handleEventSubscriptionsUpdate(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "event-subscriptions update",
 		Transform:      transform,
 	})
@@ -286,6 +289,7 @@ func handleEventSubscriptionsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "event-subscriptions list",
 			Transform:      transform,
 		})
@@ -298,6 +302,7 @@ func handleEventSubscriptionsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "event-subscriptions list",
 			Transform:      transform,
 		})

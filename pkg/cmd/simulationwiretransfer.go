@@ -80,6 +80,7 @@ func handleSimulationsWireTransfersReverse(ctx context.Context, cmd *cli.Command
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:wire-transfers reverse",
 		Transform:      transform,
 	})
@@ -121,6 +122,7 @@ func handleSimulationsWireTransfersSubmit(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:wire-transfers submit",
 		Transform:      transform,
 	})

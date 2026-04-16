@@ -155,6 +155,7 @@ func handleInboundMailItemsRetrieve(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-mail-items retrieve",
 		Transform:      transform,
 	})
@@ -195,6 +196,7 @@ func handleInboundMailItemsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-mail-items list",
 			Transform:      transform,
 		})
@@ -207,6 +209,7 @@ func handleInboundMailItemsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-mail-items list",
 			Transform:      transform,
 		})
@@ -256,6 +259,7 @@ func handleInboundMailItemsAction(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-mail-items action",
 		Transform:      transform,
 	})

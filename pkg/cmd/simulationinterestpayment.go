@@ -86,6 +86,7 @@ func handleSimulationsInterestPaymentsCreate(ctx context.Context, cmd *cli.Comma
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:interest-payments create",
 		Transform:      transform,
 	})

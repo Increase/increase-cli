@@ -203,6 +203,7 @@ func handleInboundACHTransfersRetrieve(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-ach-transfers retrieve",
 		Transform:      transform,
 	})
@@ -243,6 +244,7 @@ func handleInboundACHTransfersList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-ach-transfers list",
 			Transform:      transform,
 		})
@@ -255,6 +257,7 @@ func handleInboundACHTransfersList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-ach-transfers list",
 			Transform:      transform,
 		})
@@ -304,6 +307,7 @@ func handleInboundACHTransfersCreateNotificationOfChange(ctx context.Context, cm
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-ach-transfers create-notification-of-change",
 		Transform:      transform,
 	})
@@ -352,6 +356,7 @@ func handleInboundACHTransfersDecline(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-ach-transfers decline",
 		Transform:      transform,
 	})
@@ -400,6 +405,7 @@ func handleInboundACHTransfersTransferReturn(ctx context.Context, cmd *cli.Comma
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-ach-transfers transfer-return",
 		Transform:      transform,
 	})

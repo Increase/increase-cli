@@ -80,6 +80,7 @@ func handleSimulationsWireDrawdownRequestsRefuse(ctx context.Context, cmd *cli.C
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:wire-drawdown-requests refuse",
 		Transform:      transform,
 	})
@@ -121,6 +122,7 @@ func handleSimulationsWireDrawdownRequestsSubmit(ctx context.Context, cmd *cli.C
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:wire-drawdown-requests submit",
 		Transform:      transform,
 	})

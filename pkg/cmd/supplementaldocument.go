@@ -106,6 +106,7 @@ func handleSupplementalDocumentsCreate(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "supplemental-documents create",
 		Transform:      transform,
 	})
@@ -146,6 +147,7 @@ func handleSupplementalDocumentsList(ctx context.Context, cmd *cli.Command) erro
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "supplemental-documents list",
 			Transform:      transform,
 		})
@@ -158,6 +160,7 @@ func handleSupplementalDocumentsList(ctx context.Context, cmd *cli.Command) erro
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "supplemental-documents list",
 			Transform:      transform,
 		})

@@ -162,6 +162,7 @@ func handleInboundCheckDepositsRetrieve(ctx context.Context, cmd *cli.Command) e
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-check-deposits retrieve",
 		Transform:      transform,
 	})
@@ -202,6 +203,7 @@ func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-check-deposits list",
 			Transform:      transform,
 		})
@@ -214,6 +216,7 @@ func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-check-deposits list",
 			Transform:      transform,
 		})
@@ -256,6 +259,7 @@ func handleInboundCheckDepositsDecline(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-check-deposits decline",
 		Transform:      transform,
 	})
@@ -304,6 +308,7 @@ func handleInboundCheckDepositsReturn(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-check-deposits return",
 		Transform:      transform,
 	})

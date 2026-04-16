@@ -121,6 +121,7 @@ func handleCardPurchaseSupplementsRetrieve(ctx context.Context, cmd *cli.Command
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-purchase-supplements retrieve",
 		Transform:      transform,
 	})
@@ -161,6 +162,7 @@ func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) er
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-purchase-supplements list",
 			Transform:      transform,
 		})
@@ -173,6 +175,7 @@ func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) er
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-purchase-supplements list",
 			Transform:      transform,
 		})

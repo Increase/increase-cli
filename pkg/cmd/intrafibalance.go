@@ -65,6 +65,7 @@ func handleIntrafiBalancesIntrafiBalance(ctx context.Context, cmd *cli.Command) 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-balances intrafi-balance",
 		Transform:      transform,
 	})

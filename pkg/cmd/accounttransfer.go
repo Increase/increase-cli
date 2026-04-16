@@ -194,6 +194,7 @@ func handleAccountTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "account-transfers create",
 		Transform:      transform,
 	})
@@ -235,6 +236,7 @@ func handleAccountTransfersRetrieve(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "account-transfers retrieve",
 		Transform:      transform,
 	})
@@ -275,6 +277,7 @@ func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "account-transfers list",
 			Transform:      transform,
 		})
@@ -287,6 +290,7 @@ func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "account-transfers list",
 			Transform:      transform,
 		})
@@ -329,6 +333,7 @@ func handleAccountTransfersApprove(ctx context.Context, cmd *cli.Command) error 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "account-transfers approve",
 		Transform:      transform,
 	})
@@ -370,6 +375,7 @@ func handleAccountTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "account-transfers cancel",
 		Transform:      transform,
 	})

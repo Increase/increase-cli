@@ -136,6 +136,7 @@ func handleSimulationsCardAuthenticationsCreate(ctx context.Context, cmd *cli.Co
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:card-authentications create",
 		Transform:      transform,
 	})
@@ -184,6 +185,7 @@ func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:card-authentications challenge-attempts",
 		Transform:      transform,
 	})
@@ -225,6 +227,7 @@ func handleSimulationsCardAuthenticationsChallenges(ctx context.Context, cmd *cl
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:card-authentications challenges",
 		Transform:      transform,
 	})

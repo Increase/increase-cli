@@ -94,6 +94,7 @@ func handleBookkeepingEntriesRetrieve(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "bookkeeping-entries retrieve",
 		Transform:      transform,
 	})
@@ -134,6 +135,7 @@ func handleBookkeepingEntriesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "bookkeeping-entries list",
 			Transform:      transform,
 		})
@@ -146,6 +148,7 @@ func handleBookkeepingEntriesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "bookkeeping-entries list",
 			Transform:      transform,
 		})

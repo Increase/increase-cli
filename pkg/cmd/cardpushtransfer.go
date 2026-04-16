@@ -320,6 +320,7 @@ func handleCardPushTransfersCreate(ctx context.Context, cmd *cli.Command) error 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-push-transfers create",
 		Transform:      transform,
 	})
@@ -361,6 +362,7 @@ func handleCardPushTransfersRetrieve(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-push-transfers retrieve",
 		Transform:      transform,
 	})
@@ -401,6 +403,7 @@ func handleCardPushTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-push-transfers list",
 			Transform:      transform,
 		})
@@ -413,6 +416,7 @@ func handleCardPushTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-push-transfers list",
 			Transform:      transform,
 		})
@@ -455,6 +459,7 @@ func handleCardPushTransfersApprove(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-push-transfers approve",
 		Transform:      transform,
 	})
@@ -496,6 +501,7 @@ func handleCardPushTransfersCancel(ctx context.Context, cmd *cli.Command) error 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-push-transfers cancel",
 		Transform:      transform,
 	})

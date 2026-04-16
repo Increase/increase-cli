@@ -270,6 +270,7 @@ func handleBeneficialOwnersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "beneficial-owners create",
 		Transform:      transform,
 	})
@@ -311,6 +312,7 @@ func handleBeneficialOwnersRetrieve(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "beneficial-owners retrieve",
 		Transform:      transform,
 	})
@@ -359,6 +361,7 @@ func handleBeneficialOwnersUpdate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "beneficial-owners update",
 		Transform:      transform,
 	})
@@ -399,6 +402,7 @@ func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "beneficial-owners list",
 			Transform:      transform,
 		})
@@ -411,6 +415,7 @@ func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "beneficial-owners list",
 			Transform:      transform,
 		})
@@ -453,6 +458,7 @@ func handleBeneficialOwnersArchive(ctx context.Context, cmd *cli.Command) error 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "beneficial-owners archive",
 		Transform:      transform,
 	})
