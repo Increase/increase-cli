@@ -57,6 +57,10 @@ var eventsList = requestflag.WithInnerFlags(cli.Command{
 			Usage:     "Limit the size of the list that is returned. The default (and maximum) is 100 objects.",
 			QueryPath: "limit",
 		},
+		&requestflag.Flag[map[string]any]{
+			Name:      "order-by",
+			QueryPath: "order_by",
+		},
 		&requestflag.Flag[int64]{
 			Name:  "max-items",
 			Usage: "The maximum number of items to return (use -1 for unlimited).",
@@ -92,6 +96,18 @@ var eventsList = requestflag.WithInnerFlags(cli.Command{
 			Name:       "created-at.on-or-before",
 			Usage:      "Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.",
 			InnerField: "on_or_before",
+		},
+	},
+	"order-by": {
+		&requestflag.InnerFlag[string]{
+			Name:       "order-by.direction",
+			Usage:      "The direction to order in.",
+			InnerField: "direction",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "order-by.field",
+			Usage:      "The field to order by.",
+			InnerField: "field",
 		},
 	},
 })
