@@ -107,6 +107,7 @@ func handleSimulationsInboundCheckDepositsCreate(ctx context.Context, cmd *cli.C
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:inbound-check-deposits create",
 		Transform:      transform,
 	})
@@ -155,6 +156,7 @@ func handleSimulationsInboundCheckDepositsAdjustment(ctx context.Context, cmd *c
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:inbound-check-deposits adjustment",
 		Transform:      transform,
 	})

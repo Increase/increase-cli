@@ -137,6 +137,7 @@ func handleDeclinedTransactionsRetrieve(ctx context.Context, cmd *cli.Command) e
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "declined-transactions retrieve",
 		Transform:      transform,
 	})
@@ -177,6 +178,7 @@ func handleDeclinedTransactionsList(ctx context.Context, cmd *cli.Command) error
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "declined-transactions list",
 			Transform:      transform,
 		})
@@ -189,6 +191,7 @@ func handleDeclinedTransactionsList(ctx context.Context, cmd *cli.Command) error
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "declined-transactions list",
 			Transform:      transform,
 		})

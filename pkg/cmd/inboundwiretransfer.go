@@ -163,6 +163,7 @@ func handleInboundWireTransfersRetrieve(ctx context.Context, cmd *cli.Command) e
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-wire-transfers retrieve",
 		Transform:      transform,
 	})
@@ -203,6 +204,7 @@ func handleInboundWireTransfersList(ctx context.Context, cmd *cli.Command) error
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-wire-transfers list",
 			Transform:      transform,
 		})
@@ -215,6 +217,7 @@ func handleInboundWireTransfersList(ctx context.Context, cmd *cli.Command) error
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-wire-transfers list",
 			Transform:      transform,
 		})
@@ -264,6 +267,7 @@ func handleInboundWireTransfersReverse(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-wire-transfers reverse",
 		Transform:      transform,
 	})

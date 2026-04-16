@@ -147,6 +147,7 @@ func handleIntrafiAccountEnrollmentsCreate(ctx context.Context, cmd *cli.Command
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-account-enrollments create",
 		Transform:      transform,
 	})
@@ -188,6 +189,7 @@ func handleIntrafiAccountEnrollmentsRetrieve(ctx context.Context, cmd *cli.Comma
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-account-enrollments retrieve",
 		Transform:      transform,
 	})
@@ -228,6 +230,7 @@ func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) 
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "intrafi-account-enrollments list",
 			Transform:      transform,
 		})
@@ -240,6 +243,7 @@ func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) 
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "intrafi-account-enrollments list",
 			Transform:      transform,
 		})
@@ -282,6 +286,7 @@ func handleIntrafiAccountEnrollmentsUnenroll(ctx context.Context, cmd *cli.Comma
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-account-enrollments unenroll",
 		Transform:      transform,
 	})

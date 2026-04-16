@@ -374,6 +374,7 @@ func handleCardDisputesCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-disputes create",
 		Transform:      transform,
 	})
@@ -415,6 +416,7 @@ func handleCardDisputesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-disputes retrieve",
 		Transform:      transform,
 	})
@@ -455,6 +457,7 @@ func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-disputes list",
 			Transform:      transform,
 		})
@@ -467,6 +470,7 @@ func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "card-disputes list",
 			Transform:      transform,
 		})
@@ -516,6 +520,7 @@ func handleCardDisputesSubmitUserSubmission(ctx context.Context, cmd *cli.Comman
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-disputes submit-user-submission",
 		Transform:      transform,
 	})
@@ -564,6 +569,7 @@ func handleCardDisputesWithdraw(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "card-disputes withdraw",
 		Transform:      transform,
 	})

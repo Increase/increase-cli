@@ -135,6 +135,7 @@ func handleIntrafiExclusionsCreate(ctx context.Context, cmd *cli.Command) error 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-exclusions create",
 		Transform:      transform,
 	})
@@ -176,6 +177,7 @@ func handleIntrafiExclusionsRetrieve(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-exclusions retrieve",
 		Transform:      transform,
 	})
@@ -216,6 +218,7 @@ func handleIntrafiExclusionsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "intrafi-exclusions list",
 			Transform:      transform,
 		})
@@ -228,6 +231,7 @@ func handleIntrafiExclusionsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "intrafi-exclusions list",
 			Transform:      transform,
 		})
@@ -270,6 +274,7 @@ func handleIntrafiExclusionsArchive(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "intrafi-exclusions archive",
 		Transform:      transform,
 	})

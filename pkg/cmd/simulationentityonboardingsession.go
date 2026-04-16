@@ -65,6 +65,7 @@ func handleSimulationsEntityOnboardingSessionsSubmit(ctx context.Context, cmd *c
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:entity-onboarding-sessions submit",
 		Transform:      transform,
 	})

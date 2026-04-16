@@ -150,6 +150,7 @@ func handleBookkeepingAccountsCreate(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "bookkeeping-accounts create",
 		Transform:      transform,
 	})
@@ -198,6 +199,7 @@ func handleBookkeepingAccountsUpdate(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "bookkeeping-accounts update",
 		Transform:      transform,
 	})
@@ -238,6 +240,7 @@ func handleBookkeepingAccountsList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "bookkeeping-accounts list",
 			Transform:      transform,
 		})
@@ -250,6 +253,7 @@ func handleBookkeepingAccountsList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "bookkeeping-accounts list",
 			Transform:      transform,
 		})
@@ -299,6 +303,7 @@ func handleBookkeepingAccountsBalance(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "bookkeeping-accounts balance",
 		Transform:      transform,
 	})

@@ -106,6 +106,7 @@ func handleOAuthConnectionsRetrieve(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "oauth-connections retrieve",
 		Transform:      transform,
 	})
@@ -146,6 +147,7 @@ func handleOAuthConnectionsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "oauth-connections list",
 			Transform:      transform,
 		})
@@ -158,6 +160,7 @@ func handleOAuthConnectionsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "oauth-connections list",
 			Transform:      transform,
 		})

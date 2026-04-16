@@ -65,6 +65,7 @@ func handleSimulationsCardAuthorizationExpirationsCreate(ctx context.Context, cm
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:card-authorization-expirations create",
 		Transform:      transform,
 	})

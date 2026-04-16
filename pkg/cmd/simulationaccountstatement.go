@@ -65,6 +65,7 @@ func handleSimulationsAccountStatementsCreate(ctx context.Context, cmd *cli.Comm
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:account-statements create",
 		Transform:      transform,
 	})

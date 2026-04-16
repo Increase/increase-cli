@@ -119,6 +119,7 @@ func handleSimulationsPhysicalCardsCreate(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:physical-cards create",
 		Transform:      transform,
 	})
@@ -167,6 +168,7 @@ func handleSimulationsPhysicalCardsAdvanceShipment(ctx context.Context, cmd *cli
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:physical-cards advance-shipment",
 		Transform:      transform,
 	})

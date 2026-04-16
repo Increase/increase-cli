@@ -126,6 +126,7 @@ func handleInboundFednowTransfersRetrieve(ctx context.Context, cmd *cli.Command)
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "inbound-fednow-transfers retrieve",
 		Transform:      transform,
 	})
@@ -166,6 +167,7 @@ func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) err
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-fednow-transfers list",
 			Transform:      transform,
 		})
@@ -178,6 +180,7 @@ func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) err
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "inbound-fednow-transfers list",
 			Transform:      transform,
 		})

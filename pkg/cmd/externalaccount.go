@@ -183,6 +183,7 @@ func handleExternalAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "external-accounts create",
 		Transform:      transform,
 	})
@@ -224,6 +225,7 @@ func handleExternalAccountsRetrieve(ctx context.Context, cmd *cli.Command) error
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "external-accounts retrieve",
 		Transform:      transform,
 	})
@@ -272,6 +274,7 @@ func handleExternalAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "external-accounts update",
 		Transform:      transform,
 	})
@@ -312,6 +315,7 @@ func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "external-accounts list",
 			Transform:      transform,
 		})
@@ -324,6 +328,7 @@ func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "external-accounts list",
 			Transform:      transform,
 		})

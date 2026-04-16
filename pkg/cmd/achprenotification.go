@@ -198,6 +198,7 @@ func handleACHPrenotificationsCreate(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "ach-prenotifications create",
 		Transform:      transform,
 	})
@@ -239,6 +240,7 @@ func handleACHPrenotificationsRetrieve(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "ach-prenotifications retrieve",
 		Transform:      transform,
 	})
@@ -279,6 +281,7 @@ func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "ach-prenotifications list",
 			Transform:      transform,
 		})
@@ -291,6 +294,7 @@ func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error 
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "ach-prenotifications list",
 			Transform:      transform,
 		})

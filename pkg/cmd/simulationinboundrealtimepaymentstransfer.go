@@ -96,6 +96,7 @@ func handleSimulationsInboundRealTimePaymentsTransfersCreate(ctx context.Context
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:inbound-real-time-payments-transfers create",
 		Transform:      transform,
 	})

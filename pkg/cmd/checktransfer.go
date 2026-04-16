@@ -310,6 +310,7 @@ func handleCheckTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "check-transfers create",
 		Transform:      transform,
 	})
@@ -351,6 +352,7 @@ func handleCheckTransfersRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "check-transfers retrieve",
 		Transform:      transform,
 	})
@@ -391,6 +393,7 @@ func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "check-transfers list",
 			Transform:      transform,
 		})
@@ -403,6 +406,7 @@ func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "check-transfers list",
 			Transform:      transform,
 		})
@@ -445,6 +449,7 @@ func handleCheckTransfersApprove(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "check-transfers approve",
 		Transform:      transform,
 	})
@@ -486,6 +491,7 @@ func handleCheckTransfersCancel(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "check-transfers cancel",
 		Transform:      transform,
 	})
@@ -534,6 +540,7 @@ func handleCheckTransfersStopPayment(ctx context.Context, cmd *cli.Command) erro
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "check-transfers stop-payment",
 		Transform:      transform,
 	})

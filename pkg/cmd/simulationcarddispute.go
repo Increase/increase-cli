@@ -141,6 +141,7 @@ func handleSimulationsCardDisputesAction(ctx context.Context, cmd *cli.Command) 
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "simulations:card-disputes action",
 		Transform:      transform,
 	})
