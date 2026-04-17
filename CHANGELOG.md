@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.29.0 (2026-04-17)
+
+Full Changelog: [v0.28.0...v0.29.0](https://github.com/Increase/increase-cli/compare/v0.28.0...v0.29.0)
+
+### Features
+
+* **api:** api update ([7a2caa8](https://github.com/Increase/increase-cli/commit/7a2caa8dc426b48dca483fb1331b6b1b919acf87))
+
+
+### Chores
+
+* **cli:** use `ShowJSONOpts` as argument to `formatJSON` instead of many positionals ([8a23c7d](https://github.com/Increase/increase-cli/commit/8a23c7d06498282f23125c4246557da9548230cc))
+
 ## 0.28.0 (2026-04-17)
 
 Full Changelog: [v0.27.0...v0.28.0](https://github.com/Increase/increase-cli/compare/v0.27.0...v0.28.0)
