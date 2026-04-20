@@ -63,7 +63,7 @@ func TestInboundMailItemsAction(t *testing.T) {
 			"inbound-mail-items", "action",
 			"--inbound-mail-item-id", "inbound_mail_item_q6rrg7mmqpplx80zceev",
 			"--check", "{action: deposit, account_id: account_in71c4amph0vgo2qllky}",
-			"--check", "{action: ignore, account_id: account_id}",
+			"--check", "{action: ignore, account_id: account_in71c4amph0vgo2qllky}",
 		)
 	})
 
@@ -80,7 +80,7 @@ func TestInboundMailItemsAction(t *testing.T) {
 			"--check.action", "deposit",
 			"--check.account-id", "account_in71c4amph0vgo2qllky",
 			"--check.action", "ignore",
-			"--check.account-id", "account_id",
+			"--check.account-id", "account_in71c4amph0vgo2qllky",
 		)
 	})
 
@@ -91,7 +91,7 @@ func TestInboundMailItemsAction(t *testing.T) {
 			"  - action: deposit\n" +
 			"    account_id: account_in71c4amph0vgo2qllky\n" +
 			"  - action: ignore\n" +
-			"    account_id: account_id\n")
+			"    account_id: account_in71c4amph0vgo2qllky\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",
