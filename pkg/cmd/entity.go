@@ -334,6 +334,11 @@ var entitiesUpdate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "An assessment of the entity’s potential risk of involvement in financial crimes, such as money laundering.",
 			BodyPath: "risk_rating",
 		},
+		&requestflag.Flag[[]map[string]any]{
+			Name:     "terms-agreement",
+			Usage:    "New terms that the Entity agreed to. Not all programs are required to submit this data. This will not archive previously submitted terms.",
+			BodyPath: "terms_agreements",
+		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "third-party-verification",
 			Usage:    "If you are using a third-party service for identity verification, you can use this field to associate this Entity with the identifier that represents them in that service.",
@@ -424,6 +429,23 @@ var entitiesUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:       "risk-rating.rating",
 			Usage:      "The rating given to this entity.",
 			InnerField: "rating",
+		},
+	},
+	"terms-agreement": {
+		&requestflag.InnerFlag[any]{
+			Name:       "terms-agreement.agreed-at",
+			Usage:      "The timestamp of when the Entity agreed to the terms.",
+			InnerField: "agreed_at",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "terms-agreement.ip-address",
+			Usage:      "The IP address the Entity accessed reviewed the terms from.",
+			InnerField: "ip_address",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "terms-agreement.terms-url",
+			Usage:      "The URL of the terms agreement. This link will be provided by your bank partner.",
+			InnerField: "terms_url",
 		},
 	},
 	"third-party-verification": {
