@@ -322,6 +322,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--government-authority", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
 			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, confirmed_no_us_tax_id: true, identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x}",
 			"--risk-rating", "{rated_at: '2020-01-31T23:59:59Z', rating: low}",
+			"--terms-agreement", "{agreed_at: '2019-12-27T18:11:19.117Z', ip_address: x, terms_url: x}",
 			"--third-party-verification", "{reference: x, vendor: alloy}",
 			"--trust", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
 		)
@@ -352,6 +353,9 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--natural-person.name", "x",
 			"--risk-rating.rated-at", "2020-01-31T23:59:59Z",
 			"--risk-rating.rating", "low",
+			"--terms-agreement.agreed-at", "2019-12-27T18:11:19.117Z",
+			"--terms-agreement.ip-address", "x",
+			"--terms-agreement.terms-url", "x",
 			"--third-party-verification.reference", "x",
 			"--third-party-verification.vendor", "alloy",
 			"--trust.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
@@ -417,6 +421,10 @@ func TestEntitiesUpdate(t *testing.T) {
 			"risk_rating:\n" +
 			"  rated_at: '2020-01-31T23:59:59Z'\n" +
 			"  rating: low\n" +
+			"terms_agreements:\n" +
+			"  - agreed_at: '2019-12-27T18:11:19.117Z'\n" +
+			"    ip_address: x\n" +
+			"    terms_url: x\n" +
 			"third_party_verification:\n" +
 			"  reference: x\n" +
 			"  vendor: alloy\n" +
