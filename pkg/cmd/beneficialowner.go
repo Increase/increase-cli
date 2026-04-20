@@ -16,7 +16,7 @@ import (
 
 var beneficialOwnersCreate = requestflag.WithInnerFlags(cli.Command{
 	Name:    "create",
-	Usage:   "Create a beneficial owner",
+	Usage:   "Create a Beneficial Owner",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
