@@ -568,36 +568,6 @@ func init() {
 				},
 			},
 			{
-				Name:     "bookkeeping-accounts",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&bookkeepingAccountsCreate,
-					&bookkeepingAccountsUpdate,
-					&bookkeepingAccountsList,
-					&bookkeepingAccountsBalance,
-				},
-			},
-			{
-				Name:     "bookkeeping-entry-sets",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&bookkeepingEntrySetsCreate,
-					&bookkeepingEntrySetsRetrieve,
-					&bookkeepingEntrySetsList,
-				},
-			},
-			{
-				Name:     "bookkeeping-entries",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&bookkeepingEntriesRetrieve,
-					&bookkeepingEntriesList,
-				},
-			},
-			{
 				Name:     "groups",
 				Category: "API RESOURCE",
 				Suggest:  true,
