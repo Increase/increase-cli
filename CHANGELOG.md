@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.35.0 (2026-04-22)
+
+Full Changelog: [v0.34.0...v0.35.0](https://github.com/Increase/increase-cli/compare/v0.34.0...v0.35.0)
+
+### Features
+
+* **api:** api update ([c3b5fad](https://github.com/Increase/increase-cli/commit/c3b5fadce464b0d30c8e13353867cc2da370f637))
+* **api:** api update ([d33456f](https://github.com/Increase/increase-cli/commit/d33456f3ae263e5f7b0b078a777ba30c2cc5068e))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([35d67ae](https://github.com/Increase/increase-cli/commit/35d67aee66ae4b8ecf4d6ec58b211ebe1bf85920))
+
 ## 0.34.0 (2026-04-20)
 
 Full Changelog: [v0.33.0...v0.34.0](https://github.com/Increase/increase-cli/compare/v0.33.0...v0.34.0)
