@@ -30,7 +30,8 @@ func TestInboundMailItemsList(t *testing.T) {
 			"--created-at", "{after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z', on_or_after: '2019-12-27T18:11:19.117Z', on_or_before: '2019-12-27T18:11:19.117Z'}",
 			"--cursor", "cursor",
 			"--limit", "1",
-			"--lockbox-id", "lockbox_id",
+			"--lockbox-address-id", "lockbox_address_id",
+			"--lockbox-recipient-id", "lockbox_recipient_id",
 		)
 	})
 
@@ -50,7 +51,8 @@ func TestInboundMailItemsList(t *testing.T) {
 			"--created-at.on-or-before", "2019-12-27T18:11:19.117Z",
 			"--cursor", "cursor",
 			"--limit", "1",
-			"--lockbox-id", "lockbox_id",
+			"--lockbox-address-id", "lockbox_address_id",
+			"--lockbox-recipient-id", "lockbox_recipient_id",
 		)
 	})
 }

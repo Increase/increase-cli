@@ -49,9 +49,14 @@ var inboundMailItemsList = requestflag.WithInnerFlags(cli.Command{
 			QueryPath: "limit",
 		},
 		&requestflag.Flag[string]{
-			Name:      "lockbox-id",
-			Usage:     "Filter Inbound Mail Items to ones sent to the provided Lockbox.",
-			QueryPath: "lockbox_id",
+			Name:      "lockbox-address-id",
+			Usage:     "Filter Inbound Mail Items to ones sent to the provided Lockbox Address.",
+			QueryPath: "lockbox_address_id",
+		},
+		&requestflag.Flag[string]{
+			Name:      "lockbox-recipient-id",
+			Usage:     "Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.",
+			QueryPath: "lockbox_recipient_id",
 		},
 		&requestflag.Flag[int64]{
 			Name:  "max-items",

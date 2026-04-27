@@ -409,14 +409,25 @@ func init() {
 				},
 			},
 			{
-				Name:     "lockboxes",
+				Name:     "lockbox-addresses",
 				Category: "API RESOURCE",
 				Suggest:  true,
 				Commands: []*cli.Command{
-					&lockboxesCreate,
-					&lockboxesRetrieve,
-					&lockboxesUpdate,
-					&lockboxesList,
+					&lockboxAddressesCreate,
+					&lockboxAddressesRetrieve,
+					&lockboxAddressesUpdate,
+					&lockboxAddressesList,
+				},
+			},
+			{
+				Name:     "lockbox-recipients",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&lockboxRecipientsCreate,
+					&lockboxRecipientsRetrieve,
+					&lockboxRecipientsUpdate,
+					&lockboxRecipientsList,
 				},
 			},
 			{

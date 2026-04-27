@@ -26,15 +26,19 @@ var simulationsInboundMailItemsCreate = cli.Command{
 			BodyPath: "amount",
 		},
 		&requestflag.Flag[string]{
-			Name:     "lockbox-id",
-			Usage:    "The identifier of the Lockbox to simulate inbound mail to.",
-			Required: true,
-			BodyPath: "lockbox_id",
-		},
-		&requestflag.Flag[string]{
 			Name:     "contents-file-id",
 			Usage:    "The file containing the PDF contents. If not present, a default check image file will be used.",
 			BodyPath: "contents_file_id",
+		},
+		&requestflag.Flag[string]{
+			Name:     "lockbox-address-id",
+			Usage:    "The identifier of the Lockbox Address to simulate inbound mail to.",
+			BodyPath: "lockbox_address_id",
+		},
+		&requestflag.Flag[string]{
+			Name:     "lockbox-recipient-id",
+			Usage:    "The identifier of the Lockbox Recipient to simulate inbound mail to.",
+			BodyPath: "lockbox_recipient_id",
 		},
 	},
 	Action:          handleSimulationsInboundMailItemsCreate,
