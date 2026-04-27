@@ -14,87 +14,66 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-var lockboxesCreate = cli.Command{
+var lockboxAddressesCreate = cli.Command{
 	Name:    "create",
-	Usage:   "Create a Lockbox",
+	Usage:   "Create a Lockbox Address",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-id",
-			Usage:    "The Account checks sent to this Lockbox should be deposited into.",
-			Required: true,
-			BodyPath: "account_id",
-		},
-		&requestflag.Flag[string]{
 			Name:     "description",
-			Usage:    "The description you choose for the Lockbox, for display purposes.",
+			Usage:    "The description you choose for the Lockbox Address.",
 			BodyPath: "description",
 		},
-		&requestflag.Flag[string]{
-			Name:     "recipient-name",
-			Usage:    "The name of the recipient that will receive mail at this location.",
-			BodyPath: "recipient_name",
-		},
 	},
-	Action:          handleLockboxesCreate,
+	Action:          handleLockboxAddressesCreate,
 	HideHelpCommand: true,
 }
 
-var lockboxesRetrieve = cli.Command{
+var lockboxAddressesRetrieve = cli.Command{
 	Name:    "retrieve",
-	Usage:   "Retrieve a Lockbox",
+	Usage:   "Retrieve a Lockbox Address",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "lockbox-id",
-			Usage:    "The identifier of the Lockbox to retrieve.",
+			Name:     "lockbox-address-id",
+			Usage:    "The identifier of the Lockbox Address to retrieve.",
 			Required: true,
 		},
 	},
-	Action:          handleLockboxesRetrieve,
+	Action:          handleLockboxAddressesRetrieve,
 	HideHelpCommand: true,
 }
 
-var lockboxesUpdate = cli.Command{
+var lockboxAddressesUpdate = cli.Command{
 	Name:    "update",
-	Usage:   "Update a Lockbox",
+	Usage:   "Update a Lockbox Address",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "lockbox-id",
-			Usage:    "The identifier of the Lockbox.",
+			Name:     "lockbox-address-id",
+			Usage:    "The identifier of the Lockbox Address.",
 			Required: true,
-		},
-		&requestflag.Flag[string]{
-			Name:     "check-deposit-behavior",
-			Usage:    "This indicates if checks mailed to this lockbox will be deposited.",
-			BodyPath: "check_deposit_behavior",
 		},
 		&requestflag.Flag[string]{
 			Name:     "description",
-			Usage:    "The description you choose for the Lockbox.",
+			Usage:    "The description you choose for the Lockbox Address.",
 			BodyPath: "description",
 		},
 		&requestflag.Flag[string]{
-			Name:     "recipient-name",
-			Usage:    "The recipient name you choose for the Lockbox.",
-			BodyPath: "recipient_name",
+			Name:     "status",
+			Usage:    "The status of the Lockbox Address.",
+			BodyPath: "status",
 		},
 	},
-	Action:          handleLockboxesUpdate,
+	Action:          handleLockboxAddressesUpdate,
 	HideHelpCommand: true,
 }
 
-var lockboxesList = requestflag.WithInnerFlags(cli.Command{
+var lockboxAddressesList = requestflag.WithInnerFlags(cli.Command{
 	Name:    "list",
-	Usage:   "List Lockboxes",
+	Usage:   "List Lockbox Addresses",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[string]{
-			Name:      "account-id",
-			Usage:     "Filter Lockboxes to those associated with the provided Account.",
-			QueryPath: "account_id",
-		},
 		&requestflag.Flag[map[string]any]{
 			Name:      "created-at",
 			QueryPath: "created_at",
@@ -119,7 +98,7 @@ var lockboxesList = requestflag.WithInnerFlags(cli.Command{
 			Usage: "The maximum number of items to return (use -1 for unlimited).",
 		},
 	},
-	Action:          handleLockboxesList,
+	Action:          handleLockboxAddressesList,
 	HideHelpCommand: true,
 }, map[string][]requestflag.HasOuterFlag{
 	"created-at": {
@@ -146,7 +125,7 @@ var lockboxesList = requestflag.WithInnerFlags(cli.Command{
 	},
 })
 
-func handleLockboxesCreate(ctx context.Context, cmd *cli.Command) error {
+func handleLockboxAddressesCreate(ctx context.Context, cmd *cli.Command) error {
 	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 
@@ -154,7 +133,7 @@ func handleLockboxesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxNewParams{}
+	params := increase.LockboxAddressNewParams{}
 
 	options, err := flagOptions(
 		cmd,
@@ -169,7 +148,7 @@ func handleLockboxesCreate(ctx context.Context, cmd *cli.Command) error {
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Lockboxes.New(ctx, params, options...)
+	_, err = client.LockboxAddresses.New(ctx, params, options...)
 	if err != nil {
 		return err
 	}
@@ -182,16 +161,16 @@ func handleLockboxesCreate(ctx context.Context, cmd *cli.Command) error {
 		ExplicitFormat: explicitFormat,
 		Format:         format,
 		RawOutput:      cmd.Root().Bool("raw-output"),
-		Title:          "lockboxes create",
+		Title:          "lockbox-addresses create",
 		Transform:      transform,
 	})
 }
 
-func handleLockboxesRetrieve(ctx context.Context, cmd *cli.Command) error {
+func handleLockboxAddressesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
-	if !cmd.IsSet("lockbox-id") && len(unusedArgs) > 0 {
-		cmd.Set("lockbox-id", unusedArgs[0])
+	if !cmd.IsSet("lockbox-address-id") && len(unusedArgs) > 0 {
+		cmd.Set("lockbox-address-id", unusedArgs[0])
 		unusedArgs = unusedArgs[1:]
 	}
 	if len(unusedArgs) > 0 {
@@ -211,7 +190,7 @@ func handleLockboxesRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Lockboxes.Get(ctx, cmd.Value("lockbox-id").(string), options...)
+	_, err = client.LockboxAddresses.Get(ctx, cmd.Value("lockbox-address-id").(string), options...)
 	if err != nil {
 		return err
 	}
@@ -224,23 +203,23 @@ func handleLockboxesRetrieve(ctx context.Context, cmd *cli.Command) error {
 		ExplicitFormat: explicitFormat,
 		Format:         format,
 		RawOutput:      cmd.Root().Bool("raw-output"),
-		Title:          "lockboxes retrieve",
+		Title:          "lockbox-addresses retrieve",
 		Transform:      transform,
 	})
 }
 
-func handleLockboxesUpdate(ctx context.Context, cmd *cli.Command) error {
+func handleLockboxAddressesUpdate(ctx context.Context, cmd *cli.Command) error {
 	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
-	if !cmd.IsSet("lockbox-id") && len(unusedArgs) > 0 {
-		cmd.Set("lockbox-id", unusedArgs[0])
+	if !cmd.IsSet("lockbox-address-id") && len(unusedArgs) > 0 {
+		cmd.Set("lockbox-address-id", unusedArgs[0])
 		unusedArgs = unusedArgs[1:]
 	}
 	if len(unusedArgs) > 0 {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxUpdateParams{}
+	params := increase.LockboxAddressUpdateParams{}
 
 	options, err := flagOptions(
 		cmd,
@@ -255,9 +234,9 @@ func handleLockboxesUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Lockboxes.Update(
+	_, err = client.LockboxAddresses.Update(
 		ctx,
-		cmd.Value("lockbox-id").(string),
+		cmd.Value("lockbox-address-id").(string),
 		params,
 		options...,
 	)
@@ -273,12 +252,12 @@ func handleLockboxesUpdate(ctx context.Context, cmd *cli.Command) error {
 		ExplicitFormat: explicitFormat,
 		Format:         format,
 		RawOutput:      cmd.Root().Bool("raw-output"),
-		Title:          "lockboxes update",
+		Title:          "lockbox-addresses update",
 		Transform:      transform,
 	})
 }
 
-func handleLockboxesList(ctx context.Context, cmd *cli.Command) error {
+func handleLockboxAddressesList(ctx context.Context, cmd *cli.Command) error {
 	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 
@@ -286,7 +265,7 @@ func handleLockboxesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxListParams{}
+	params := increase.LockboxAddressListParams{}
 
 	options, err := flagOptions(
 		cmd,
@@ -305,7 +284,7 @@ func handleLockboxesList(ctx context.Context, cmd *cli.Command) error {
 	if format == "raw" {
 		var res []byte
 		options = append(options, option.WithResponseBodyInto(&res))
-		_, err = client.Lockboxes.List(ctx, params, options...)
+		_, err = client.LockboxAddresses.List(ctx, params, options...)
 		if err != nil {
 			return err
 		}
@@ -314,11 +293,11 @@ func handleLockboxesList(ctx context.Context, cmd *cli.Command) error {
 			ExplicitFormat: explicitFormat,
 			Format:         format,
 			RawOutput:      cmd.Root().Bool("raw-output"),
-			Title:          "lockboxes list",
+			Title:          "lockbox-addresses list",
 			Transform:      transform,
 		})
 	} else {
-		iter := client.Lockboxes.ListAutoPaging(ctx, params, options...)
+		iter := client.LockboxAddresses.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
@@ -327,7 +306,7 @@ func handleLockboxesList(ctx context.Context, cmd *cli.Command) error {
 			ExplicitFormat: explicitFormat,
 			Format:         format,
 			RawOutput:      cmd.Root().Bool("raw-output"),
-			Title:          "lockboxes list",
+			Title:          "lockbox-addresses list",
 			Transform:      transform,
 		})
 	}
