@@ -683,6 +683,14 @@ func init() {
 				},
 			},
 			{
+				Name:     "simulations:account-revenue-payments",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&simulationsAccountRevenuePaymentsCreate,
+				},
+			},
+			{
 				Name:     "simulations:card-authorizations",
 				Category: "API RESOURCE",
 				Suggest:  true,
