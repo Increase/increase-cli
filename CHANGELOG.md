@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.39.1 (2026-04-29)
+
+Full Changelog: [v0.39.0...v0.39.1](https://github.com/Increase/increase-cli/compare/v0.39.0...v0.39.1)
+
+### Bug Fixes
+
+* **cli:** correctly load zsh autocompletion ([aee6ddd](https://github.com/Increase/increase-cli/commit/aee6dddb763788ea10c41d5f1b19b301b899c145))
+
+
+### Chores
+
+* **internal:** codegen related update ([41d8b9b](https://github.com/Increase/increase-cli/commit/41d8b9b2c2ccf39c64eb47e0f4d9251484bb3232))
+
 ## 0.39.0 (2026-04-28)
 
 Full Changelog: [v0.38.0...v0.39.0](https://github.com/Increase/increase-cli/compare/v0.38.0...v0.39.0)
