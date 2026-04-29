@@ -20,9 +20,10 @@ var transactionsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "transaction-id",
-			Usage:    "The identifier of the Transaction to retrieve.",
-			Required: true,
+			Name:      "transaction-id",
+			Usage:     "The identifier of the Transaction to retrieve.",
+			Required:  true,
+			PathParam: "transaction_id",
 		},
 	},
 	Action:          handleTransactionsRetrieve,
@@ -151,8 +152,6 @@ func handleTransactionsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.TransactionListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -163,6 +162,8 @@ func handleTransactionsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.TransactionListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

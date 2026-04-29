@@ -20,9 +20,10 @@ var accountStatementsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-statement-id",
-			Usage:    "The identifier of the Account Statement to retrieve.",
-			Required: true,
+			Name:      "account-statement-id",
+			Usage:     "The identifier of the Account Statement to retrieve.",
+			Required:  true,
+			PathParam: "account_statement_id",
 		},
 	},
 	Action:          handleAccountStatementsRetrieve,
@@ -135,8 +136,6 @@ func handleAccountStatementsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountStatementListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -147,6 +146,8 @@ func handleAccountStatementsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountStatementListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

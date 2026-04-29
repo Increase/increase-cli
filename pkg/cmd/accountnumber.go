@@ -67,9 +67,10 @@ var accountNumbersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-number-id",
-			Usage:    "The identifier of the Account Number to retrieve.",
-			Required: true,
+			Name:      "account-number-id",
+			Usage:     "The identifier of the Account Number to retrieve.",
+			Required:  true,
+			PathParam: "account_number_id",
 		},
 	},
 	Action:          handleAccountNumbersRetrieve,
@@ -82,9 +83,10 @@ var accountNumbersUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-number-id",
-			Usage:    "The identifier of the Account Number.",
-			Required: true,
+			Name:      "account-number-id",
+			Usage:     "The identifier of the Account Number.",
+			Required:  true,
+			PathParam: "account_number_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "inbound-ach",
@@ -217,8 +219,6 @@ func handleAccountNumbersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountNumberNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -229,6 +229,8 @@ func handleAccountNumbersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountNumberNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -303,8 +305,6 @@ func handleAccountNumbersUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountNumberUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -315,6 +315,8 @@ func handleAccountNumbersUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountNumberUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -349,8 +351,6 @@ func handleAccountNumbersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountNumberListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -361,6 +361,8 @@ func handleAccountNumbersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountNumberListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

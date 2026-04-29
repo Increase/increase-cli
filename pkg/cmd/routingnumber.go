@@ -52,8 +52,6 @@ func handleRoutingNumbersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.RoutingNumberListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -64,6 +62,8 @@ func handleRoutingNumbersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.RoutingNumberListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

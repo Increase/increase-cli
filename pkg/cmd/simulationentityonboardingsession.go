@@ -20,9 +20,10 @@ var simulationsEntityOnboardingSessionsSubmit = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-onboarding-session-id",
-			Usage:    "The identifier of the Entity Onboarding Session you wish to submit.",
-			Required: true,
+			Name:      "entity-onboarding-session-id",
+			Usage:     "The identifier of the Entity Onboarding Session you wish to submit.",
+			Required:  true,
+			PathParam: "entity_onboarding_session_id",
 		},
 	},
 	Action:          handleSimulationsEntityOnboardingSessionsSubmit,

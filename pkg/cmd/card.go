@@ -128,9 +128,10 @@ var cardsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-id",
-			Usage:    "The identifier of the Card.",
-			Required: true,
+			Name:      "card-id",
+			Usage:     "The identifier of the Card.",
+			Required:  true,
+			PathParam: "card_id",
 		},
 	},
 	Action:          handleCardsRetrieve,
@@ -143,9 +144,10 @@ var cardsUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-id",
-			Usage:    "The card identifier.",
-			Required: true,
+			Name:      "card-id",
+			Usage:     "The card identifier.",
+			Required:  true,
+			PathParam: "card_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "authorization-controls",
@@ -327,9 +329,10 @@ var cardsCreateDetailsIframe = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-id",
-			Usage:    "The identifier of the Card to create an iframe for.",
-			Required: true,
+			Name:      "card-id",
+			Usage:     "The identifier of the Card to create an iframe for.",
+			Required:  true,
+			PathParam: "card_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "physical-card-id",
@@ -347,9 +350,10 @@ var cardsDetails = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-id",
-			Usage:    "The identifier of the Card to retrieve details for.",
-			Required: true,
+			Name:      "card-id",
+			Usage:     "The identifier of the Card to retrieve details for.",
+			Required:  true,
+			PathParam: "card_id",
 		},
 	},
 	Action:          handleCardsDetails,
@@ -362,9 +366,10 @@ var cardsUpdatePin = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-id",
-			Usage:    "The identifier of the Card to update the PIN for.",
-			Required: true,
+			Name:      "card-id",
+			Usage:     "The identifier of the Card to update the PIN for.",
+			Required:  true,
+			PathParam: "card_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "pin",
@@ -385,8 +390,6 @@ func handleCardsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -397,6 +400,8 @@ func handleCardsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -471,8 +476,6 @@ func handleCardsUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -483,6 +486,8 @@ func handleCardsUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -517,8 +522,6 @@ func handleCardsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -529,6 +532,8 @@ func handleCardsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -575,8 +580,6 @@ func handleCardsCreateDetailsIframe(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardNewDetailsIframeParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -587,6 +590,8 @@ func handleCardsCreateDetailsIframe(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardNewDetailsIframeParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -666,8 +671,6 @@ func handleCardsUpdatePin(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardUpdatePinParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -678,6 +681,8 @@ func handleCardsUpdatePin(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardUpdatePinParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

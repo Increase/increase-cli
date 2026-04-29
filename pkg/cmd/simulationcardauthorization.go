@@ -138,8 +138,6 @@ func handleSimulationsCardAuthorizationsCreate(ctx context.Context, cmd *cli.Com
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardAuthorizationNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -150,6 +148,8 @@ func handleSimulationsCardAuthorizationsCreate(ctx context.Context, cmd *cli.Com
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardAuthorizationNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

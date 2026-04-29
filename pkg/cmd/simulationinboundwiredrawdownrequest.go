@@ -132,8 +132,6 @@ func handleSimulationsInboundWireDrawdownRequestsCreate(ctx context.Context, cmd
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundWireDrawdownRequestNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -144,6 +142,8 @@ func handleSimulationsInboundWireDrawdownRequestsCreate(ctx context.Context, cmd
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundWireDrawdownRequestNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

@@ -78,9 +78,10 @@ var physicalCardProfilesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-profile-id",
-			Usage:    "The identifier of the Card Profile.",
-			Required: true,
+			Name:      "physical-card-profile-id",
+			Usage:     "The identifier of the Card Profile.",
+			Required:  true,
+			PathParam: "physical_card_profile_id",
 		},
 	},
 	Action:          handlePhysicalCardProfilesRetrieve,
@@ -134,9 +135,10 @@ var physicalCardProfilesArchive = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-profile-id",
-			Usage:    "The identifier of the Physical Card Profile to archive.",
-			Required: true,
+			Name:      "physical-card-profile-id",
+			Usage:     "The identifier of the Physical Card Profile to archive.",
+			Required:  true,
+			PathParam: "physical_card_profile_id",
 		},
 	},
 	Action:          handlePhysicalCardProfilesArchive,
@@ -149,9 +151,10 @@ var physicalCardProfilesClone = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-profile-id",
-			Usage:    "The identifier of the Physical Card Profile to clone.",
-			Required: true,
+			Name:      "physical-card-profile-id",
+			Usage:     "The identifier of the Physical Card Profile to clone.",
+			Required:  true,
+			PathParam: "physical_card_profile_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "carrier-image-file-id",
@@ -209,8 +212,6 @@ func handlePhysicalCardProfilesCreate(ctx context.Context, cmd *cli.Command) err
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PhysicalCardProfileNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -221,6 +222,8 @@ func handlePhysicalCardProfilesCreate(ctx context.Context, cmd *cli.Command) err
 	if err != nil {
 		return err
 	}
+
+	params := increase.PhysicalCardProfileNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -292,8 +295,6 @@ func handlePhysicalCardProfilesList(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PhysicalCardProfileListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -304,6 +305,8 @@ func handlePhysicalCardProfilesList(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.PhysicalCardProfileListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -392,8 +395,6 @@ func handlePhysicalCardProfilesClone(ctx context.Context, cmd *cli.Command) erro
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PhysicalCardProfileCloneParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -404,6 +405,8 @@ func handlePhysicalCardProfilesClone(ctx context.Context, cmd *cli.Command) erro
 	if err != nil {
 		return err
 	}
+
+	params := increase.PhysicalCardProfileCloneParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

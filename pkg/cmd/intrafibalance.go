@@ -20,9 +20,10 @@ var intrafiBalancesIntrafiBalance = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-id",
-			Usage:    "The identifier of the Account to get balances for.",
-			Required: true,
+			Name:      "account-id",
+			Usage:     "The identifier of the Account to get balances for.",
+			Required:  true,
+			PathParam: "account_id",
 		},
 	},
 	Action:          handleIntrafiBalancesIntrafiBalance,

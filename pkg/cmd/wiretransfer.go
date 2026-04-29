@@ -131,9 +131,10 @@ var wireTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-transfer-id",
-			Usage:    "The identifier of the Wire Transfer.",
-			Required: true,
+			Name:      "wire-transfer-id",
+			Usage:     "The identifier of the Wire Transfer.",
+			Required:  true,
+			PathParam: "wire_transfer_id",
 		},
 	},
 	Action:          handleWireTransfersRetrieve,
@@ -223,9 +224,10 @@ var wireTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-transfer-id",
-			Usage:    "The identifier of the Wire Transfer to approve.",
-			Required: true,
+			Name:      "wire-transfer-id",
+			Usage:     "The identifier of the Wire Transfer to approve.",
+			Required:  true,
+			PathParam: "wire_transfer_id",
 		},
 	},
 	Action:          handleWireTransfersApprove,
@@ -238,9 +240,10 @@ var wireTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-transfer-id",
-			Usage:    "The identifier of the pending Wire Transfer to cancel.",
-			Required: true,
+			Name:      "wire-transfer-id",
+			Usage:     "The identifier of the pending Wire Transfer to cancel.",
+			Required:  true,
+			PathParam: "wire_transfer_id",
 		},
 	},
 	Action:          handleWireTransfersCancel,
@@ -255,8 +258,6 @@ func handleWireTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.WireTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -267,6 +268,8 @@ func handleWireTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.WireTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -338,8 +341,6 @@ func handleWireTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.WireTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -350,6 +351,8 @@ func handleWireTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.WireTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

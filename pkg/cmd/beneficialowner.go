@@ -81,9 +81,10 @@ var beneficialOwnersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-beneficial-owner-id",
-			Usage:    "The identifier of the Beneficial Owner to retrieve.",
-			Required: true,
+			Name:      "entity-beneficial-owner-id",
+			Usage:     "The identifier of the Beneficial Owner to retrieve.",
+			Required:  true,
+			PathParam: "entity_beneficial_owner_id",
 		},
 	},
 	Action:          handleBeneficialOwnersRetrieve,
@@ -96,9 +97,10 @@ var beneficialOwnersUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-beneficial-owner-id",
-			Usage:    "The identifier of the Beneficial Owner to update.",
-			Required: true,
+			Name:      "entity-beneficial-owner-id",
+			Usage:     "The identifier of the Beneficial Owner to update.",
+			Required:  true,
+			PathParam: "entity_beneficial_owner_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "address",
@@ -226,9 +228,10 @@ var beneficialOwnersArchive = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-beneficial-owner-id",
-			Usage:    "The identifier of the Beneficial Owner to archive.",
-			Required: true,
+			Name:      "entity-beneficial-owner-id",
+			Usage:     "The identifier of the Beneficial Owner to archive.",
+			Required:  true,
+			PathParam: "entity_beneficial_owner_id",
 		},
 	},
 	Action:          handleBeneficialOwnersArchive,
@@ -243,8 +246,6 @@ func handleBeneficialOwnersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.BeneficialOwnerNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -255,6 +256,8 @@ func handleBeneficialOwnersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.BeneficialOwnerNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -329,8 +332,6 @@ func handleBeneficialOwnersUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.BeneficialOwnerUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -341,6 +342,8 @@ func handleBeneficialOwnersUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.BeneficialOwnerUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -375,8 +378,6 @@ func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.BeneficialOwnerListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -387,6 +388,8 @@ func handleBeneficialOwnersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.BeneficialOwnerListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

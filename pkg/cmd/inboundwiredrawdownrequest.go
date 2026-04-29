@@ -20,9 +20,10 @@ var inboundWireDrawdownRequestsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-wire-drawdown-request-id",
-			Usage:    "The identifier of the Inbound Wire Drawdown Request to retrieve.",
-			Required: true,
+			Name:      "inbound-wire-drawdown-request-id",
+			Usage:     "The identifier of the Inbound Wire Drawdown Request to retrieve.",
+			Required:  true,
+			PathParam: "inbound_wire_drawdown_request_id",
 		},
 	},
 	Action:          handleInboundWireDrawdownRequestsRetrieve,
@@ -103,8 +104,6 @@ func handleInboundWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundWireDrawdownRequestListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -115,6 +114,8 @@ func handleInboundWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundWireDrawdownRequestListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

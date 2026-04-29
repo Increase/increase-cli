@@ -20,9 +20,10 @@ var oauthApplicationsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "oauth-application-id",
-			Usage:    "The identifier of the OAuth Application.",
-			Required: true,
+			Name:      "oauth-application-id",
+			Usage:     "The identifier of the OAuth Application.",
+			Required:  true,
+			PathParam: "oauth_application_id",
 		},
 	},
 	Action:          handleOAuthApplicationsRetrieve,
@@ -141,8 +142,6 @@ func handleOAuthApplicationsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.OAuthApplicationListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -153,6 +152,8 @@ func handleOAuthApplicationsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.OAuthApplicationListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

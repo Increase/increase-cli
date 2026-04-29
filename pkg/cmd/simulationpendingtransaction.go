@@ -20,9 +20,10 @@ var simulationsPendingTransactionsReleaseInboundFundsHold = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "pending-transaction-id",
-			Usage:    "The pending transaction to release. The pending transaction must have a `inbound_funds_hold` source.",
-			Required: true,
+			Name:      "pending-transaction-id",
+			Usage:     "The pending transaction to release. The pending transaction must have a `inbound_funds_hold` source.",
+			Required:  true,
+			PathParam: "pending_transaction_id",
 		},
 	},
 	Action:          handleSimulationsPendingTransactionsReleaseInboundFundsHold,

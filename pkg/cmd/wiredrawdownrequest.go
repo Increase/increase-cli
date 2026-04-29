@@ -162,9 +162,10 @@ var wireDrawdownRequestsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-drawdown-request-id",
-			Usage:    "The identifier of the Wire Drawdown Request to retrieve.",
-			Required: true,
+			Name:      "wire-drawdown-request-id",
+			Usage:     "The identifier of the Wire Drawdown Request to retrieve.",
+			Required:  true,
+			PathParam: "wire_drawdown_request_id",
 		},
 	},
 	Action:          handleWireDrawdownRequestsRetrieve,
@@ -220,8 +221,6 @@ func handleWireDrawdownRequestsCreate(ctx context.Context, cmd *cli.Command) err
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.WireDrawdownRequestNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -232,6 +231,8 @@ func handleWireDrawdownRequestsCreate(ctx context.Context, cmd *cli.Command) err
 	if err != nil {
 		return err
 	}
+
+	params := increase.WireDrawdownRequestNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -303,8 +304,6 @@ func handleWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.WireDrawdownRequestListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -315,6 +314,8 @@ func handleWireDrawdownRequestsList(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.WireDrawdownRequestListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

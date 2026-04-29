@@ -97,9 +97,10 @@ var cardValidationsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-validation-id",
-			Usage:    "The identifier of the Card Validation.",
-			Required: true,
+			Name:      "card-validation-id",
+			Usage:     "The identifier of the Card Validation.",
+			Required:  true,
+			PathParam: "card_validation_id",
 		},
 	},
 	Action:          handleCardValidationsRetrieve,
@@ -186,8 +187,6 @@ func handleCardValidationsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardValidationNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -198,6 +197,8 @@ func handleCardValidationsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardValidationNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -269,8 +270,6 @@ func handleCardValidationsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardValidationListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -281,6 +280,8 @@ func handleCardValidationsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardValidationListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

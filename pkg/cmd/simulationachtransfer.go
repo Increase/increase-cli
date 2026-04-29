@@ -20,9 +20,10 @@ var simulationsACHTransfersAcknowledge = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer you wish to become acknowledged.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer you wish to become acknowledged.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 	},
 	Action:          handleSimulationsACHTransfersAcknowledge,
@@ -35,9 +36,10 @@ var simulationsACHTransfersCreateNotificationOfChange = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer you wish to create a notification of change for.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer you wish to create a notification of change for.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "change-code",
@@ -62,9 +64,10 @@ var simulationsACHTransfersReturn = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer you wish to return.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer you wish to return.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "reason",
@@ -82,9 +85,10 @@ var simulationsACHTransfersSettle = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer you wish to become settled.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer you wish to become settled.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "inbound-funds-hold-behavior",
@@ -102,9 +106,10 @@ var simulationsACHTransfersSubmit = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer you wish to submit.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer you wish to submit.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 	},
 	Action:          handleSimulationsACHTransfersSubmit,
@@ -164,8 +169,6 @@ func handleSimulationsACHTransfersCreateNotificationOfChange(ctx context.Context
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationACHTransferNewNotificationOfChangeParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -176,6 +179,8 @@ func handleSimulationsACHTransfersCreateNotificationOfChange(ctx context.Context
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationACHTransferNewNotificationOfChangeParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -213,8 +218,6 @@ func handleSimulationsACHTransfersReturn(ctx context.Context, cmd *cli.Command) 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationACHTransferReturnParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -225,6 +228,8 @@ func handleSimulationsACHTransfersReturn(ctx context.Context, cmd *cli.Command) 
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationACHTransferReturnParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -262,8 +267,6 @@ func handleSimulationsACHTransfersSettle(ctx context.Context, cmd *cli.Command) 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationACHTransferSettleParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -274,6 +277,8 @@ func handleSimulationsACHTransfersSettle(ctx context.Context, cmd *cli.Command) 
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationACHTransferSettleParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

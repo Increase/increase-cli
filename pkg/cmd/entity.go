@@ -290,9 +290,10 @@ var entitiesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-id",
-			Usage:    "The identifier of the Entity to retrieve.",
-			Required: true,
+			Name:      "entity-id",
+			Usage:     "The identifier of the Entity to retrieve.",
+			Required:  true,
+			PathParam: "entity_id",
 		},
 	},
 	Action:          handleEntitiesRetrieve,
@@ -305,9 +306,10 @@ var entitiesUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-id",
-			Usage:    "The entity identifier.",
-			Required: true,
+			Name:      "entity-id",
+			Usage:     "The entity identifier.",
+			Required:  true,
+			PathParam: "entity_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "corporation",
@@ -547,9 +549,10 @@ var entitiesArchive = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-id",
-			Usage:    "The identifier of the Entity to archive. Any accounts associated with an entity must be closed before the entity can be archived.",
-			Required: true,
+			Name:      "entity-id",
+			Usage:     "The identifier of the Entity to archive. Any accounts associated with an entity must be closed before the entity can be archived.",
+			Required:  true,
+			PathParam: "entity_id",
 		},
 	},
 	Action:          handleEntitiesArchive,
@@ -564,8 +567,6 @@ func handleEntitiesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EntityNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -576,6 +577,8 @@ func handleEntitiesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.EntityNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -650,8 +653,6 @@ func handleEntitiesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EntityUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -662,6 +663,8 @@ func handleEntitiesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.EntityUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -696,8 +699,6 @@ func handleEntitiesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EntityListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -708,6 +709,8 @@ func handleEntitiesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.EntityListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

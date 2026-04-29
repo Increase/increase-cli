@@ -20,9 +20,10 @@ var simulationsRealTimePaymentsTransfersComplete = requestflag.WithInnerFlags(cl
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "real-time-payments-transfer-id",
-			Usage:    "The identifier of the Real-Time Payments Transfer you wish to complete.",
-			Required: true,
+			Name:      "real-time-payments-transfer-id",
+			Usage:     "The identifier of the Real-Time Payments Transfer you wish to complete.",
+			Required:  true,
+			PathParam: "real_time_payments_transfer_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "rejection",
@@ -53,8 +54,6 @@ func handleSimulationsRealTimePaymentsTransfersComplete(ctx context.Context, cmd
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationRealTimePaymentsTransferCompleteParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -65,6 +64,8 @@ func handleSimulationsRealTimePaymentsTransfersComplete(ctx context.Context, cmd
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationRealTimePaymentsTransferCompleteParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

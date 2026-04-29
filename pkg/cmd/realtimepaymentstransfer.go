@@ -89,9 +89,10 @@ var realTimePaymentsTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "real-time-payments-transfer-id",
-			Usage:    "The identifier of the Real-Time Payments Transfer.",
-			Required: true,
+			Name:      "real-time-payments-transfer-id",
+			Usage:     "The identifier of the Real-Time Payments Transfer.",
+			Required:  true,
+			PathParam: "real_time_payments_transfer_id",
 		},
 	},
 	Action:          handleRealTimePaymentsTransfersRetrieve,
@@ -181,9 +182,10 @@ var realTimePaymentsTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "real-time-payments-transfer-id",
-			Usage:    "The identifier of the Real-Time Payments Transfer to approve.",
-			Required: true,
+			Name:      "real-time-payments-transfer-id",
+			Usage:     "The identifier of the Real-Time Payments Transfer to approve.",
+			Required:  true,
+			PathParam: "real_time_payments_transfer_id",
 		},
 	},
 	Action:          handleRealTimePaymentsTransfersApprove,
@@ -196,9 +198,10 @@ var realTimePaymentsTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "real-time-payments-transfer-id",
-			Usage:    "The identifier of the pending Real-Time Payments Transfer to cancel.",
-			Required: true,
+			Name:      "real-time-payments-transfer-id",
+			Usage:     "The identifier of the pending Real-Time Payments Transfer to cancel.",
+			Required:  true,
+			PathParam: "real_time_payments_transfer_id",
 		},
 	},
 	Action:          handleRealTimePaymentsTransfersCancel,
@@ -213,8 +216,6 @@ func handleRealTimePaymentsTransfersCreate(ctx context.Context, cmd *cli.Command
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.RealTimePaymentsTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -225,6 +226,8 @@ func handleRealTimePaymentsTransfersCreate(ctx context.Context, cmd *cli.Command
 	if err != nil {
 		return err
 	}
+
+	params := increase.RealTimePaymentsTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -296,8 +299,6 @@ func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.RealTimePaymentsTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -308,6 +309,8 @@ func handleRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Command) 
 	if err != nil {
 		return err
 	}
+
+	params := increase.RealTimePaymentsTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

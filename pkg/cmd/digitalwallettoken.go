@@ -20,9 +20,10 @@ var digitalWalletTokensRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "digital-wallet-token-id",
-			Usage:    "The identifier of the Digital Wallet Token.",
-			Required: true,
+			Name:      "digital-wallet-token-id",
+			Usage:     "The identifier of the Digital Wallet Token.",
+			Required:  true,
+			PathParam: "digital_wallet_token_id",
 		},
 	},
 	Action:          handleDigitalWalletTokensRetrieve,
@@ -135,8 +136,6 @@ func handleDigitalWalletTokensList(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.DigitalWalletTokenListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -147,6 +146,8 @@ func handleDigitalWalletTokensList(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.DigitalWalletTokenListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

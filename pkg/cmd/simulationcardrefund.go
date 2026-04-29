@@ -47,8 +47,6 @@ func handleSimulationsCardRefundsCreate(ctx context.Context, cmd *cli.Command) e
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardRefundNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -59,6 +57,8 @@ func handleSimulationsCardRefundsCreate(ctx context.Context, cmd *cli.Command) e
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardRefundNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

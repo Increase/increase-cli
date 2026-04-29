@@ -64,8 +64,6 @@ func handleSimulationsInboundFednowTransfersCreate(ctx context.Context, cmd *cli
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundFednowTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -76,6 +74,8 @@ func handleSimulationsInboundFednowTransfersCreate(ctx context.Context, cmd *cli
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundFednowTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

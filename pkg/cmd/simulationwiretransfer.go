@@ -20,9 +20,10 @@ var simulationsWireTransfersReverse = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-transfer-id",
-			Usage:    "The identifier of the Wire Transfer you wish to reverse.",
-			Required: true,
+			Name:      "wire-transfer-id",
+			Usage:     "The identifier of the Wire Transfer you wish to reverse.",
+			Required:  true,
+			PathParam: "wire_transfer_id",
 		},
 	},
 	Action:          handleSimulationsWireTransfersReverse,
@@ -35,9 +36,10 @@ var simulationsWireTransfersSubmit = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-transfer-id",
-			Usage:    "The identifier of the Wire Transfer you wish to submit.",
-			Required: true,
+			Name:      "wire-transfer-id",
+			Usage:     "The identifier of the Wire Transfer you wish to submit.",
+			Required:  true,
+			PathParam: "wire_transfer_id",
 		},
 	},
 	Action:          handleSimulationsWireTransfersSubmit,

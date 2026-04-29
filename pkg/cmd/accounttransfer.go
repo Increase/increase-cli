@@ -59,9 +59,10 @@ var accountTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-transfer-id",
-			Usage:    "The identifier of the Account Transfer.",
-			Required: true,
+			Name:      "account-transfer-id",
+			Usage:     "The identifier of the Account Transfer.",
+			Required:  true,
+			PathParam: "account_transfer_id",
 		},
 	},
 	Action:          handleAccountTransfersRetrieve,
@@ -135,9 +136,10 @@ var accountTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-transfer-id",
-			Usage:    "The identifier of the Account Transfer to approve.",
-			Required: true,
+			Name:      "account-transfer-id",
+			Usage:     "The identifier of the Account Transfer to approve.",
+			Required:  true,
+			PathParam: "account_transfer_id",
 		},
 	},
 	Action:          handleAccountTransfersApprove,
@@ -150,9 +152,10 @@ var accountTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-transfer-id",
-			Usage:    "The identifier of the pending Account Transfer to cancel.",
-			Required: true,
+			Name:      "account-transfer-id",
+			Usage:     "The identifier of the pending Account Transfer to cancel.",
+			Required:  true,
+			PathParam: "account_transfer_id",
 		},
 	},
 	Action:          handleAccountTransfersCancel,
@@ -167,8 +170,6 @@ func handleAccountTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -179,6 +180,8 @@ func handleAccountTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -250,8 +253,6 @@ func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -262,6 +263,8 @@ func handleAccountTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

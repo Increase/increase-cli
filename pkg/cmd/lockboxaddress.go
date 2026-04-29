@@ -35,9 +35,10 @@ var lockboxAddressesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "lockbox-address-id",
-			Usage:    "The identifier of the Lockbox Address to retrieve.",
-			Required: true,
+			Name:      "lockbox-address-id",
+			Usage:     "The identifier of the Lockbox Address to retrieve.",
+			Required:  true,
+			PathParam: "lockbox_address_id",
 		},
 	},
 	Action:          handleLockboxAddressesRetrieve,
@@ -50,9 +51,10 @@ var lockboxAddressesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "lockbox-address-id",
-			Usage:    "The identifier of the Lockbox Address.",
-			Required: true,
+			Name:      "lockbox-address-id",
+			Usage:     "The identifier of the Lockbox Address.",
+			Required:  true,
+			PathParam: "lockbox_address_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "description",
@@ -133,8 +135,6 @@ func handleLockboxAddressesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxAddressNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -145,6 +145,8 @@ func handleLockboxAddressesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.LockboxAddressNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -219,8 +221,6 @@ func handleLockboxAddressesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxAddressUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -231,6 +231,8 @@ func handleLockboxAddressesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.LockboxAddressUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -265,8 +267,6 @@ func handleLockboxAddressesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxAddressListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -277,6 +277,8 @@ func handleLockboxAddressesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.LockboxAddressListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

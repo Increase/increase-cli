@@ -53,9 +53,10 @@ var simulationsInboundCheckDepositsAdjustment = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-check-deposit-id",
-			Usage:    "The identifier of the Inbound Check Deposit to adjust.",
-			Required: true,
+			Name:      "inbound-check-deposit-id",
+			Usage:     "The identifier of the Inbound Check Deposit to adjust.",
+			Required:  true,
+			PathParam: "inbound_check_deposit_id",
 		},
 		&requestflag.Flag[int64]{
 			Name:     "amount",
@@ -80,8 +81,6 @@ func handleSimulationsInboundCheckDepositsCreate(ctx context.Context, cmd *cli.C
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundCheckDepositNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -92,6 +91,8 @@ func handleSimulationsInboundCheckDepositsCreate(ctx context.Context, cmd *cli.C
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundCheckDepositNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -124,8 +125,6 @@ func handleSimulationsInboundCheckDepositsAdjustment(ctx context.Context, cmd *c
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundCheckDepositAdjustmentParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -136,6 +135,8 @@ func handleSimulationsInboundCheckDepositsAdjustment(ctx context.Context, cmd *c
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundCheckDepositAdjustmentParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
