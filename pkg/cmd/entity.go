@@ -149,7 +149,7 @@ var entitiesCreate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[string]{
 			Name:       "government-authority.tax-identifier",
-			Usage:      "The Employer Identification Number (EIN) for the government authority.",
+			Usage:      "The Employer Identification Number (EIN) for the government authority. Submit nine digits with no dashes or other separators.",
 			InnerField: "tax_identifier",
 		},
 		&requestflag.InnerFlag[string]{
@@ -278,7 +278,7 @@ var entitiesCreate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[string]{
 			Name:       "trust.tax-identifier",
-			Usage:      "The Employer Identification Number (EIN) for the trust. Required if `category` is equal to `irrevocable`.",
+			Usage:      "The Employer Identification Number (EIN) for the trust. Submit nine digits with no dashes or other separators. Required if `category` is equal to `irrevocable`.",
 			InnerField: "tax_identifier",
 		},
 	},
