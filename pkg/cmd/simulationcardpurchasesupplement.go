@@ -153,8 +153,6 @@ func handleSimulationsCardPurchaseSupplementsCreate(ctx context.Context, cmd *cl
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardPurchaseSupplementNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -165,6 +163,8 @@ func handleSimulationsCardPurchaseSupplementsCreate(ctx context.Context, cmd *cl
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardPurchaseSupplementNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

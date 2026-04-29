@@ -20,9 +20,10 @@ var simulationsPhysicalCardsCreate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-id",
-			Usage:    "The Physical Card you would like to action.",
-			Required: true,
+			Name:      "physical-card-id",
+			Usage:     "The Physical Card you would like to action.",
+			Required:  true,
+			PathParam: "physical_card_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "category",
@@ -61,9 +62,10 @@ var simulationsPhysicalCardsAdvanceShipment = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-id",
-			Usage:    "The Physical Card you would like to action.",
-			Required: true,
+			Name:      "physical-card-id",
+			Usage:     "The Physical Card you would like to action.",
+			Required:  true,
+			PathParam: "physical_card_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "shipment-status",
@@ -87,8 +89,6 @@ func handleSimulationsPhysicalCardsCreate(ctx context.Context, cmd *cli.Command)
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationPhysicalCardNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -99,6 +99,8 @@ func handleSimulationsPhysicalCardsCreate(ctx context.Context, cmd *cli.Command)
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationPhysicalCardNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -136,8 +138,6 @@ func handleSimulationsPhysicalCardsAdvanceShipment(ctx context.Context, cmd *cli
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationPhysicalCardAdvanceShipmentParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -148,6 +148,8 @@ func handleSimulationsPhysicalCardsAdvanceShipment(ctx context.Context, cmd *cli
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationPhysicalCardAdvanceShipmentParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

@@ -174,9 +174,10 @@ var cardPushTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-push-transfer-id",
-			Usage:    "The identifier of the Card Push Transfer.",
-			Required: true,
+			Name:      "card-push-transfer-id",
+			Usage:     "The identifier of the Card Push Transfer.",
+			Required:  true,
+			PathParam: "card_push_transfer_id",
 		},
 	},
 	Action:          handleCardPushTransfersRetrieve,
@@ -261,9 +262,10 @@ var cardPushTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-push-transfer-id",
-			Usage:    "The identifier of the Card Push Transfer to approve.",
-			Required: true,
+			Name:      "card-push-transfer-id",
+			Usage:     "The identifier of the Card Push Transfer to approve.",
+			Required:  true,
+			PathParam: "card_push_transfer_id",
 		},
 	},
 	Action:          handleCardPushTransfersApprove,
@@ -276,9 +278,10 @@ var cardPushTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-push-transfer-id",
-			Usage:    "The identifier of the pending Card Push Transfer to cancel.",
-			Required: true,
+			Name:      "card-push-transfer-id",
+			Usage:     "The identifier of the pending Card Push Transfer to cancel.",
+			Required:  true,
+			PathParam: "card_push_transfer_id",
 		},
 	},
 	Action:          handleCardPushTransfersCancel,
@@ -293,8 +296,6 @@ func handleCardPushTransfersCreate(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardPushTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -305,6 +306,8 @@ func handleCardPushTransfersCreate(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardPushTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -376,8 +379,6 @@ func handleCardPushTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardPushTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -388,6 +389,8 @@ func handleCardPushTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardPushTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

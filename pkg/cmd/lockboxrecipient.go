@@ -52,9 +52,10 @@ var lockboxRecipientsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "lockbox-recipient-id",
-			Usage:    "The identifier of the Lockbox Recipient to retrieve.",
-			Required: true,
+			Name:      "lockbox-recipient-id",
+			Usage:     "The identifier of the Lockbox Recipient to retrieve.",
+			Required:  true,
+			PathParam: "lockbox_recipient_id",
 		},
 	},
 	Action:          handleLockboxRecipientsRetrieve,
@@ -67,9 +68,10 @@ var lockboxRecipientsUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "lockbox-recipient-id",
-			Usage:    "The identifier of the Lockbox Recipient.",
-			Required: true,
+			Name:      "lockbox-recipient-id",
+			Usage:     "The identifier of the Lockbox Recipient.",
+			Required:  true,
+			PathParam: "lockbox_recipient_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "description",
@@ -165,8 +167,6 @@ func handleLockboxRecipientsCreate(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxRecipientNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -177,6 +177,8 @@ func handleLockboxRecipientsCreate(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.LockboxRecipientNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -251,8 +253,6 @@ func handleLockboxRecipientsUpdate(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxRecipientUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -263,6 +263,8 @@ func handleLockboxRecipientsUpdate(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.LockboxRecipientUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -297,8 +299,6 @@ func handleLockboxRecipientsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.LockboxRecipientListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -309,6 +309,8 @@ func handleLockboxRecipientsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.LockboxRecipientListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

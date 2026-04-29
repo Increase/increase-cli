@@ -20,9 +20,10 @@ var realTimeDecisionsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "real-time-decision-id",
-			Usage:    "The identifier of the Real-Time Decision.",
-			Required: true,
+			Name:      "real-time-decision-id",
+			Usage:     "The identifier of the Real-Time Decision.",
+			Required:  true,
+			PathParam: "real_time_decision_id",
 		},
 	},
 	Action:          handleRealTimeDecisionsRetrieve,
@@ -35,9 +36,10 @@ var realTimeDecisionsAction = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "real-time-decision-id",
-			Usage:    "The identifier of the Real-Time Decision.",
-			Required: true,
+			Name:      "real-time-decision-id",
+			Usage:     "The identifier of the Real-Time Decision.",
+			Required:  true,
+			PathParam: "real_time_decision_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "card-authentication",
@@ -200,8 +202,6 @@ func handleRealTimeDecisionsAction(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.RealTimeDecisionActionParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -212,6 +212,8 @@ func handleRealTimeDecisionsAction(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.RealTimeDecisionActionParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

@@ -69,8 +69,6 @@ func handleSimulationsInboundRealTimePaymentsTransfersCreate(ctx context.Context
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundRealTimePaymentsTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -81,6 +79,8 @@ func handleSimulationsInboundRealTimePaymentsTransfersCreate(ctx context.Context
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundRealTimePaymentsTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

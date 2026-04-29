@@ -193,9 +193,10 @@ var exportsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "export-id",
-			Usage:    "The identifier of the Export to retrieve.",
-			Required: true,
+			Name:      "export-id",
+			Usage:     "The identifier of the Export to retrieve.",
+			Required:  true,
+			PathParam: "export_id",
 		},
 	},
 	Action:          handleExportsRetrieve,
@@ -304,8 +305,6 @@ func handleExportsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ExportNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -316,6 +315,8 @@ func handleExportsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ExportNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -387,8 +388,6 @@ func handleExportsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ExportListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -399,6 +398,8 @@ func handleExportsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ExportListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

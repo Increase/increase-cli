@@ -20,9 +20,10 @@ var cardPaymentsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-payment-id",
-			Usage:    "The identifier of the Card Payment.",
-			Required: true,
+			Name:      "card-payment-id",
+			Usage:     "The identifier of the Card Payment.",
+			Required:  true,
+			PathParam: "card_payment_id",
 		},
 	},
 	Action:          handleCardPaymentsRetrieve,
@@ -140,8 +141,6 @@ func handleCardPaymentsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardPaymentListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -152,6 +151,8 @@ func handleCardPaymentsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardPaymentListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

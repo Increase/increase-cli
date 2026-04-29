@@ -20,9 +20,10 @@ var inboundRealTimePaymentsTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-real-time-payments-transfer-id",
-			Usage:    "The identifier of the Inbound Real-Time Payments Transfer to get details for.",
-			Required: true,
+			Name:      "inbound-real-time-payments-transfer-id",
+			Usage:     "The identifier of the Inbound Real-Time Payments Transfer to get details for.",
+			Required:  true,
+			PathParam: "inbound_real_time_payments_transfer_id",
 		},
 	},
 	Action:          handleInboundRealTimePaymentsTransfersRetrieve,
@@ -140,8 +141,6 @@ func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Co
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundRealTimePaymentsTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -152,6 +151,8 @@ func handleInboundRealTimePaymentsTransfersList(ctx context.Context, cmd *cli.Co
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundRealTimePaymentsTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

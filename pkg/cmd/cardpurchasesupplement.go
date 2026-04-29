@@ -20,9 +20,10 @@ var cardPurchaseSupplementsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-purchase-supplement-id",
-			Usage:    "The identifier of the Card Purchase Supplement.",
-			Required: true,
+			Name:      "card-purchase-supplement-id",
+			Usage:     "The identifier of the Card Purchase Supplement.",
+			Required:  true,
+			PathParam: "card_purchase_supplement_id",
 		},
 	},
 	Action:          handleCardPurchaseSupplementsRetrieve,
@@ -135,8 +136,6 @@ func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) er
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardPurchaseSupplementListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -147,6 +146,8 @@ func handleCardPurchaseSupplementsList(ctx context.Context, cmd *cli.Command) er
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardPurchaseSupplementListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

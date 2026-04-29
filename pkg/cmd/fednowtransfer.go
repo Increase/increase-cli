@@ -135,9 +135,10 @@ var fednowTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "fednow-transfer-id",
-			Usage:    "The identifier of the FedNow Transfer.",
-			Required: true,
+			Name:      "fednow-transfer-id",
+			Usage:     "The identifier of the FedNow Transfer.",
+			Required:  true,
+			PathParam: "fednow_transfer_id",
 		},
 	},
 	Action:          handleFednowTransfersRetrieve,
@@ -227,9 +228,10 @@ var fednowTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "fednow-transfer-id",
-			Usage:    "The identifier of the FedNow Transfer to approve.",
-			Required: true,
+			Name:      "fednow-transfer-id",
+			Usage:     "The identifier of the FedNow Transfer to approve.",
+			Required:  true,
+			PathParam: "fednow_transfer_id",
 		},
 	},
 	Action:          handleFednowTransfersApprove,
@@ -242,9 +244,10 @@ var fednowTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "fednow-transfer-id",
-			Usage:    "The identifier of the pending FedNow Transfer to cancel.",
-			Required: true,
+			Name:      "fednow-transfer-id",
+			Usage:     "The identifier of the pending FedNow Transfer to cancel.",
+			Required:  true,
+			PathParam: "fednow_transfer_id",
 		},
 	},
 	Action:          handleFednowTransfersCancel,
@@ -259,8 +262,6 @@ func handleFednowTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.FednowTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -271,6 +272,8 @@ func handleFednowTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.FednowTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -342,8 +345,6 @@ func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.FednowTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -354,6 +355,8 @@ func handleFednowTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.FednowTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

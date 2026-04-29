@@ -47,9 +47,10 @@ var pendingTransactionsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "pending-transaction-id",
-			Usage:    "The identifier of the Pending Transaction.",
-			Required: true,
+			Name:      "pending-transaction-id",
+			Usage:     "The identifier of the Pending Transaction.",
+			Required:  true,
+			PathParam: "pending_transaction_id",
 		},
 	},
 	Action:          handlePendingTransactionsRetrieve,
@@ -145,9 +146,10 @@ var pendingTransactionsRelease = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "pending-transaction-id",
-			Usage:    "The identifier of the Pending Transaction to release.",
-			Required: true,
+			Name:      "pending-transaction-id",
+			Usage:     "The identifier of the Pending Transaction to release.",
+			Required:  true,
+			PathParam: "pending_transaction_id",
 		},
 	},
 	Action:          handlePendingTransactionsRelease,
@@ -162,8 +164,6 @@ func handlePendingTransactionsCreate(ctx context.Context, cmd *cli.Command) erro
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PendingTransactionNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -174,6 +174,8 @@ func handlePendingTransactionsCreate(ctx context.Context, cmd *cli.Command) erro
 	if err != nil {
 		return err
 	}
+
+	params := increase.PendingTransactionNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -245,8 +247,6 @@ func handlePendingTransactionsList(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PendingTransactionListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -257,6 +257,8 @@ func handlePendingTransactionsList(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.PendingTransactionListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

@@ -20,9 +20,10 @@ var inboundFednowTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-fednow-transfer-id",
-			Usage:    "The identifier of the Inbound FedNow Transfer to get details for.",
-			Required: true,
+			Name:      "inbound-fednow-transfer-id",
+			Usage:     "The identifier of the Inbound FedNow Transfer to get details for.",
+			Required:  true,
+			PathParam: "inbound_fednow_transfer_id",
 		},
 	},
 	Action:          handleInboundFednowTransfersRetrieve,
@@ -140,8 +141,6 @@ func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) err
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundFednowTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -152,6 +151,8 @@ func handleInboundFednowTransfersList(ctx context.Context, cmd *cli.Command) err
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundFednowTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

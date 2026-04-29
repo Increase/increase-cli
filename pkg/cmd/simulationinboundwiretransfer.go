@@ -114,8 +114,6 @@ func handleSimulationsInboundWireTransfersCreate(ctx context.Context, cmd *cli.C
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundWireTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -126,6 +124,8 @@ func handleSimulationsInboundWireTransfersCreate(ctx context.Context, cmd *cli.C
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundWireTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

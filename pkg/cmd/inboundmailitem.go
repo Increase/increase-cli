@@ -20,9 +20,10 @@ var inboundMailItemsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-mail-item-id",
-			Usage:    "The identifier of the Inbound Mail Item to retrieve.",
-			Required: true,
+			Name:      "inbound-mail-item-id",
+			Usage:     "The identifier of the Inbound Mail Item to retrieve.",
+			Required:  true,
+			PathParam: "inbound_mail_item_id",
 		},
 	},
 	Action:          handleInboundMailItemsRetrieve,
@@ -96,9 +97,10 @@ var inboundMailItemsAction = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-mail-item-id",
-			Usage:    "The identifier of the Inbound Mail Item to action.",
-			Required: true,
+			Name:      "inbound-mail-item-id",
+			Usage:     "The identifier of the Inbound Mail Item to action.",
+			Required:  true,
+			PathParam: "inbound_mail_item_id",
 		},
 		&requestflag.Flag[[]map[string]any]{
 			Name:     "check",
@@ -174,8 +176,6 @@ func handleInboundMailItemsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundMailItemListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -186,6 +186,8 @@ func handleInboundMailItemsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundMailItemListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -232,8 +234,6 @@ func handleInboundMailItemsAction(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundMailItemActionParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -244,6 +244,8 @@ func handleInboundMailItemsAction(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundMailItemActionParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

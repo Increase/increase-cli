@@ -20,9 +20,10 @@ var cardTokensRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-token-id",
-			Usage:    "The identifier of the Card Token.",
-			Required: true,
+			Name:      "card-token-id",
+			Usage:     "The identifier of the Card Token.",
+			Required:  true,
+			PathParam: "card_token_id",
 		},
 	},
 	Action:          handleCardTokensRetrieve,
@@ -86,9 +87,10 @@ var cardTokensCapabilities = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-token-id",
-			Usage:    "The identifier of the Card Token.",
-			Required: true,
+			Name:      "card-token-id",
+			Usage:     "The identifier of the Card Token.",
+			Required:  true,
+			PathParam: "card_token_id",
 		},
 	},
 	Action:          handleCardTokensCapabilities,
@@ -145,8 +147,6 @@ func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardTokenListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -157,6 +157,8 @@ func handleCardTokensList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardTokenListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

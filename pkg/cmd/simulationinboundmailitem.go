@@ -53,8 +53,6 @@ func handleSimulationsInboundMailItemsCreate(ctx context.Context, cmd *cli.Comma
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundMailItemNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -65,6 +63,8 @@ func handleSimulationsInboundMailItemsCreate(ctx context.Context, cmd *cli.Comma
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundMailItemNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

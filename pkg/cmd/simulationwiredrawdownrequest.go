@@ -20,9 +20,10 @@ var simulationsWireDrawdownRequestsRefuse = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-drawdown-request-id",
-			Usage:    "The identifier of the Wire Drawdown Request you wish to refuse.",
-			Required: true,
+			Name:      "wire-drawdown-request-id",
+			Usage:     "The identifier of the Wire Drawdown Request you wish to refuse.",
+			Required:  true,
+			PathParam: "wire_drawdown_request_id",
 		},
 	},
 	Action:          handleSimulationsWireDrawdownRequestsRefuse,
@@ -35,9 +36,10 @@ var simulationsWireDrawdownRequestsSubmit = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "wire-drawdown-request-id",
-			Usage:    "The identifier of the Wire Drawdown Request you wish to submit.",
-			Required: true,
+			Name:      "wire-drawdown-request-id",
+			Usage:     "The identifier of the Wire Drawdown Request you wish to submit.",
+			Required:  true,
+			PathParam: "wire_drawdown_request_id",
 		},
 	},
 	Action:          handleSimulationsWireDrawdownRequestsSubmit,

@@ -49,8 +49,6 @@ func handleSimulationsCardIncrementsCreate(ctx context.Context, cmd *cli.Command
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardIncrementNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -61,6 +59,8 @@ func handleSimulationsCardIncrementsCreate(ctx context.Context, cmd *cli.Command
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardIncrementNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

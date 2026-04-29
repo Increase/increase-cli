@@ -89,9 +89,10 @@ var accountsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-id",
-			Usage:    "The identifier of the Account to retrieve.",
-			Required: true,
+			Name:      "account-id",
+			Usage:     "The identifier of the Account to retrieve.",
+			Required:  true,
+			PathParam: "account_id",
 		},
 	},
 	Action:          handleAccountsRetrieve,
@@ -104,9 +105,10 @@ var accountsUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-id",
-			Usage:    "The identifier of the Account to update.",
-			Required: true,
+			Name:      "account-id",
+			Usage:     "The identifier of the Account to update.",
+			Required:  true,
+			PathParam: "account_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "loan",
@@ -219,9 +221,10 @@ var accountsBalance = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-id",
-			Usage:    "The identifier of the Account to retrieve.",
-			Required: true,
+			Name:      "account-id",
+			Usage:     "The identifier of the Account to retrieve.",
+			Required:  true,
+			PathParam: "account_id",
 		},
 		&requestflag.Flag[any]{
 			Name:      "at-time",
@@ -239,9 +242,10 @@ var accountsClose = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "account-id",
-			Usage:    "The identifier of the Account to close. The account must have a zero balance.",
-			Required: true,
+			Name:      "account-id",
+			Usage:     "The identifier of the Account to close. The account must have a zero balance.",
+			Required:  true,
+			PathParam: "account_id",
 		},
 	},
 	Action:          handleAccountsClose,
@@ -256,8 +260,6 @@ func handleAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -268,6 +270,8 @@ func handleAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -342,8 +346,6 @@ func handleAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -354,6 +356,8 @@ func handleAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -388,8 +392,6 @@ func handleAccountsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -400,6 +402,8 @@ func handleAccountsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -446,8 +450,6 @@ func handleAccountsBalance(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.AccountBalanceParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -458,6 +460,8 @@ func handleAccountsBalance(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.AccountBalanceParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

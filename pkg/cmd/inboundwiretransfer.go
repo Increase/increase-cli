@@ -20,9 +20,10 @@ var inboundWireTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-wire-transfer-id",
-			Usage:    "The identifier of the Inbound Wire Transfer to get details for.",
-			Required: true,
+			Name:      "inbound-wire-transfer-id",
+			Usage:     "The identifier of the Inbound Wire Transfer to get details for.",
+			Required:  true,
+			PathParam: "inbound_wire_transfer_id",
 		},
 	},
 	Action:          handleInboundWireTransfersRetrieve,
@@ -112,9 +113,10 @@ var inboundWireTransfersReverse = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-wire-transfer-id",
-			Usage:    "The identifier of the Inbound Wire Transfer to reverse.",
-			Required: true,
+			Name:      "inbound-wire-transfer-id",
+			Usage:     "The identifier of the Inbound Wire Transfer to reverse.",
+			Required:  true,
+			PathParam: "inbound_wire_transfer_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "reason",
@@ -177,8 +179,6 @@ func handleInboundWireTransfersList(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundWireTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -189,6 +189,8 @@ func handleInboundWireTransfersList(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundWireTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -235,8 +237,6 @@ func handleInboundWireTransfersReverse(ctx context.Context, cmd *cli.Command) er
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundWireTransferReverseParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -247,6 +247,8 @@ func handleInboundWireTransfersReverse(ctx context.Context, cmd *cli.Command) er
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundWireTransferReverseParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

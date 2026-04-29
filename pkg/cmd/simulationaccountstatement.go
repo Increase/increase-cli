@@ -38,8 +38,6 @@ func handleSimulationsAccountStatementsCreate(ctx context.Context, cmd *cli.Comm
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationAccountStatementNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -50,6 +48,8 @@ func handleSimulationsAccountStatementsCreate(ctx context.Context, cmd *cli.Comm
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationAccountStatementNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
