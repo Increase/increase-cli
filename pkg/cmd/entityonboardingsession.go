@@ -47,9 +47,10 @@ var entityOnboardingSessionsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-onboarding-session-id",
-			Usage:    "The identifier of the Entity Onboarding Session.",
-			Required: true,
+			Name:      "entity-onboarding-session-id",
+			Usage:     "The identifier of the Entity Onboarding Session.",
+			Required:  true,
+			PathParam: "entity_onboarding_session_id",
 		},
 	},
 	Action:          handleEntityOnboardingSessionsRetrieve,
@@ -103,9 +104,10 @@ var entityOnboardingSessionsExpire = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "entity-onboarding-session-id",
-			Usage:    "The identifier of the Entity Onboarding Session to expire.",
-			Required: true,
+			Name:      "entity-onboarding-session-id",
+			Usage:     "The identifier of the Entity Onboarding Session to expire.",
+			Required:  true,
+			PathParam: "entity_onboarding_session_id",
 		},
 	},
 	Action:          handleEntityOnboardingSessionsExpire,
@@ -120,8 +122,6 @@ func handleEntityOnboardingSessionsCreate(ctx context.Context, cmd *cli.Command)
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EntityOnboardingSessionNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -132,6 +132,8 @@ func handleEntityOnboardingSessionsCreate(ctx context.Context, cmd *cli.Command)
 	if err != nil {
 		return err
 	}
+
+	params := increase.EntityOnboardingSessionNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -203,8 +205,6 @@ func handleEntityOnboardingSessionsList(ctx context.Context, cmd *cli.Command) e
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EntityOnboardingSessionListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -215,6 +215,8 @@ func handleEntityOnboardingSessionsList(ctx context.Context, cmd *cli.Command) e
 	if err != nil {
 		return err
 	}
+
+	params := increase.EntityOnboardingSessionListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

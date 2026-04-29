@@ -172,9 +172,10 @@ var cardDisputesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-dispute-id",
-			Usage:    "The identifier of the Card Dispute.",
-			Required: true,
+			Name:      "card-dispute-id",
+			Usage:     "The identifier of the Card Dispute.",
+			Required:  true,
+			PathParam: "card_dispute_id",
 		},
 	},
 	Action:          handleCardDisputesRetrieve,
@@ -254,9 +255,10 @@ var cardDisputesSubmitUserSubmission = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-dispute-id",
-			Usage:    "The identifier of the Card Dispute to submit a user submission for.",
-			Required: true,
+			Name:      "card-dispute-id",
+			Usage:     "The identifier of the Card Dispute to submit a user submission for.",
+			Required:  true,
+			PathParam: "card_dispute_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "network",
@@ -325,9 +327,10 @@ var cardDisputesWithdraw = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-dispute-id",
-			Usage:    "The identifier of the Card Dispute to withdraw.",
-			Required: true,
+			Name:      "card-dispute-id",
+			Usage:     "The identifier of the Card Dispute to withdraw.",
+			Required:  true,
+			PathParam: "card_dispute_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "explanation",
@@ -347,8 +350,6 @@ func handleCardDisputesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardDisputeNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -359,6 +360,8 @@ func handleCardDisputesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardDisputeNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -430,8 +433,6 @@ func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardDisputeListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -442,6 +443,8 @@ func handleCardDisputesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardDisputeListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -488,8 +491,6 @@ func handleCardDisputesSubmitUserSubmission(ctx context.Context, cmd *cli.Comman
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardDisputeSubmitUserSubmissionParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -500,6 +501,8 @@ func handleCardDisputesSubmitUserSubmission(ctx context.Context, cmd *cli.Comman
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardDisputeSubmitUserSubmissionParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -537,8 +540,6 @@ func handleCardDisputesWithdraw(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CardDisputeWithdrawParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -549,6 +550,8 @@ func handleCardDisputesWithdraw(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CardDisputeWithdrawParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

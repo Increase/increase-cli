@@ -64,9 +64,10 @@ var eventSubscriptionsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "event-subscription-id",
-			Usage:    "The identifier of the Event Subscription.",
-			Required: true,
+			Name:      "event-subscription-id",
+			Usage:     "The identifier of the Event Subscription.",
+			Required:  true,
+			PathParam: "event_subscription_id",
 		},
 	},
 	Action:          handleEventSubscriptionsRetrieve,
@@ -79,9 +80,10 @@ var eventSubscriptionsUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "event-subscription-id",
-			Usage:    "The identifier of the Event Subscription.",
-			Required: true,
+			Name:      "event-subscription-id",
+			Usage:     "The identifier of the Event Subscription.",
+			Required:  true,
+			PathParam: "event_subscription_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "status",
@@ -130,8 +132,6 @@ func handleEventSubscriptionsCreate(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EventSubscriptionNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -142,6 +142,8 @@ func handleEventSubscriptionsCreate(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.EventSubscriptionNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -216,8 +218,6 @@ func handleEventSubscriptionsUpdate(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EventSubscriptionUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -228,6 +228,8 @@ func handleEventSubscriptionsUpdate(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.EventSubscriptionUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -262,8 +264,6 @@ func handleEventSubscriptionsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.EventSubscriptionListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -274,6 +274,8 @@ func handleEventSubscriptionsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.EventSubscriptionListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

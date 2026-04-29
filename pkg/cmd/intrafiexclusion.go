@@ -42,9 +42,10 @@ var intrafiExclusionsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "intrafi-exclusion-id",
-			Usage:    "The identifier of the IntraFi Exclusion to retrieve.",
-			Required: true,
+			Name:      "intrafi-exclusion-id",
+			Usage:     "The identifier of the IntraFi Exclusion to retrieve.",
+			Required:  true,
+			PathParam: "intrafi_exclusion_id",
 		},
 	},
 	Action:          handleIntrafiExclusionsRetrieve,
@@ -91,9 +92,10 @@ var intrafiExclusionsArchive = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "intrafi-exclusion-id",
-			Usage:    "The identifier of the IntraFi Exclusion request to archive. It may take 5 business days for an exclusion removal to be processed. Removing an exclusion does not guarantee that funds will be swept to the previously-excluded bank.",
-			Required: true,
+			Name:      "intrafi-exclusion-id",
+			Usage:     "The identifier of the IntraFi Exclusion request to archive. It may take 5 business days for an exclusion removal to be processed. Removing an exclusion does not guarantee that funds will be swept to the previously-excluded bank.",
+			Required:  true,
+			PathParam: "intrafi_exclusion_id",
 		},
 	},
 	Action:          handleIntrafiExclusionsArchive,
@@ -108,8 +110,6 @@ func handleIntrafiExclusionsCreate(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.IntrafiExclusionNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -120,6 +120,8 @@ func handleIntrafiExclusionsCreate(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.IntrafiExclusionNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -191,8 +193,6 @@ func handleIntrafiExclusionsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.IntrafiExclusionListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -203,6 +203,8 @@ func handleIntrafiExclusionsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.IntrafiExclusionListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

@@ -20,9 +20,10 @@ var programsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "program-id",
-			Usage:    "The identifier of the Program to retrieve.",
-			Required: true,
+			Name:      "program-id",
+			Usage:     "The identifier of the Program to retrieve.",
+			Required:  true,
+			PathParam: "program_id",
 		},
 	},
 	Action:          handleProgramsRetrieve,
@@ -103,8 +104,6 @@ func handleProgramsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ProgramListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -115,6 +114,8 @@ func handleProgramsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ProgramListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

@@ -115,8 +115,6 @@ func handleSimulationsCardBalanceInquiriesCreate(ctx context.Context, cmd *cli.C
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardBalanceInquiryNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -127,6 +125,8 @@ func handleSimulationsCardBalanceInquiriesCreate(ctx context.Context, cmd *cli.C
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardBalanceInquiryNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

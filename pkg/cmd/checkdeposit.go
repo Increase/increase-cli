@@ -59,9 +59,10 @@ var checkDepositsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-deposit-id",
-			Usage:    "The identifier of the Check Deposit to retrieve.",
-			Required: true,
+			Name:      "check-deposit-id",
+			Usage:     "The identifier of the Check Deposit to retrieve.",
+			Required:  true,
+			PathParam: "check_deposit_id",
 		},
 	},
 	Action:          handleCheckDepositsRetrieve,
@@ -137,8 +138,6 @@ func handleCheckDepositsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CheckDepositNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -149,6 +148,8 @@ func handleCheckDepositsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CheckDepositNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -220,8 +221,6 @@ func handleCheckDepositsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CheckDepositListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -232,6 +231,8 @@ func handleCheckDepositsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CheckDepositListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

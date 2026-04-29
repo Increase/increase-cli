@@ -144,9 +144,10 @@ var checkTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-transfer-id",
-			Usage:    "The identifier of the Check Transfer.",
-			Required: true,
+			Name:      "check-transfer-id",
+			Usage:     "The identifier of the Check Transfer.",
+			Required:  true,
+			PathParam: "check_transfer_id",
 		},
 	},
 	Action:          handleCheckTransfersRetrieve,
@@ -231,9 +232,10 @@ var checkTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-transfer-id",
-			Usage:    "The identifier of the Check Transfer to approve.",
-			Required: true,
+			Name:      "check-transfer-id",
+			Usage:     "The identifier of the Check Transfer to approve.",
+			Required:  true,
+			PathParam: "check_transfer_id",
 		},
 	},
 	Action:          handleCheckTransfersApprove,
@@ -246,9 +248,10 @@ var checkTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-transfer-id",
-			Usage:    "The identifier of the pending Check Transfer to cancel.",
-			Required: true,
+			Name:      "check-transfer-id",
+			Usage:     "The identifier of the pending Check Transfer to cancel.",
+			Required:  true,
+			PathParam: "check_transfer_id",
 		},
 	},
 	Action:          handleCheckTransfersCancel,
@@ -261,9 +264,10 @@ var checkTransfersStopPayment = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-transfer-id",
-			Usage:    "The identifier of the Check Transfer.",
-			Required: true,
+			Name:      "check-transfer-id",
+			Usage:     "The identifier of the Check Transfer.",
+			Required:  true,
+			PathParam: "check_transfer_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "reason",
@@ -283,8 +287,6 @@ func handleCheckTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CheckTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -295,6 +297,8 @@ func handleCheckTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CheckTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -366,8 +370,6 @@ func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CheckTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -378,6 +380,8 @@ func handleCheckTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.CheckTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -508,8 +512,6 @@ func handleCheckTransfersStopPayment(ctx context.Context, cmd *cli.Command) erro
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.CheckTransferStopPaymentParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -520,6 +522,8 @@ func handleCheckTransfersStopPayment(ctx context.Context, cmd *cli.Command) erro
 	if err != nil {
 		return err
 	}
+
+	params := increase.CheckTransferStopPaymentParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

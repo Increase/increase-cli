@@ -107,8 +107,6 @@ func handleSimulationsInboundACHTransfersCreate(ctx context.Context, cmd *cli.Co
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationInboundACHTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -119,6 +117,8 @@ func handleSimulationsInboundACHTransfersCreate(ctx context.Context, cmd *cli.Co
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationInboundACHTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

@@ -42,9 +42,10 @@ var intrafiAccountEnrollmentsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "intrafi-account-enrollment-id",
-			Usage:    "The identifier of the IntraFi Account Enrollment to retrieve.",
-			Required: true,
+			Name:      "intrafi-account-enrollment-id",
+			Usage:     "The identifier of the IntraFi Account Enrollment to retrieve.",
+			Required:  true,
+			PathParam: "intrafi_account_enrollment_id",
 		},
 	},
 	Action:          handleIntrafiAccountEnrollmentsRetrieve,
@@ -103,9 +104,10 @@ var intrafiAccountEnrollmentsUnenroll = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "intrafi-account-enrollment-id",
-			Usage:    "The Identifier of the IntraFi Account Enrollment to remove from IntraFi.",
-			Required: true,
+			Name:      "intrafi-account-enrollment-id",
+			Usage:     "The Identifier of the IntraFi Account Enrollment to remove from IntraFi.",
+			Required:  true,
+			PathParam: "intrafi_account_enrollment_id",
 		},
 	},
 	Action:          handleIntrafiAccountEnrollmentsUnenroll,
@@ -120,8 +122,6 @@ func handleIntrafiAccountEnrollmentsCreate(ctx context.Context, cmd *cli.Command
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.IntrafiAccountEnrollmentNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -132,6 +132,8 @@ func handleIntrafiAccountEnrollmentsCreate(ctx context.Context, cmd *cli.Command
 	if err != nil {
 		return err
 	}
+
+	params := increase.IntrafiAccountEnrollmentNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -203,8 +205,6 @@ func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.IntrafiAccountEnrollmentListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -215,6 +215,8 @@ func handleIntrafiAccountEnrollmentsList(ctx context.Context, cmd *cli.Command) 
 	if err != nil {
 		return err
 	}
+
+	params := increase.IntrafiAccountEnrollmentListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

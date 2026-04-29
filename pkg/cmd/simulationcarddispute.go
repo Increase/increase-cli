@@ -20,9 +20,10 @@ var simulationsCardDisputesAction = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-dispute-id",
-			Usage:    "The dispute you would like to action.",
-			Required: true,
+			Name:      "card-dispute-id",
+			Usage:     "The dispute you would like to action.",
+			Required:  true,
+			PathParam: "card_dispute_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "network",
@@ -109,8 +110,6 @@ func handleSimulationsCardDisputesAction(ctx context.Context, cmd *cli.Command) 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardDisputeActionParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -121,6 +120,8 @@ func handleSimulationsCardDisputesAction(ctx context.Context, cmd *cli.Command) 
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardDisputeActionParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

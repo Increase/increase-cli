@@ -158,9 +158,10 @@ var achTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 	},
 	Action:          handleACHTransfersRetrieve,
@@ -250,9 +251,10 @@ var achTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the ACH Transfer to approve.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the ACH Transfer to approve.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 	},
 	Action:          handleACHTransfersApprove,
@@ -265,9 +267,10 @@ var achTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-transfer-id",
-			Usage:    "The identifier of the pending ACH Transfer to cancel.",
-			Required: true,
+			Name:      "ach-transfer-id",
+			Usage:     "The identifier of the pending ACH Transfer to cancel.",
+			Required:  true,
+			PathParam: "ach_transfer_id",
 		},
 	},
 	Action:          handleACHTransfersCancel,
@@ -282,8 +285,6 @@ func handleACHTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ACHTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -294,6 +295,8 @@ func handleACHTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ACHTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -365,8 +368,6 @@ func handleACHTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ACHTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -377,6 +378,8 @@ func handleACHTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ACHTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

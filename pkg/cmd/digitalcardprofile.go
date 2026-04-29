@@ -98,9 +98,10 @@ var digitalCardProfilesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "digital-card-profile-id",
-			Usage:    "The identifier of the Digital Card Profile.",
-			Required: true,
+			Name:      "digital-card-profile-id",
+			Usage:     "The identifier of the Digital Card Profile.",
+			Required:  true,
+			PathParam: "digital_card_profile_id",
 		},
 	},
 	Action:          handleDigitalCardProfilesRetrieve,
@@ -154,9 +155,10 @@ var digitalCardProfilesArchive = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "digital-card-profile-id",
-			Usage:    "The identifier of the Digital Card Profile to archive.",
-			Required: true,
+			Name:      "digital-card-profile-id",
+			Usage:     "The identifier of the Digital Card Profile to archive.",
+			Required:  true,
+			PathParam: "digital_card_profile_id",
 		},
 	},
 	Action:          handleDigitalCardProfilesArchive,
@@ -169,9 +171,10 @@ var digitalCardProfilesClone = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "digital-card-profile-id",
-			Usage:    "The identifier of the Digital Card Profile to clone.",
-			Required: true,
+			Name:      "digital-card-profile-id",
+			Usage:     "The identifier of the Digital Card Profile to clone.",
+			Required:  true,
+			PathParam: "digital_card_profile_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "app-icon-file-id",
@@ -249,8 +252,6 @@ func handleDigitalCardProfilesCreate(ctx context.Context, cmd *cli.Command) erro
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.DigitalCardProfileNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -261,6 +262,8 @@ func handleDigitalCardProfilesCreate(ctx context.Context, cmd *cli.Command) erro
 	if err != nil {
 		return err
 	}
+
+	params := increase.DigitalCardProfileNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -332,8 +335,6 @@ func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.DigitalCardProfileListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -344,6 +345,8 @@ func handleDigitalCardProfilesList(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.DigitalCardProfileListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -432,8 +435,6 @@ func handleDigitalCardProfilesClone(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.DigitalCardProfileCloneParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -444,6 +445,8 @@ func handleDigitalCardProfilesClone(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.DigitalCardProfileCloneParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

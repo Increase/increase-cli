@@ -20,9 +20,10 @@ var simulationsCheckDepositsAdjustment = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-deposit-id",
-			Usage:    "The identifier of the Check Deposit you wish to adjust.",
-			Required: true,
+			Name:      "check-deposit-id",
+			Usage:     "The identifier of the Check Deposit you wish to adjust.",
+			Required:  true,
+			PathParam: "check_deposit_id",
 		},
 		&requestflag.Flag[int64]{
 			Name:     "amount",
@@ -45,9 +46,10 @@ var simulationsCheckDepositsReject = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-deposit-id",
-			Usage:    "The identifier of the Check Deposit you wish to reject.",
-			Required: true,
+			Name:      "check-deposit-id",
+			Usage:     "The identifier of the Check Deposit you wish to reject.",
+			Required:  true,
+			PathParam: "check_deposit_id",
 		},
 	},
 	Action:          handleSimulationsCheckDepositsReject,
@@ -60,9 +62,10 @@ var simulationsCheckDepositsReturn = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-deposit-id",
-			Usage:    "The identifier of the Check Deposit you wish to return.",
-			Required: true,
+			Name:      "check-deposit-id",
+			Usage:     "The identifier of the Check Deposit you wish to return.",
+			Required:  true,
+			PathParam: "check_deposit_id",
 		},
 	},
 	Action:          handleSimulationsCheckDepositsReturn,
@@ -75,9 +78,10 @@ var simulationsCheckDepositsSubmit = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-deposit-id",
-			Usage:    "The identifier of the Check Deposit you wish to submit.",
-			Required: true,
+			Name:      "check-deposit-id",
+			Usage:     "The identifier of the Check Deposit you wish to submit.",
+			Required:  true,
+			PathParam: "check_deposit_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "scan",
@@ -118,8 +122,6 @@ func handleSimulationsCheckDepositsAdjustment(ctx context.Context, cmd *cli.Comm
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCheckDepositAdjustmentParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -130,6 +132,8 @@ func handleSimulationsCheckDepositsAdjustment(ctx context.Context, cmd *cli.Comm
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCheckDepositAdjustmentParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -251,8 +255,6 @@ func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command)
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCheckDepositSubmitParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -263,6 +265,8 @@ func handleSimulationsCheckDepositsSubmit(ctx context.Context, cmd *cli.Command)
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCheckDepositSubmitParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

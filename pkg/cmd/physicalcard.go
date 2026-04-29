@@ -83,9 +83,10 @@ var physicalCardsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-id",
-			Usage:    "The identifier of the Physical Card.",
-			Required: true,
+			Name:      "physical-card-id",
+			Usage:     "The identifier of the Physical Card.",
+			Required:  true,
+			PathParam: "physical_card_id",
 		},
 	},
 	Action:          handlePhysicalCardsRetrieve,
@@ -98,9 +99,10 @@ var physicalCardsUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "physical-card-id",
-			Usage:    "The Physical Card identifier.",
-			Required: true,
+			Name:      "physical-card-id",
+			Usage:     "The Physical Card identifier.",
+			Required:  true,
+			PathParam: "physical_card_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "status",
@@ -182,8 +184,6 @@ func handlePhysicalCardsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PhysicalCardNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -194,6 +194,8 @@ func handlePhysicalCardsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.PhysicalCardNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -268,8 +270,6 @@ func handlePhysicalCardsUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PhysicalCardUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -280,6 +280,8 @@ func handlePhysicalCardsUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.PhysicalCardUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -314,8 +316,6 @@ func handlePhysicalCardsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.PhysicalCardListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -326,6 +326,8 @@ func handlePhysicalCardsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.PhysicalCardListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

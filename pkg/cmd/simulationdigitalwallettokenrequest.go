@@ -38,8 +38,6 @@ func handleSimulationsDigitalWalletTokenRequestsCreate(ctx context.Context, cmd 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationDigitalWalletTokenRequestNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -50,6 +48,8 @@ func handleSimulationsDigitalWalletTokenRequestsCreate(ctx context.Context, cmd 
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationDigitalWalletTokenRequestNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

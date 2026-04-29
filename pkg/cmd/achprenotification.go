@@ -98,9 +98,10 @@ var achPrenotificationsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ach-prenotification-id",
-			Usage:    "The identifier of the ACH Prenotification to retrieve.",
-			Required: true,
+			Name:      "ach-prenotification-id",
+			Usage:     "The identifier of the ACH Prenotification to retrieve.",
+			Required:  true,
+			PathParam: "ach_prenotification_id",
 		},
 	},
 	Action:          handleACHPrenotificationsRetrieve,
@@ -171,8 +172,6 @@ func handleACHPrenotificationsCreate(ctx context.Context, cmd *cli.Command) erro
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ACHPrenotificationNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -183,6 +182,8 @@ func handleACHPrenotificationsCreate(ctx context.Context, cmd *cli.Command) erro
 	if err != nil {
 		return err
 	}
+
+	params := increase.ACHPrenotificationNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -254,8 +255,6 @@ func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ACHPrenotificationListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -266,6 +265,8 @@ func handleACHPrenotificationsList(ctx context.Context, cmd *cli.Command) error 
 	if err != nil {
 		return err
 	}
+
+	params := increase.ACHPrenotificationListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

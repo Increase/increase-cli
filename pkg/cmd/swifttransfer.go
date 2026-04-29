@@ -171,9 +171,10 @@ var swiftTransfersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "swift-transfer-id",
-			Usage:    "The identifier of the Swift Transfer.",
-			Required: true,
+			Name:      "swift-transfer-id",
+			Usage:     "The identifier of the Swift Transfer.",
+			Required:  true,
+			PathParam: "swift_transfer_id",
 		},
 	},
 	Action:          handleSwiftTransfersRetrieve,
@@ -258,9 +259,10 @@ var swiftTransfersApprove = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "swift-transfer-id",
-			Usage:    "The identifier of the Swift Transfer to approve.",
-			Required: true,
+			Name:      "swift-transfer-id",
+			Usage:     "The identifier of the Swift Transfer to approve.",
+			Required:  true,
+			PathParam: "swift_transfer_id",
 		},
 	},
 	Action:          handleSwiftTransfersApprove,
@@ -273,9 +275,10 @@ var swiftTransfersCancel = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "swift-transfer-id",
-			Usage:    "The identifier of the pending Swift Transfer to cancel.",
-			Required: true,
+			Name:      "swift-transfer-id",
+			Usage:     "The identifier of the pending Swift Transfer to cancel.",
+			Required:  true,
+			PathParam: "swift_transfer_id",
 		},
 	},
 	Action:          handleSwiftTransfersCancel,
@@ -290,8 +293,6 @@ func handleSwiftTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SwiftTransferNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -302,6 +303,8 @@ func handleSwiftTransfersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.SwiftTransferNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -373,8 +376,6 @@ func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SwiftTransferListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -385,6 +386,8 @@ func handleSwiftTransfersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.SwiftTransferListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

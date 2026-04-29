@@ -44,8 +44,6 @@ func handleSimulationsCardFuelConfirmationsCreate(ctx context.Context, cmd *cli.
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardFuelConfirmationNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -56,6 +54,8 @@ func handleSimulationsCardFuelConfirmationsCreate(ctx context.Context, cmd *cli.
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardFuelConfirmationNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

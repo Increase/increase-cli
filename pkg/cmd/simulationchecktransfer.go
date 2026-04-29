@@ -20,9 +20,10 @@ var simulationsCheckTransfersMail = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "check-transfer-id",
-			Usage:    "The identifier of the Check Transfer you wish to mail.",
-			Required: true,
+			Name:      "check-transfer-id",
+			Usage:     "The identifier of the Check Transfer you wish to mail.",
+			Required:  true,
+			PathParam: "check_transfer_id",
 		},
 	},
 	Action:          handleSimulationsCheckTransfersMail,

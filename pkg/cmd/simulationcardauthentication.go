@@ -71,9 +71,10 @@ var simulationsCardAuthenticationsChallengeAttempts = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-payment-id",
-			Usage:    "The identifier of the Card Payment to be challenged.",
-			Required: true,
+			Name:      "card-payment-id",
+			Usage:     "The identifier of the Card Payment to be challenged.",
+			Required:  true,
+			PathParam: "card_payment_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "one-time-code",
@@ -92,9 +93,10 @@ var simulationsCardAuthenticationsChallenges = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "card-payment-id",
-			Usage:    "The identifier of the Card Payment to be challenged.",
-			Required: true,
+			Name:      "card-payment-id",
+			Usage:     "The identifier of the Card Payment to be challenged.",
+			Required:  true,
+			PathParam: "card_payment_id",
 		},
 	},
 	Action:          handleSimulationsCardAuthenticationsChallenges,
@@ -109,8 +111,6 @@ func handleSimulationsCardAuthenticationsCreate(ctx context.Context, cmd *cli.Co
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardAuthenticationNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -121,6 +121,8 @@ func handleSimulationsCardAuthenticationsCreate(ctx context.Context, cmd *cli.Co
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardAuthenticationNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -153,8 +155,6 @@ func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.SimulationCardAuthenticationChallengeAttemptsParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -165,6 +165,8 @@ func handleSimulationsCardAuthenticationsChallengeAttempts(ctx context.Context, 
 	if err != nil {
 		return err
 	}
+
+	params := increase.SimulationCardAuthenticationChallengeAttemptsParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

@@ -58,9 +58,10 @@ var externalAccountsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "external-account-id",
-			Usage:    "The identifier of the External Account.",
-			Required: true,
+			Name:      "external-account-id",
+			Usage:     "The identifier of the External Account.",
+			Required:  true,
+			PathParam: "external_account_id",
 		},
 	},
 	Action:          handleExternalAccountsRetrieve,
@@ -73,9 +74,10 @@ var externalAccountsUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "external-account-id",
-			Usage:    "The external account identifier.",
-			Required: true,
+			Name:      "external-account-id",
+			Usage:     "The external account identifier.",
+			Required:  true,
+			PathParam: "external_account_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "account-holder",
@@ -156,8 +158,6 @@ func handleExternalAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ExternalAccountNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -168,6 +168,8 @@ func handleExternalAccountsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ExternalAccountNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -242,8 +244,6 @@ func handleExternalAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ExternalAccountUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -254,6 +254,8 @@ func handleExternalAccountsUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ExternalAccountUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -288,8 +290,6 @@ func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.ExternalAccountListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -300,6 +300,8 @@ func handleExternalAccountsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := increase.ExternalAccountListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

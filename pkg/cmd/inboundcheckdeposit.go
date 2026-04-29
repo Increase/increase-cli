@@ -20,9 +20,10 @@ var inboundCheckDepositsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-check-deposit-id",
-			Usage:    "The identifier of the Inbound Check Deposit to get details for.",
-			Required: true,
+			Name:      "inbound-check-deposit-id",
+			Usage:     "The identifier of the Inbound Check Deposit to get details for.",
+			Required:  true,
+			PathParam: "inbound_check_deposit_id",
 		},
 	},
 	Action:          handleInboundCheckDepositsRetrieve,
@@ -96,9 +97,10 @@ var inboundCheckDepositsDecline = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-check-deposit-id",
-			Usage:    "The identifier of the Inbound Check Deposit to decline.",
-			Required: true,
+			Name:      "inbound-check-deposit-id",
+			Usage:     "The identifier of the Inbound Check Deposit to decline.",
+			Required:  true,
+			PathParam: "inbound_check_deposit_id",
 		},
 	},
 	Action:          handleInboundCheckDepositsDecline,
@@ -111,9 +113,10 @@ var inboundCheckDepositsReturn = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "inbound-check-deposit-id",
-			Usage:    "The identifier of the Inbound Check Deposit to return.",
-			Required: true,
+			Name:      "inbound-check-deposit-id",
+			Usage:     "The identifier of the Inbound Check Deposit to return.",
+			Required:  true,
+			PathParam: "inbound_check_deposit_id",
 		},
 		&requestflag.Flag[string]{
 			Name:     "reason",
@@ -176,8 +179,6 @@ func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundCheckDepositListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -188,6 +189,8 @@ func handleInboundCheckDepositsList(ctx context.Context, cmd *cli.Command) error
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundCheckDepositListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -276,8 +279,6 @@ func handleInboundCheckDepositsReturn(ctx context.Context, cmd *cli.Command) err
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := increase.InboundCheckDepositReturnParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatDots,
@@ -288,6 +289,8 @@ func handleInboundCheckDepositsReturn(ctx context.Context, cmd *cli.Command) err
 	if err != nil {
 		return err
 	}
+
+	params := increase.InboundCheckDepositReturnParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
