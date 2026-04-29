@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.41.1 (2026-04-29)
+
+Full Changelog: [v0.41.0...v0.41.1](https://github.com/Increase/increase-cli/compare/v0.41.0...v0.41.1)
+
+### Bug Fixes
+
+* flags for nullable body scalar fields are strictly typed ([7ce77c5](https://github.com/Increase/increase-cli/commit/7ce77c5ef4f666337307e8c3a9821f5e1b2b5974))
+
 ## 0.41.0 (2026-04-29)
 
 Full Changelog: [v0.40.0...v0.41.0](https://github.com/Increase/increase-cli/compare/v0.40.0...v0.41.0)
