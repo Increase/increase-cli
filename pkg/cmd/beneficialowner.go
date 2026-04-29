@@ -164,7 +164,7 @@ var beneficialOwnersUpdate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[string]{
 			Name:       "identification.number",
-			Usage:      "An identification number that can be used to verify the individual's identity, such as a social security number.",
+			Usage:      "An identification number that can be used to verify the individual's identity, such as a social security number. For Social Security Numbers and Individual Taxpayer Identification Numbers, submit nine digits with no dashes or other separators.",
 			InnerField: "number",
 		},
 		&requestflag.InnerFlag[map[string]any]{
