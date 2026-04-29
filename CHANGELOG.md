@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.42.0 (2026-04-29)
+
+Full Changelog: [v0.41.1...v0.42.0](https://github.com/Increase/increase-cli/compare/v0.41.1...v0.42.0)
+
+### Features
+
+* support passing path and query params over stdin ([002e507](https://github.com/Increase/increase-cli/commit/002e507856efd3c6dc91f17efc3d58b73a070412))
+
 ## 0.41.1 (2026-04-29)
 
 Full Changelog: [v0.41.0...v0.41.1](https://github.com/Increase/increase-cli/compare/v0.41.0...v0.41.1)
