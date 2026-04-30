@@ -258,16 +258,6 @@ func init() {
 				},
 			},
 			{
-				Name:     "ach-prenotifications",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&achPrenotificationsCreate,
-					&achPrenotificationsRetrieve,
-					&achPrenotificationsList,
-				},
-			},
-			{
 				Name:     "inbound-ach-transfers",
 				Category: "API RESOURCE",
 				Suggest:  true,
@@ -277,6 +267,16 @@ func init() {
 					&inboundACHTransfersCreateNotificationOfChange,
 					&inboundACHTransfersDecline,
 					&inboundACHTransfersTransferReturn,
+				},
+			},
+			{
+				Name:     "ach-prenotifications",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&achPrenotificationsCreate,
+					&achPrenotificationsRetrieve,
+					&achPrenotificationsList,
 				},
 			},
 			{
