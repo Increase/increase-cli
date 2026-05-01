@@ -14,9 +14,9 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-var simulationsEntitiesValidation = requestflag.WithInnerFlags(cli.Command{
-	Name:    "validation",
-	Usage:   "Set the status for an\n[Entity's validation](/documentation/api/entities#entity-object.validation). In\nproduction, Know Your Customer validations\n[run automatically](/documentation/entity-validation#entity-validation). While\ndeveloping, it can be helpful to override the behavior in Sandbox.",
+var simulationsEntitiesUpdateValidation = requestflag.WithInnerFlags(cli.Command{
+	Name:    "update-validation",
+	Usage:   "Simulate updates to an\n[Entity's validation](/documentation/api/entities#entity-object.validation). In\nproduction, Know Your Customer validations\n[run automatically](/documentation/entity-validation#entity-validation) for\neligible programs. While developing, use this API to simulate issues with\ninformation submissions.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
@@ -27,18 +27,12 @@ var simulationsEntitiesValidation = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.Flag[[]map[string]any]{
 			Name:     "issue",
-			Usage:    "The validation issues to attach. Only allowed when `status` is `invalid`.",
+			Usage:    "The validation issues to attach. If no issues are provided, the validation status will be set to `valid`.",
 			Required: true,
 			BodyPath: "issues",
 		},
-		&requestflag.Flag[string]{
-			Name:     "status",
-			Usage:    "The validation status to set on the Entity.",
-			Required: true,
-			BodyPath: "status",
-		},
 	},
-	Action:          handleSimulationsEntitiesValidation,
+	Action:          handleSimulationsEntitiesUpdateValidation,
 	HideHelpCommand: true,
 }, map[string][]requestflag.HasOuterFlag{
 	"issue": {
@@ -50,7 +44,7 @@ var simulationsEntitiesValidation = requestflag.WithInnerFlags(cli.Command{
 	},
 })
 
-func handleSimulationsEntitiesValidation(ctx context.Context, cmd *cli.Command) error {
+func handleSimulationsEntitiesUpdateValidation(ctx context.Context, cmd *cli.Command) error {
 	client := increase.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 	if !cmd.IsSet("entity-id") && len(unusedArgs) > 0 {
@@ -72,11 +66,11 @@ func handleSimulationsEntitiesValidation(ctx context.Context, cmd *cli.Command) 
 		return err
 	}
 
-	params := increase.SimulationEntityValidationParams{}
+	params := increase.SimulationEntityUpdateValidationParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Simulations.Entities.Validation(
+	_, err = client.Simulations.Entities.UpdateValidation(
 		ctx,
 		cmd.Value("entity-id").(string),
 		params,
@@ -94,7 +88,7 @@ func handleSimulationsEntitiesValidation(ctx context.Context, cmd *cli.Command) 
 		ExplicitFormat: explicitFormat,
 		Format:         format,
 		RawOutput:      cmd.Root().Bool("raw-output"),
-		Title:          "simulations:entities validation",
+		Title:          "simulations:entities update-validation",
 		Transform:      transform,
 	})
 }

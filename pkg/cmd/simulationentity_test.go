@@ -9,30 +9,28 @@ import (
 	"github.com/Increase/increase-cli/internal/requestflag"
 )
 
-func TestSimulationsEntitiesValidation(t *testing.T) {
+func TestSimulationsEntitiesUpdateValidation(t *testing.T) {
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t,
 			"--api-key", "string",
-			"simulations:entities", "validation",
+			"simulations:entities", "update-validation",
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
 			"--issue", "{category: entity_tax_identifier}",
-			"--status", "invalid",
 		)
 	})
 
 	t.Run("inner flags", func(t *testing.T) {
 		// Check that inner flags have been set up correctly
-		requestflag.CheckInnerFlags(simulationsEntitiesValidation)
+		requestflag.CheckInnerFlags(simulationsEntitiesUpdateValidation)
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
 			t,
 			"--api-key", "string",
-			"simulations:entities", "validation",
+			"simulations:entities", "update-validation",
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
 			"--issue.category", "entity_tax_identifier",
-			"--status", "invalid",
 		)
 	})
 
@@ -40,12 +38,11 @@ func TestSimulationsEntitiesValidation(t *testing.T) {
 		// Test piping YAML data over stdin
 		pipeData := []byte("" +
 			"issues:\n" +
-			"  - category: entity_tax_identifier\n" +
-			"status: invalid\n")
+			"  - category: entity_tax_identifier\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",
-			"simulations:entities", "validation",
+			"simulations:entities", "update-validation",
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
 		)
 	})
