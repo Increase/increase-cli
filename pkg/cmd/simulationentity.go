@@ -16,7 +16,7 @@ import (
 
 var simulationsEntitiesValidation = requestflag.WithInnerFlags(cli.Command{
 	Name:    "validation",
-	Usage:   "Simulates setting an [Entity](#entities)'s validation under the managed\ncompliance regime. Any existing managed compliance validation on the Entity will\nbe marked as no longer current.",
+	Usage:   "Set the status for an\n[Entity's validation](/documentation/api/entities#entity-object.validation). In\nproduction, Know Your Customer validations\n[run automatically](/documentation/entity-validation#entity-validation). While\ndeveloping, it can be helpful to override the behavior in Sandbox.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
