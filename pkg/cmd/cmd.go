@@ -920,6 +920,14 @@ func init() {
 				},
 			},
 			{
+				Name:     "simulations:entities",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&simulationsEntitiesValidation,
+				},
+			},
+			{
 				Name:     "simulations:entity-onboarding-sessions",
 				Category: "API RESOURCE",
 				Suggest:  true,
