@@ -16,7 +16,7 @@ import (
 
 var simulationsInboundMailItemsCreate = cli.Command{
 	Name:    "create",
-	Usage:   "Simulates an inbound mail item to your account, as if someone had mailed a\nphysical check to one of your account's Lockboxes.",
+	Usage:   "Simulates an Inbound Mail Item to one of your Lockbox Addresses or Lockbox\nRecipients, as if someone had mailed a physical check.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[int64]{
