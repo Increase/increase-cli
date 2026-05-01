@@ -16,7 +16,7 @@ import (
 
 var routingNumbersList = cli.Command{
 	Name:    "list",
-	Usage:   "You can use this API to confirm if a routing number is valid, such as when a\nuser is providing you with bank account details. Since routing numbers uniquely\nidentify a bank, this will always return 0 or 1 entry. In Sandbox, the only\nvalid routing number for this method is 110000000.",
+	Usage:   "You can use this API to confirm if a routing number is valid, such as when a\nuser is providing you with bank account details. Since routing numbers uniquely\nidentify a bank, this will always return 0 or 1 entry. In Sandbox, only a few\n[routing numbers are valid](/documentation/sandbox-routing-numbers#sandbox-routing-numbers).\n`110000000` is an example of a Sandbox routing number.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
