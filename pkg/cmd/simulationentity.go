@@ -21,19 +21,19 @@ var simulationsEntitiesValidation = requestflag.WithInnerFlags(cli.Command{
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
 			Name:      "entity-id",
-			Usage:     "The identifier of the Entity to set the validation on.",
+			Usage:     "The identifier of the Entity whose validation status to update.",
 			Required:  true,
 			PathParam: "entity_id",
 		},
 		&requestflag.Flag[[]map[string]any]{
 			Name:     "issue",
-			Usage:    "The issues to attach to the new managed compliance validation.",
+			Usage:    "The validation issues to attach. Only allowed when `status` is `invalid`.",
 			Required: true,
 			BodyPath: "issues",
 		},
 		&requestflag.Flag[string]{
 			Name:     "status",
-			Usage:    "The status to set on the new managed compliance validation.",
+			Usage:    "The validation status to set on the Entity.",
 			Required: true,
 			BodyPath: "status",
 		},
@@ -44,7 +44,7 @@ var simulationsEntitiesValidation = requestflag.WithInnerFlags(cli.Command{
 	"issue": {
 		&requestflag.InnerFlag[string]{
 			Name:       "issue.category",
-			Usage:      "The category of the issue.",
+			Usage:      "The type of issue.",
 			InnerField: "category",
 		},
 	},
