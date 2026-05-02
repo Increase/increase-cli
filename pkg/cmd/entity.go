@@ -122,7 +122,7 @@ var entitiesCreate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[string]{
 			Name:       "corporation.website",
-			Usage:      "The website of the corporation.",
+			Usage:      "A website for the business. Not every program requires a website for submitted Entities.",
 			InnerField: "website",
 		},
 	},
@@ -154,7 +154,7 @@ var entitiesCreate = requestflag.WithInnerFlags(cli.Command{
 		},
 		&requestflag.InnerFlag[string]{
 			Name:       "government-authority.website",
-			Usage:      "The website of the government authority.",
+			Usage:      "A website for the government authority. Not every program requires a website for submitted Entities.",
 			InnerField: "website",
 		},
 	},
@@ -385,6 +385,11 @@ var entitiesUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:       "corporation.name",
 			Usage:      "The legal name of the corporation.",
 			InnerField: "name",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "corporation.website",
+			Usage:      "A website for the business. Not every program requires a website for submitted Entities.",
+			InnerField: "website",
 		},
 	},
 	"government-authority": {

@@ -317,7 +317,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--api-key", "string",
 			"entities", "update",
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
-			"--corporation", "{address: {city: New York, country: US, line1: 33 Liberty Street, line2: Unit 2, state: NY, zip: '10045'}, email: dev@stainless.com, incorporation_state: x, industry_code: x, legal_identifier: {value: x, category: us_employer_identification_number}, name: x}",
+			"--corporation", "{address: {city: New York, country: US, line1: 33 Liberty Street, line2: Unit 2, state: NY, zip: '10045'}, email: dev@stainless.com, incorporation_state: x, industry_code: x, legal_identifier: {value: x, category: us_employer_identification_number}, name: x, website: website}",
 			"--details-confirmed-at", "'2019-12-27T18:11:19.117Z'",
 			"--government-authority", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
 			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, confirmed_no_us_tax_id: true, identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x}",
@@ -344,6 +344,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--corporation.industry-code", "x",
 			"--corporation.legal-identifier", "{value: x, category: us_employer_identification_number}",
 			"--corporation.name", "x",
+			"--corporation.website", "website",
 			"--details-confirmed-at", "'2019-12-27T18:11:19.117Z'",
 			"--government-authority.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
 			"--government-authority.name", "x",
@@ -381,6 +382,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"    value: x\n" +
 			"    category: us_employer_identification_number\n" +
 			"  name: x\n" +
+			"  website: website\n" +
 			"details_confirmed_at: '2019-12-27T18:11:19.117Z'\n" +
 			"government_authority:\n" +
 			"  address:\n" +
