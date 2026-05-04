@@ -16,7 +16,7 @@ func TestBeneficialOwnersCreate(t *testing.T) {
 			"--api-key", "string",
 			"beneficial-owners", "create",
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
-			"--individual", "{address: {city: New York, country: US, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, date_of_birth: '1970-01-31', identification: {method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: Ian Crease, confirmed_no_us_tax_id: true}",
+			"--individual", "{address: {city: New York, country: US, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, date_of_birth: '1970-01-31', identification: {method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: Ian Crease, confirmed_no_us_tax_id: true}",
 			"--prong", "control",
 			"--company-title", "CEO",
 		)
@@ -34,7 +34,7 @@ func TestBeneficialOwnersCreate(t *testing.T) {
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
 			"--individual.address", "{city: New York, country: US, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}",
 			"--individual.date-of-birth", "1970-01-31",
-			"--individual.identification", "{method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
+			"--individual.identification", "{method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
 			"--individual.name", "Ian Crease",
 			"--individual.confirmed-no-us-tax-id=true",
 			"--prong", "control",
@@ -61,7 +61,7 @@ func TestBeneficialOwnersCreate(t *testing.T) {
 			"    drivers_license:\n" +
 			"      expiration_date: '2019-12-27'\n" +
 			"      file_id: file_id\n" +
-			"      state: x\n" +
+			"      state: xx\n" +
 			"      back_file_id: back_file_id\n" +
 			"    other:\n" +
 			"      country: x\n" +
@@ -106,7 +106,7 @@ func TestBeneficialOwnersUpdate(t *testing.T) {
 			"--entity-beneficial-owner-id", "entity_beneficial_owner_vozma8szzu1sxezp5zq6",
 			"--address", "{city: New York, country: US, line1: 33 Liberty Street, line2: Unit 2, state: NY, zip: '10045'}",
 			"--confirmed-no-us-tax-id=true",
-			"--identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
+			"--identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
 			"--name", "x",
 		)
 	})
@@ -130,7 +130,7 @@ func TestBeneficialOwnersUpdate(t *testing.T) {
 			"--confirmed-no-us-tax-id=true",
 			"--identification.method", "social_security_number",
 			"--identification.number", "xxxx",
-			"--identification.drivers-license", "{expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}",
+			"--identification.drivers-license", "{expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}",
 			"--identification.other", "{country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}",
 			"--identification.passport", "{country: x, expiration_date: '2019-12-27', file_id: file_id}",
 			"--name", "x",
@@ -154,7 +154,7 @@ func TestBeneficialOwnersUpdate(t *testing.T) {
 			"  drivers_license:\n" +
 			"    expiration_date: '2019-12-27'\n" +
 			"    file_id: file_id\n" +
-			"    state: x\n" +
+			"    state: xx\n" +
 			"    back_file_id: back_file_id\n" +
 			"  other:\n" +
 			"    country: x\n" +

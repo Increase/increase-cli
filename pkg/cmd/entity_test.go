@@ -16,16 +16,16 @@ func TestEntitiesCreate(t *testing.T) {
 			"--api-key", "string",
 			"entities", "create",
 			"--structure", "corporation",
-			"--corporation", "{address: {city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, beneficial_owners: [{individual: {address: {city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, date_of_birth: '1970-01-31', identification: {method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: Ian Crease, confirmed_no_us_tax_id: true}, prongs: [control], company_title: CEO}], legal_identifier: {value: '602214076', category: us_employer_identification_number}, name: National Phonograph Company, beneficial_ownership_exemption_reason: regulated_financial_institution, email: dev@stainless.com, incorporation_state: NY, industry_code: x, website: https://example.com}",
+			"--corporation", "{address: {city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, beneficial_owners: [{individual: {address: {city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, date_of_birth: '1970-01-31', identification: {method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: Ian Crease, confirmed_no_us_tax_id: true}, prongs: [control], company_title: CEO}], legal_identifier: {value: '602214076', category: us_employer_identification_number}, name: National Phonograph Company, beneficial_ownership_exemption_reason: regulated_financial_institution, email: dev@stainless.com, incorporation_state: NY, industry_code: x, website: https://example.com}",
 			"--description", "x",
-			"--government-authority", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, authorized_persons: [{name: x}], category: municipality, name: x, tax_identifier: x, website: website}",
-			"--joint", "{individuals: [{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}]}",
-			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}",
+			"--government-authority", "{address: {city: x, line1: x, state: xx, zip: x, line2: x}, authorized_persons: [{name: x}], category: municipality, name: x, tax_identifier: x, website: website}",
+			"--joint", "{individuals: [{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}]}",
+			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}",
 			"--risk-rating", "{rated_at: '2019-12-27T18:11:19.117Z', rating: low}",
 			"--supplemental-document", "{file_id: file_makxrc67oh9l6sg7w9yc}",
 			"--terms-agreement", "{agreed_at: '2019-12-27T18:11:19.117Z', ip_address: x, terms_url: x}",
 			"--third-party-verification", "{reference: x, vendor: alloy}",
-			"--trust", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, category: revocable, name: x, trustees: [{structure: individual, individual: {address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}}], formation_document_file_id: formation_document_file_id, formation_state: x, grantor: {address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}, tax_identifier: x}",
+			"--trust", "{address: {city: x, line1: x, state: xx, zip: x, line2: x}, category: revocable, name: x, trustees: [{structure: individual, individual: {address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}}], formation_document_file_id: formation_document_file_id, formation_state: x, grantor: {address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}, tax_identifier: x}",
 		)
 	})
 
@@ -40,7 +40,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"entities", "create",
 			"--structure", "corporation",
 			"--corporation.address", "{city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}",
-			"--corporation.beneficial-owners", "[{individual: {address: {city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, date_of_birth: '1970-01-31', identification: {method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: Ian Crease, confirmed_no_us_tax_id: true}, prongs: [control], company_title: CEO}]",
+			"--corporation.beneficial-owners", "[{individual: {address: {city: New York, country: x, line1: 33 Liberty Street, line2: x, state: NY, zip: '10045'}, date_of_birth: '1970-01-31', identification: {method: social_security_number, number: '078051120', drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: Ian Crease, confirmed_no_us_tax_id: true}, prongs: [control], company_title: CEO}]",
 			"--corporation.legal-identifier", "{value: '602214076', category: us_employer_identification_number}",
 			"--corporation.name", "National Phonograph Company",
 			"--corporation.beneficial-ownership-exemption-reason", "regulated_financial_institution",
@@ -49,16 +49,16 @@ func TestEntitiesCreate(t *testing.T) {
 			"--corporation.industry-code", "x",
 			"--corporation.website", "https://example.com",
 			"--description", "x",
-			"--government-authority.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
+			"--government-authority.address", "{city: x, line1: x, state: xx, zip: x, line2: x}",
 			"--government-authority.authorized-persons", "[{name: x}]",
 			"--government-authority.category", "municipality",
 			"--government-authority.name", "x",
 			"--government-authority.tax-identifier", "x",
 			"--government-authority.website", "website",
-			"--joint.individuals", "[{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}]",
+			"--joint.individuals", "[{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}]",
 			"--natural-person.address", "{city: x, country: x, line1: x, line2: x, state: x, zip: x}",
 			"--natural-person.date-of-birth", "2019-12-27",
-			"--natural-person.identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
+			"--natural-person.identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
 			"--natural-person.name", "x",
 			"--natural-person.confirmed-no-us-tax-id=true",
 			"--risk-rating.rated-at", "2019-12-27T18:11:19.117Z",
@@ -69,13 +69,13 @@ func TestEntitiesCreate(t *testing.T) {
 			"--terms-agreement.terms-url", "x",
 			"--third-party-verification.reference", "x",
 			"--third-party-verification.vendor", "alloy",
-			"--trust.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
+			"--trust.address", "{city: x, line1: x, state: xx, zip: x, line2: x}",
 			"--trust.category", "revocable",
 			"--trust.name", "x",
-			"--trust.trustees", "[{structure: individual, individual: {address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}}]",
+			"--trust.trustees", "[{structure: individual, individual: {address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}}]",
 			"--trust.formation-document-file-id", "formation_document_file_id",
 			"--trust.formation-state", "x",
-			"--trust.grantor", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}",
+			"--trust.grantor", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, date_of_birth: '2019-12-27', identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x, confirmed_no_us_tax_id: true}",
 			"--trust.tax-identifier", "x",
 		)
 	})
@@ -108,7 +108,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"          drivers_license:\n" +
 			"            expiration_date: '2019-12-27'\n" +
 			"            file_id: file_id\n" +
-			"            state: x\n" +
+			"            state: xx\n" +
 			"            back_file_id: back_file_id\n" +
 			"          other:\n" +
 			"            country: x\n" +
@@ -139,7 +139,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"  address:\n" +
 			"    city: x\n" +
 			"    line1: x\n" +
-			"    state: x\n" +
+			"    state: xx\n" +
 			"    zip: x\n" +
 			"    line2: x\n" +
 			"  authorized_persons:\n" +
@@ -164,7 +164,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"        drivers_license:\n" +
 			"          expiration_date: '2019-12-27'\n" +
 			"          file_id: file_id\n" +
-			"          state: x\n" +
+			"          state: xx\n" +
 			"          back_file_id: back_file_id\n" +
 			"        other:\n" +
 			"          country: x\n" +
@@ -193,7 +193,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"    drivers_license:\n" +
 			"      expiration_date: '2019-12-27'\n" +
 			"      file_id: file_id\n" +
-			"      state: x\n" +
+			"      state: xx\n" +
 			"      back_file_id: back_file_id\n" +
 			"    other:\n" +
 			"      country: x\n" +
@@ -223,7 +223,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"  address:\n" +
 			"    city: x\n" +
 			"    line1: x\n" +
-			"    state: x\n" +
+			"    state: xx\n" +
 			"    zip: x\n" +
 			"    line2: x\n" +
 			"  category: revocable\n" +
@@ -245,7 +245,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"          drivers_license:\n" +
 			"            expiration_date: '2019-12-27'\n" +
 			"            file_id: file_id\n" +
-			"            state: x\n" +
+			"            state: xx\n" +
 			"            back_file_id: back_file_id\n" +
 			"          other:\n" +
 			"            country: x\n" +
@@ -276,7 +276,7 @@ func TestEntitiesCreate(t *testing.T) {
 			"      drivers_license:\n" +
 			"        expiration_date: '2019-12-27'\n" +
 			"        file_id: file_id\n" +
-			"        state: x\n" +
+			"        state: xx\n" +
 			"        back_file_id: back_file_id\n" +
 			"      other:\n" +
 			"        country: x\n" +
@@ -319,12 +319,12 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--entity-id", "entity_n8y8tnk2p9339ti393yi",
 			"--corporation", "{address: {city: New York, country: US, line1: 33 Liberty Street, line2: Unit 2, state: NY, zip: '10045'}, email: dev@stainless.com, incorporation_state: x, industry_code: x, legal_identifier: {value: x, category: us_employer_identification_number}, name: x, website: website}",
 			"--details-confirmed-at", "'2019-12-27T18:11:19.117Z'",
-			"--government-authority", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
-			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, confirmed_no_us_tax_id: true, identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x}",
+			"--government-authority", "{address: {city: x, line1: x, state: xx, zip: x, line2: x}, name: x}",
+			"--natural-person", "{address: {city: x, country: x, line1: x, line2: x, state: x, zip: x}, confirmed_no_us_tax_id: true, identification: {method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}, name: x}",
 			"--risk-rating", "{rated_at: '2020-01-31T23:59:59Z', rating: low}",
 			"--terms-agreement", "{agreed_at: '2019-12-27T18:11:19.117Z', ip_address: x, terms_url: x}",
 			"--third-party-verification", "{reference: x, vendor: alloy}",
-			"--trust", "{address: {city: x, line1: x, state: x, zip: x, line2: x}, name: x}",
+			"--trust", "{address: {city: x, line1: x, state: xx, zip: x, line2: x}, name: x}",
 		)
 	})
 
@@ -346,11 +346,11 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--corporation.name", "x",
 			"--corporation.website", "website",
 			"--details-confirmed-at", "'2019-12-27T18:11:19.117Z'",
-			"--government-authority.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
+			"--government-authority.address", "{city: x, line1: x, state: xx, zip: x, line2: x}",
 			"--government-authority.name", "x",
 			"--natural-person.address", "{city: x, country: x, line1: x, line2: x, state: x, zip: x}",
 			"--natural-person.confirmed-no-us-tax-id=true",
-			"--natural-person.identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: x, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
+			"--natural-person.identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
 			"--natural-person.name", "x",
 			"--risk-rating.rated-at", "2020-01-31T23:59:59Z",
 			"--risk-rating.rating", "low",
@@ -359,7 +359,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"--terms-agreement.terms-url", "x",
 			"--third-party-verification.reference", "x",
 			"--third-party-verification.vendor", "alloy",
-			"--trust.address", "{city: x, line1: x, state: x, zip: x, line2: x}",
+			"--trust.address", "{city: x, line1: x, state: xx, zip: x, line2: x}",
 			"--trust.name", "x",
 		)
 	})
@@ -388,7 +388,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"  address:\n" +
 			"    city: x\n" +
 			"    line1: x\n" +
-			"    state: x\n" +
+			"    state: xx\n" +
 			"    zip: x\n" +
 			"    line2: x\n" +
 			"  name: x\n" +
@@ -407,7 +407,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"    drivers_license:\n" +
 			"      expiration_date: '2019-12-27'\n" +
 			"      file_id: file_id\n" +
-			"      state: x\n" +
+			"      state: xx\n" +
 			"      back_file_id: back_file_id\n" +
 			"    other:\n" +
 			"      country: x\n" +
@@ -434,7 +434,7 @@ func TestEntitiesUpdate(t *testing.T) {
 			"  address:\n" +
 			"    city: x\n" +
 			"    line1: x\n" +
-			"    state: x\n" +
+			"    state: xx\n" +
 			"    zip: x\n" +
 			"    line2: x\n" +
 			"  name: x\n")
