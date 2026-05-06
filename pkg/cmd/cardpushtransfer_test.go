@@ -17,7 +17,7 @@ func TestCardPushTransfersCreate(t *testing.T) {
 			"card-push-transfers", "create",
 			"--business-application-identifier", "funds_disbursement",
 			"--card-token-id", "outbound_card_token_zlt0ml6youq3q7vcdlg0",
-			"--merchant-category-code", "1234",
+			"--merchant-category-code", "5734",
 			"--merchant-city-name", "New York",
 			"--merchant-name", "Acme Corp",
 			"--merchant-name-prefix", "Acme",
@@ -52,7 +52,7 @@ func TestCardPushTransfersCreate(t *testing.T) {
 			"card-push-transfers", "create",
 			"--business-application-identifier", "funds_disbursement",
 			"--card-token-id", "outbound_card_token_zlt0ml6youq3q7vcdlg0",
-			"--merchant-category-code", "1234",
+			"--merchant-category-code", "5734",
 			"--merchant-city-name", "New York",
 			"--merchant-name", "Acme Corp",
 			"--merchant-name-prefix", "Acme",
@@ -82,7 +82,7 @@ func TestCardPushTransfersCreate(t *testing.T) {
 		pipeData := []byte("" +
 			"business_application_identifier: funds_disbursement\n" +
 			"card_token_id: outbound_card_token_zlt0ml6youq3q7vcdlg0\n" +
-			"merchant_category_code: '1234'\n" +
+			"merchant_category_code: '5734'\n" +
 			"merchant_city_name: New York\n" +
 			"merchant_name: Acme Corp\n" +
 			"merchant_name_prefix: Acme\n" +
