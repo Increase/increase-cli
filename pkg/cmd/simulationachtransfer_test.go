@@ -26,16 +26,20 @@ func TestSimulationsACHTransfersCreateNotificationOfChange(t *testing.T) {
 			"--api-key", "string",
 			"simulations:ach-transfers", "create-notification-of-change",
 			"--ach-transfer-id", "ach_transfer_uoxatyh3lt5evrsdvo7q",
-			"--change-code", "incorrect_routing_number",
-			"--corrected-data", "123456789",
+			"--corrected-account-funding", "checking",
+			"--corrected-account-number", "x",
+			"--corrected-individual-id", "x",
+			"--corrected-routing-number", "123456789",
 		)
 	})
 
 	t.Run("piping data", func(t *testing.T) {
 		// Test piping YAML data over stdin
 		pipeData := []byte("" +
-			"change_code: incorrect_routing_number\n" +
-			"corrected_data: '123456789'\n")
+			"corrected_account_funding: checking\n" +
+			"corrected_account_number: x\n" +
+			"corrected_individual_id: x\n" +
+			"corrected_routing_number: '123456789'\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",
