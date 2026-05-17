@@ -122,6 +122,11 @@ var beneficialOwnersUpdate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "The individual's legal name.",
 			BodyPath: "name",
 		},
+		&requestflag.Flag[[]string]{
+			Name:     "prong",
+			Usage:    "Why this person is considered a beneficial owner of the entity. At least one option is required, if a person is both a control person and owner, submit an array containing both. Providing this replaces the beneficial owner's current prongs.",
+			BodyPath: "prongs",
+		},
 	},
 	Action:          handleBeneficialOwnersUpdate,
 	HideHelpCommand: true,

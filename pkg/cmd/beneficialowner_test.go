@@ -108,6 +108,7 @@ func TestBeneficialOwnersUpdate(t *testing.T) {
 			"--confirmed-no-us-tax-id=true",
 			"--identification", "{method: social_security_number, number: xxxx, drivers_license: {expiration_date: '2019-12-27', file_id: file_id, state: xx, back_file_id: back_file_id}, other: {country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}, passport: {country: x, expiration_date: '2019-12-27', file_id: file_id}}",
 			"--name", "x",
+			"--prong", "ownership",
 		)
 	})
 
@@ -134,6 +135,7 @@ func TestBeneficialOwnersUpdate(t *testing.T) {
 			"--identification.other", "{country: x, description: x, file_id: file_id, back_file_id: back_file_id, expiration_date: '2019-12-27'}",
 			"--identification.passport", "{country: x, expiration_date: '2019-12-27', file_id: file_id}",
 			"--name", "x",
+			"--prong", "ownership",
 		)
 	})
 
@@ -166,7 +168,9 @@ func TestBeneficialOwnersUpdate(t *testing.T) {
 			"    country: x\n" +
 			"    expiration_date: '2019-12-27'\n" +
 			"    file_id: file_id\n" +
-			"name: x\n")
+			"name: x\n" +
+			"prongs:\n" +
+			"  - ownership\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData,
 			"--api-key", "string",
